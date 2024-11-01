@@ -5,6 +5,7 @@ import {spaceToUnderscore} from '@utils/utils';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
+import {faker} from "@faker-js/faker";
 
 type MainPageProps = {
   offers: OfferPreview[];
@@ -12,6 +13,10 @@ type MainPageProps = {
 };
 
 function MainPage({offers, locations}: MainPageProps): JSX.Element {
+  if(faker.datatype.boolean()) {
+    throw new Error('Test error')
+  }
+
   return (
     <div className="page page--gray page--main">
 
