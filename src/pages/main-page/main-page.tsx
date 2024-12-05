@@ -5,7 +5,8 @@ import {spaceToUnderscore} from '@utils/utils';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
-import {faker} from "@faker-js/faker";
+import {Suspense} from "react";
+import {Await} from "react-router-dom"
 
 type MainPageProps = {
   offers: OfferPreview[];
@@ -13,15 +14,11 @@ type MainPageProps = {
 };
 
 function MainPage({offers, locations}: MainPageProps): JSX.Element {
-  if(faker.datatype.boolean()) {
-    throw new Error('Test error')
-  }
+
 
   return (
     <div className="page page--gray page--main">
-
       <Header/>
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -37,6 +34,14 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
             </ul>
           </section>
         </div>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <Await errorElement={'Something went wrong'} resolve={offers}>
+            {(resolvedOffers: Thumbnail[]) =>
+              `${resolvedOffers.length} places to stay in Amsterdam`}
+          </Await>
+        </Suspense>
+
         {
           offers.length > 0 ? (
             <div className="cities">
@@ -44,11 +49,9 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">312 places to stay in Amsterdam</b>
-
                   <PlacesSorting/>
 
                   <div className="cities__places-list places__list tabs__content">
-
                     {offers.map((dataCard) => (
                       <OfferCard
                         offer={dataCard}
@@ -57,9 +60,7 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
                         key={dataCard.id}
                       />
                     ))}
-
                   </div>
-
                 </section>
                 <div className="cities__right-section">
                   <section className="cities__map map"></section>

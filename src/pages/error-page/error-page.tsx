@@ -8,7 +8,8 @@ function ErrorPage(): JSX.Element {
 
   let message = '404. Page not found';
 
-  if(error instanceof Error) {
+
+  if (error instanceof Error) {
     message = error.message;
   }
 

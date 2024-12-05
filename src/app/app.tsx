@@ -4,7 +4,7 @@ import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
 import ProtectRoute from '@components/protect-route/protect-route';
-import ErrorPage from '@pages/not-found-page';
+import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
 
