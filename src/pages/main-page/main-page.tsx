@@ -34,14 +34,6 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
             </ul>
           </section>
         </div>
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <Await errorElement={'Something went wrong'} resolve={offers}>
-            {(resolvedOffers: Thumbnail[]) =>
-              `${resolvedOffers.length} places to stay in Amsterdam`}
-          </Await>
-        </Suspense>
-
         {
           offers.length > 0 ? (
             <div className="cities">
