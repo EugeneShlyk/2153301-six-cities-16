@@ -1,15 +1,26 @@
+import {AppRoute, AuthorizationStatus} from "@constants";
 import {Navigate} from "react-router-dom";
-import {AppRoute, type AuthorizationStatus} from "@constants";
 
-interface AccessRouteProps {
+export interface AccessRouteProps {
   children: JSX.Element;
-  status: AuthorizationStatus
+  status: AuthorizationStatus;
 }
 
-function PrivateRoute({children, status}: AccessRouteProps) {
-  return status === 'AUTH' ? children : <Navigate to={AppRoute.Login}/>
-}
+const createAccessRoute = (statusToCheck: AuthorizationStatus, fallbackPath: AppRoute) =>
+  function({children, status}: AccessRouteProps) {
+  if (status === 'UNKNOWN') {
+    return 'Loading...'
+  }
 
-function PublicRoute({children, status}: AccessRouteProps) {
-  return status === 'NO_AUTH' ? children: <Navigate to={AppRoute.}/>
-}
+  if (status === statusToCheck) {
+    return children
+  }
+
+  return <Navigate to={fallbackPath}/>
+  };
+
+const PrivateRoute = createAccessRoute('AUTH', AppRoute.Login);
+
+const PublicRoute = createAccessRoute('NO_AUTH', AppRoute.Root);
+
+export {PublicRoute, PrivateRoute};

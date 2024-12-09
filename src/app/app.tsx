@@ -3,10 +3,13 @@ import {OFFERS} from '@mocks/offers';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
-import ProtectRoute from '@components/protect-route/protect-route';
+// import ProtectRoute from '@components/protect-route/protect-route';
 import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
+import {PublicRoute, PrivateRoute} from "@components/access-route";
+
+const currentStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
   const router = createBrowserRouter([
@@ -19,9 +22,9 @@ function App(): JSX.Element {
         {
           path: AppRoute.Favorites,
           element:
-            <ProtectRoute>
+            // <ProtectRoute>
               <FavoritePage offers={OFFERS}/>
-            </ProtectRoute>
+            // </ProtectRoute>
 
         },
         {
@@ -31,16 +34,18 @@ function App(): JSX.Element {
         {
           path: AppRoute.Login,
           element:
-            <ProtectRoute onlyUnAuth>
-              <LoginPage/>
-            </ProtectRoute>
+            // <ProtectRoute onlyUnAuth>
+          <PublicRoute>
+            <LoginPage/>
+          </PublicRoute>
+            // </ProtectRoute>
         },
       ],
       errorElement: <ErrorPage/>,
     }
-  ])
+  ]);
 
-  return <RouterProvider router={router}/>
+  return <RouterProvider router={router}/>;
 }
 
 export default App;
