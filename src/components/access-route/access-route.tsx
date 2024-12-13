@@ -7,20 +7,30 @@ export interface AccessRouteProps {
 }
 
 const createAccessRoute = (statusToCheck: AuthorizationStatus, fallbackPath: AppRoute) =>
-  function({children, status}: AccessRouteProps) {
-  if (status === 'UNKNOWN') {
-    return 'Loading...'
-  }
+  function ({children, status}: AccessRouteProps) {
 
-  if (status === statusToCheck) {
-    return children
-  }
-
-  return <Navigate to={fallbackPath}/>
+    switch (status) {
+      case statusToCheck:
+        return children;
+      case "UNKNOWN":
+        return 'Loading...';
+      default:
+        return <Navigate to={fallbackPath}/>;
+    }
+    // if (status === 'UNKNOWN') {
+    //   return 'Loading...'
+    // }
+    //
+    // if (status === statusToCheck) {
+    //   return children
+    // }
+    //
+    // return <Navigate to={fallbackPath}/>
   };
 
 const PrivateRoute = createAccessRoute('AUTH', AppRoute.Login);
-
 const PublicRoute = createAccessRoute('NO_AUTH', AppRoute.Root);
 
 export {PublicRoute, PrivateRoute};
+
+
