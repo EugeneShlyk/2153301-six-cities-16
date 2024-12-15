@@ -17,20 +17,15 @@ const createAccessRoute = (statusToCheck: AuthorizationStatus, fallbackPath: App
       default:
         return <Navigate to={fallbackPath}/>;
     }
-    // if (status === 'UNKNOWN') {
-    //   return 'Loading...'
-    // }
-    //
-    // if (status === statusToCheck) {
-    //   return children
-    // }
-    //
-    // return <Navigate to={fallbackPath}/>
   };
 
 const PrivateRoute = createAccessRoute('AUTH', AppRoute.Login);
 const PublicRoute = createAccessRoute('NO_AUTH', AppRoute.Root);
 
 export {PublicRoute, PrivateRoute};
+
+const COLORS = ['red', 'white', 'black'];
+
+
 
 

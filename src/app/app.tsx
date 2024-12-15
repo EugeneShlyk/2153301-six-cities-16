@@ -23,9 +23,11 @@ function App(): JSX.Element {
         {
           path: AppRoute.Favorites,
           element:
-          // <ProtectRoute>
-            <FavoritePage offers={OFFERS}/>
-          // </ProtectRoute>
+            // <ProtectRoute>
+            <PrivateRoute>
+              <FavoritePage offers={OFFERS}/>
+            </PrivateRoute>
+            // </ProtectRoute>
 
         },
         {

@@ -5,8 +5,6 @@ import {spaceToUnderscore} from '@utils/utils';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
-import {Suspense} from "react";
-import {Await} from "react-router-dom"
 
 type MainPageProps = {
   offers: OfferPreview[];
@@ -14,6 +12,9 @@ type MainPageProps = {
 };
 
 function MainPage({offers, locations}: MainPageProps): JSX.Element {
+
+  const COLORS = ['red', 'white', 'black'] as const;
+  type Color = (typeof COLORS)[number]
 
 
   return (
