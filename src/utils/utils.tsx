@@ -9,7 +9,7 @@ const randomInteger = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-// const randomElement = <Element>(array: Element[] | readonly Element[]) =>
-// array[]
+const randomElement = <Element> (array: Element[] | readonly Element[]) =>
+array[randomInteger(0, array.length - 1)]
 
-// export {spaceToUnderscore};
+export {spaceToUnderscore, randomElement, randomInteger};
