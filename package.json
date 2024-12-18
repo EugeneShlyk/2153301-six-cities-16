@@ -45,7 +45,7 @@
     "faker": "5.5.3",
     "jsdom": "22.1.0",
     "sass": "1.80.5",
-    "typescript": "5.2.2",
+    "typescript": "^5.7.2",
     "vite": "4.4.11",
     "vite-tsconfig-paths": "4.3.2",
     "vitest": "0.34.6"
