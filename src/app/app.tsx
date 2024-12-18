@@ -3,12 +3,11 @@ import {OFFERS} from '@mocks/offers';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
-// import ProtectRoute from '@components/protect-route/protect-route';
 import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
 import {PublicRoute, PrivateRoute} from "@components/access-route";
-import { AuthorizationStatus } from "@constants";
+import {AuthorizationStatus} from "@constants";
 
 const currentStatus: AuthorizationStatus = 'UNKNOWN';
 
@@ -23,12 +22,9 @@ function App(): JSX.Element {
         {
           path: AppRoute.Favorites,
           element:
-            // <ProtectRoute>
-            <PrivateRoute>
+            <PrivateRoute status={'AUTH'}>
               <FavoritePage offers={OFFERS}/>
             </PrivateRoute>
-            // </ProtectRoute>
-
         },
         {
           path: `${AppRoute.Offer}/:offerId`,
@@ -37,11 +33,9 @@ function App(): JSX.Element {
         {
           path: AppRoute.Login,
           element:
-          // <ProtectRoute onlyUnAuth>
             <PublicRoute status={currentStatus}>
               <LoginPage/>
             </PublicRoute>
-          // </ProtectRoute>
         },
       ],
       errorElement: <ErrorPage/>,

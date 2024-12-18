@@ -13,10 +13,6 @@ type MainPageProps = {
 
 function MainPage({offers, locations}: MainPageProps): JSX.Element {
 
-  const COLORS = ['red', 'white', 'black'] as const;
-  type Color = (typeof COLORS)[number]
-
-
   return (
     <div className="page page--gray page--main">
       <Header/>
