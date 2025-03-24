@@ -1,13 +1,13 @@
 import {AppRoute, CityMap} from '@constants';
 import {OFFERS} from '@mocks/offers';
-import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
 import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
-import {PublicRoute, PrivateRoute} from "@components/access-route";
-import {AuthorizationStatus} from "@constants";
+import {PublicRoute, PrivateRoute} from '@components/access-route';
+import {AuthorizationStatus} from '@constants';
 
 const currentStatus: AuthorizationStatus = 'UNKNOWN';
 

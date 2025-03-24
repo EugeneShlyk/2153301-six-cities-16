@@ -1,4 +1,5 @@
 import Header from '@components/header';
+import OfferFavoriteButton from '@components/offer-favorite-button';
 
 function OfferPage(): JSX.Element {
   return (
@@ -38,12 +39,13 @@ function OfferPage(): JSX.Element {
                 <h1 className="offer__name">
                   Beautiful &amp; luxurious studio at great location
                 </h1>
-                <button className="offer__bookmark-button button" type="button">
-                  <svg className="offer__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <OfferFavoriteButton height={'33'} weight={'31'}></OfferFavoriteButton>
+                {/*<button className="offer__bookmark-button button" type="button">*/}
+                {/*  <svg className="offer__bookmark-icon" width="31" height="33">*/}
+                {/*    <use xlinkHref="#icon-bookmark"></use>*/}
+                {/*  </svg>*/}
+                {/*  <span className="visually-hidden">To bookmarks</span>*/}
+                {/*</button>*/}
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">

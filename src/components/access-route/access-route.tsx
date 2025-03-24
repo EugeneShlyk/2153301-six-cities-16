@@ -1,5 +1,5 @@
-import {AppRoute, AuthorizationStatus} from "@constants";
-import {Navigate} from "react-router-dom";
+import {AppRoute, AuthorizationStatus} from '@constants';
+import {Navigate} from 'react-router-dom';
 
 export interface AccessRouteProps {
   children: JSX.Element;
@@ -7,12 +7,12 @@ export interface AccessRouteProps {
 }
 
 const createAccessRoute = (statusToCheck: AuthorizationStatus, fallbackPath: AppRoute) =>
-  function ({children, status}: AccessRouteProps) {
+  function AccessRoute ({children, status}: AccessRouteProps) {
 
     switch (status) {
       case statusToCheck:
         return children;
-      case "UNKNOWN":
+      case 'UNKNOWN':
         return 'Loading...';
       default:
         return <Navigate to={fallbackPath}/>;

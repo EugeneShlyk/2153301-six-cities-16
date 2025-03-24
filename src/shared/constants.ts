@@ -51,4 +51,4 @@ export const ImageSizeMap: TSizeMap = {
 //   NoAuth = 'NO_AUTH',
 // }
 
-export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' |  'UNKNOWN';
+export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
