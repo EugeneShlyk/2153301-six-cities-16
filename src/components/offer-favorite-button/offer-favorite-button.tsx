@@ -1,13 +1,22 @@
+import clsx from 'clsx';
+
 type ButtonProp = {
   height: string;
   weight: string;
   isFavorite?: boolean;
+  isOfferPageBookmark?: boolean;
 }
 
-export default function OfferFavoriteButton({height, weight, isFavorite}: ButtonProp) {
+export default function OfferFavoriteButton({height, weight, isFavorite, isOfferPageBookmark}: ButtonProp) {
   return (
-    <button className="place-card__bookmark-button button" type="button">
-      <svg className="place-card__bookmark-icon" width={weight} height={height}>
+    <button className={clsx('button', {
+      'offer__bookmark-button': isOfferPageBookmark,
+      'place-card__bookmark-button': !isOfferPageBookmark,
+    })} type="button">
+      <svg className={clsx({
+        'offer__bookmark-icon': isOfferPageBookmark,
+        'place-card__bookmark-icon': !isOfferPageBookmark,
+      })} width={weight} height={height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">
