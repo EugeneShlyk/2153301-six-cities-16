@@ -1,5 +1,6 @@
 import Header from '@components/header';
 import OfferFavoriteButton from '@components/offer-favorite-button';
+import {largeButtonFavoriteDimensions, smallButtonFavoriteDimension} from '@constants';
 
 function OfferPage(): JSX.Element {
   return (
@@ -39,13 +40,7 @@ function OfferPage(): JSX.Element {
                 <h1 className="offer__name">
                   Beautiful &amp; luxurious studio at great location
                 </h1>
-                <OfferFavoriteButton height={'33'} weight={'31'}></OfferFavoriteButton>
-                {/*<button className="offer__bookmark-button button" type="button">*/}
-                {/*  <svg className="offer__bookmark-icon" width="31" height="33">*/}
-                {/*    <use xlinkHref="#icon-bookmark"></use>*/}
-                {/*  </svg>*/}
-                {/*  <span className="visually-hidden">To bookmarks</span>*/}
-                {/*</button>*/}
+                <OfferFavoriteButton dimension={largeButtonFavoriteDimensions} isOfferPageBookmark></OfferFavoriteButton>
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
@@ -219,12 +214,7 @@ function OfferPage(): JSX.Element {
                       <b className="place-card__price-value">&euro;80</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">In bookmarks</span>
-                    </button>
+                    <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false} isFavorite></OfferFavoriteButton>
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
@@ -251,12 +241,7 @@ function OfferPage(): JSX.Element {
                       <b className="place-card__price-value">&euro;132</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
-                    <button className="place-card__bookmark-button button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
+                    <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}></OfferFavoriteButton>
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
@@ -286,12 +271,7 @@ function OfferPage(): JSX.Element {
                       <b className="place-card__price-value">&euro;180</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
-                    <button className="place-card__bookmark-button button" type="button">
-                      <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
-                      </svg>
-                      <span className="visually-hidden">To bookmarks</span>
-                    </button>
+                    <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}></OfferFavoriteButton>
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
