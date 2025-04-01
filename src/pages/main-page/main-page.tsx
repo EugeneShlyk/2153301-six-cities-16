@@ -5,6 +5,7 @@ import {spaceToUnderscore} from '@utils/utils';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
+import Map from '@components/map';
 
 type MainPageProps = {
   offers: OfferPreview[];
@@ -51,9 +52,10 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
                     ))}
                   </div>
                 </section>
-                <div className="cities__right-section">
-                  <section className="cities__map map"></section>
-                </div>
+                {/*<div className="cities__right-section">*/}
+                {/*  <section className="cities__map map"></section>*/}
+                {/*</div>*/}
+                <Map></Map>
               </div>
             </div>
           ) : <NoOffers currentLocation={locations.Paris.name}/>
