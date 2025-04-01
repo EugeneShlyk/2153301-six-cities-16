@@ -3,20 +3,6 @@ import {useEffect, useRef} from 'react';
 import {Map, TileLayer} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// type City = {
-//   title: string;
-//   lat: number;
-//   lng: number;
-//   zoom: number;
-// };
-//
-// const CITY: City = {
-//   title: 'Нью-Йорк',
-//   lat: 40.835292,
-//   lng: -73.916236,
-//   zoom: 10
-// };
-
 export default function MapSite() {
   const mapRef = useRef<HTMLDivElement>(null);
   // const [map, setMap] = useState<Map | null>(null);
@@ -48,7 +34,7 @@ export default function MapSite() {
   }, [mapRef]);
 
   return (
-    <div className="cities__right-section" ref={mapRef} style={{height: '500px'}}>
+    <div className="cities__right-section" ref={mapRef}>
       <section className="cities__map map"></section>
     </div>
   );
