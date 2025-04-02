@@ -53,12 +53,6 @@ export const ImageSizeMap: TSizeMap = {
   large: {width: '260', height: '200'},
 } as const;
 
-// export enum AuthorizationStatus {
-//   Unknown = 'UNKNOWN',
-//   Auth = 'AUTH',
-//   NoAuth = 'NO_AUTH',
-// }
-
 export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
 
 export const smallButtonFavoriteDimension = {

@@ -52,10 +52,9 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
                     ))}
                   </div>
                 </section>
-                {/*<div className="cities__right-section">*/}
-                {/*  <section className="cities__map map"></section>*/}
-                {/*</div>*/}
-                <Map></Map>
+                <div className="cities__right-section">
+                  <Map></Map>
+                </div>
               </div>
             </div>
           ) : <NoOffers currentLocation={locations.Paris.name}/>

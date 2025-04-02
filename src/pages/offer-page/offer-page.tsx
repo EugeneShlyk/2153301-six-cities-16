@@ -1,6 +1,7 @@
 import Header from '@components/header';
 import OfferFavoriteButton from '@components/offer-favorite-button';
 import {largeButtonFavoriteDimensions, smallButtonFavoriteDimension} from '@constants';
+import Map from '@components/map';
 
 function OfferPage(): JSX.Element {
   return (
