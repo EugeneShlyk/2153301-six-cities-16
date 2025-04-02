@@ -1,4 +1,4 @@
-import useMap from '../../use-map';
+import useMap from '../../hooks/use-map';
 import {useRef, useEffect} from 'react';
 import {CitiesName} from '@constants';
 
