@@ -12,8 +12,8 @@ type MainPageProps = {
   locations: typeof CityMap;
 };
 
-function MainPage({offers, locations}: MainPageProps): JSX.Element {
 
+function MainPage({offers, locations}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header/>
