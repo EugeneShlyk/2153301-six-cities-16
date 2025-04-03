@@ -64,3 +64,13 @@ export const largeButtonFavoriteDimensions = {
   height: '33',
   width: '31',
 };
+
+export type Location = {
+  name: CitiesName;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
+  slug: string;
+};

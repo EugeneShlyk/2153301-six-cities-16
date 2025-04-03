@@ -6,14 +6,17 @@ import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
 import Map from '@components/map';
+import {useState} from 'react';
+import {CitiesName} from '@constants';
 
 type MainPageProps = {
   offers: OfferPreview[];
   locations: typeof CityMap;
 };
 
-
 function MainPage({offers, locations}: MainPageProps): JSX.Element {
+  const [activeCity, setActiveCity] = useState(CitiesName.Paris);
+
   return (
     <div className="page page--gray page--main">
       <Header/>
