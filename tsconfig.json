@@ -27,7 +27,7 @@
       "@mocks/*": ["./src/mocks/*"],
       "@utils/*": ["./src/utils/*"],
       "@constants": ["./src/shared/constants.ts"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
     }
   },
   "include": ["src", "vite.config.ts"],

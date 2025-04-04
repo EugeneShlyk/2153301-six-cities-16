@@ -5,7 +5,7 @@ type CityMapType = {
   [key: string]: City;
 };
 
-export default function LocationList(locations: CityMapType, activeCity: ): JSX.Element {
+export default function LocationList(locations: CityMapType): JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">

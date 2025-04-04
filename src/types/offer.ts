@@ -11,7 +11,6 @@ export type Offer = Omit<OfferPreview, 'previewImage'> & {
   maxAdults: number;
 };
 
-
 export type OfferPreview = {
   id: string;
   title: string;

@@ -6,16 +6,17 @@ import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
 import Map from '@components/map';
-import {useState} from 'react';
-import {CitiesName} from '@constants';
+import {City} from '@customType/city.ts';
 
 type MainPageProps = {
   offers: OfferPreview[];
   locations: typeof CityMap;
+  currentCity: City;
+  setCurrentCity: (city: City) => void;
 };
 
-function MainPage({offers, locations}: MainPageProps): JSX.Element {
-  const [activeCity, setActiveCity] = useState(CitiesName.Paris);
+function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
+  const offersCurrentCity = offers.filter((offer: OfferPreview) : boolean => offer.city.name === currentCity.name);
 
   return (
     <div className="page page--gray page--main">
@@ -27,7 +28,7 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
             <ul className="locations__list tabs__list">
               {Object.values(locations).map((city) => (
                 <li key={spaceToUnderscore(city.name)} className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#">
+                  <a className="locations__item-link tabs__item" href="#" onClick={() => setCurrentCity(city)}>
                     <span>{city.name}</span>
                   </a>
                 </li>
@@ -45,7 +46,7 @@ function MainPage({offers, locations}: MainPageProps): JSX.Element {
                   <PlacesSorting/>
 
                   <div className="cities__places-list places__list tabs__content">
-                    {offers.map((dataCard) => (
+                    {offersCurrentCity.map((dataCard : OfferPreview) => (
                       <OfferCard
                         offer={dataCard}
                         variant="cities"

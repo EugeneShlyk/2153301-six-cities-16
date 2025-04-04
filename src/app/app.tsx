@@ -8,15 +8,18 @@ import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
 import {PublicRoute, PrivateRoute} from '@components/access-route';
 import {AuthorizationStatus} from '@constants';
+import {useState} from 'react';
+import {City} from '@customType/city.ts';
 
 const currentStatus: AuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
+  const [currentCity, setCurrentCity] = useState<City>(CityMap.Paris);
   const router = createBrowserRouter([
     {
       children: [
         {
-          element: <MainPage offers={OFFERS} locations={CityMap}/>,
+          element: <MainPage offers={OFFERS} locations={CityMap} currentCity={currentCity} setCurrentCity={setCurrentCity}/>,
           index: true,
         },
         {
