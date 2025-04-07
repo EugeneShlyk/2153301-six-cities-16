@@ -1,19 +1,11 @@
-import {CityMap} from '@constants';
 import {OfferPreview} from '@customType/offer';
 import PlacesSorting from '@components/places-sorting/places-sorting';
-import {spaceToUnderscore} from '@utils/utils';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
 import Map from '@components/map';
-import {City} from '@customType/city.ts';
-
-type MainPageProps = {
-  offers: OfferPreview[];
-  locations: typeof CityMap;
-  currentCity: City;
-  setCurrentCity: (city: City) => void;
-};
+import LocationList from '@components/location-list';
+import {MainPageProps} from '@customType/props.ts';
 
 function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
   const offersCurrentCity = offers.filter((offer: OfferPreview) : boolean => offer.city.name === currentCity.name);
@@ -24,17 +16,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {Object.values(locations).map((city) => (
-                <li key={spaceToUnderscore(city.name)} className="locations__item">
-                  <a className="locations__item-link tabs__item" href="#" onClick={() => setCurrentCity(city)}>
-                    <span>{city.name}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <LocationList locations={locations} setCurrentCity={setCurrentCity}></LocationList>
         </div>
         {
           offers.length > 0 ? (
@@ -42,7 +24,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
               <div className="cities__places-container container">
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">312 places to stay in Amsterdam</b>
+                  <b className="places__found">{offersCurrentCity.length} places to stay in {currentCity.name}</b>
                   <PlacesSorting/>
 
                   <div className="cities__places-list places__list tabs__content">
