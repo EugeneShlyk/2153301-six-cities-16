@@ -53,7 +53,7 @@ export const ImageSizeMap: TSizeMap = {
   large: {width: '260', height: '200'},
 } as const;
 
-export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
+// export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
 
 export const smallButtonFavoriteDimension = {
   height: '19',
@@ -65,12 +65,3 @@ export const largeButtonFavoriteDimensions = {
   width: '31',
 };
 
-export type Location = {
-  name: CitiesName;
-  location: {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-  };
-  slug: string;
-};

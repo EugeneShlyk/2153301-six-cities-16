@@ -9,7 +9,6 @@ import {MainPageProps} from '@customType/props.ts';
 
 function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
   const offersCurrentCity = offers.filter((offer: OfferPreview) : boolean => offer.city.name === currentCity.name);
-
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -39,7 +38,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                   </div>
                 </section>
                 <div className="cities__right-section">
-                  <Map></Map>
+                  <Map currentCity={currentCity}></Map>
                 </div>
               </div>
             </div>

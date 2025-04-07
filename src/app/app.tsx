@@ -7,7 +7,7 @@ import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
 import {PublicRoute, PrivateRoute} from '@components/access-route';
-import {AuthorizationStatus} from '@constants';
+import {AuthorizationStatus} from '@customType/authorization-status.ts';
 import {useState} from 'react';
 import {City} from '@customType/city.ts';
 

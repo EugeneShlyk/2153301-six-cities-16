@@ -10,6 +10,8 @@ export default function useMap(
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
+  console.log(city);
+  // console.log(city.location);
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
