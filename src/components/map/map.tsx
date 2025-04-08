@@ -1,10 +1,12 @@
 import useMap from '../../hooks/use-map';
 import {useRef, useEffect} from 'react';
-import {CitiesName} from '@constants';
+import {City} from '@customType/city.ts';
 
-const paris = {name: CitiesName.Paris, location: {latitude: 48.8566, longitude: 2.3522, zoom: 10}, slug: '/paris'};
+interface MapProps {
+  currentCity: City;
+}
 
-export default function Map({currentCity}) {
+export default function Map({currentCity}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);
   useEffect(() => {

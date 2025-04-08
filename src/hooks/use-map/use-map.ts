@@ -36,7 +36,7 @@ export default function useMap(
     } else if (map) {
       map.panTo(new L.LatLng(city.location.latitude, city.location.longitude));
     }
-  }, [mapRef, city]);
+  }, [mapRef, city, map]);
 
   return map;
 }
