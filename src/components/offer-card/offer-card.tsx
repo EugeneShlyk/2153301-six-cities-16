@@ -39,6 +39,7 @@ function OfferCard({
   variant,
   size,
 }: OfferCardProps): JSX.Element {
+  console.log(offer.isFavorite);
   return (
     <article className={clsx(variant && `${variant}__card`, 'place-card')}>
       {
