@@ -35,6 +35,7 @@ function getImageSize(size: Size) {
   }
 }
 
+
 function OfferCard({
   offer,
   variant,
