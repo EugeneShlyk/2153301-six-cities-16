@@ -21,6 +21,7 @@ type OfferCardProps = {
   offer: OfferPreview;
   size: Size;
   variant?: CardType;
+  onOverCard?: (cardId: string) => void;
 };
 
 function getImageSize(size: Size) {
@@ -38,10 +39,19 @@ function OfferCard({
   offer,
   variant,
   size,
+  onOverCard
 }: OfferCardProps): JSX.Element {
   const isFavorite = offer?.isFavorite;
+  const onMouseEnter = () => {
+    if (onOverCard) {
+      onOverCard(offer.id);
+    }
+  };
   return (
-    <article className={clsx(variant && `${variant}__card`, 'place-card')}>
+    <article
+      className={clsx(variant && `${variant}__card`, 'place-card')}
+      {...(onOverCard ? {onMouseEnter: onMouseEnter} : {})}
+    >
       {
         offer.isPremium
           ? <div className="place-card__mark"><span>Premium</span></div>
@@ -68,7 +78,8 @@ function OfferCard({
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false} isFavorite={isFavorite}></OfferFavoriteButton>
+          <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
+                               isFavorite={isFavorite}></OfferFavoriteButton>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
