@@ -53,7 +53,7 @@ export const ImageSizeMap: TSizeMap = {
   large: {width: '260', height: '200'},
 } as const;
 
-// export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
+export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
 
 export const smallButtonFavoriteDimension = {
   height: '19',

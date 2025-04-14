@@ -3,9 +3,9 @@
 //   children: JSX.Element;
 // }
 
-// import {AuthorizationStatus} from "@constants";
-//
-// export interface AccessRouteProps {
-//   children: JSX.Element;
-//   status: AuthorizationStatus
-// }
+import {AuthorizationStatus} from '@constants';
+
+export interface AccessRouteProps {
+  children: JSX.Element;
+  status: AuthorizationStatus;
+}

@@ -18,12 +18,12 @@
 //   return children;
 // }
 
-import {Navigate} from "react-router-dom";
-import {AppRoute, type AuthorizationStatus} from "@constants";
-import {AccessRouteProps} from "@customType/props/access-route-props";
+import {Navigate} from 'react-router-dom';
+import {AppRoute} from '@constants';
+import {AccessRouteProps} from '@customType/props/access-route-props';
 
 
 export default function ProtectRoute({children, status}: AccessRouteProps) {
-  return status === 'AUTH' ? children : <Navigate to={AppRoute.Login}/>
+  return status === 'AUTH' ? children : <Navigate to={AppRoute.Login}/>;
 }
 

@@ -39,7 +39,7 @@ function OfferCard({
   variant,
   size,
 }: OfferCardProps): JSX.Element {
-  console.log(offer.isFavorite);
+  const isFavorite = offer?.isFavorite;
   return (
     <article className={clsx(variant && `${variant}__card`, 'place-card')}>
       {
@@ -68,7 +68,7 @@ function OfferCard({
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}></OfferFavoriteButton>
+          <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false} isFavorite={isFavorite}></OfferFavoriteButton>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

@@ -6,9 +6,11 @@ import OfferCard from '@components/offer-card';
 import Map from '@components/map';
 import LocationList from '@components/location-list';
 import {MainPageProps} from '@customType/props.ts';
+import {useState} from 'react';
 
 function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
-  const offersCurrentCity = offers.filter((offer: OfferPreview) : boolean => offer.city.name === currentCity.name);
+  const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
+  const [hoveredOfferId, setHoveredOfferId] = useState<string | undefined>(undefined);
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -27,7 +29,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                   <PlacesSorting/>
 
                   <div className="cities__places-list places__list tabs__content">
-                    {offersCurrentCity.map((dataCard : OfferPreview) => (
+                    {offersCurrentCity.map((dataCard: OfferPreview) => (
                       <OfferCard
                         offer={dataCard}
                         variant="cities"
@@ -38,7 +40,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                   </div>
                 </section>
                 <div className="cities__right-section">
-                  <Map currentCity={currentCity}></Map>
+                  <Map currentCity={currentCity} offersOfCity={offersCurrentCity}></Map>
                 </div>
               </div>
             </div>
