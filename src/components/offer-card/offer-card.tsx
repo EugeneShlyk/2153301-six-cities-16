@@ -1,6 +1,6 @@
 import {AppRoute, smallButtonFavoriteDimension} from '@constants';
 import {OfferPreview} from '@customType/offer.ts';
-import {getRatingWidth} from '@utils/offer';
+import {getRatingWidth} from '@utils/get-rating-width.ts';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import OfferFavoriteButton from '@components/offer-favorite-button';
