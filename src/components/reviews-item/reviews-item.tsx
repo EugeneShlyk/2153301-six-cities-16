@@ -7,7 +7,6 @@ type ReviewsItemProps = {
 
 export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
   const rating = getRatingWidth(review.rating);
-  console.log(rating);
 
   return (
     <li className="reviews__item">
