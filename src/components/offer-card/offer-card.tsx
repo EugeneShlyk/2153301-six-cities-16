@@ -1,5 +1,5 @@
 import {AppRoute, smallButtonFavoriteDimension} from '@constants';
-import {OfferPreview} from '@customType/offer';
+import {OfferPreview} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/offer';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
@@ -34,7 +34,6 @@ function getImageSize(size: Size) {
     }
   }
 }
-
 
 function OfferCard({
   offer,
@@ -79,8 +78,11 @@ function OfferCard({
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <OfferFavoriteButton dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
-                               isFavorite={isFavorite}></OfferFavoriteButton>
+          <OfferFavoriteButton
+            dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
+            isFavorite={isFavorite}
+          >
+          </OfferFavoriteButton>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

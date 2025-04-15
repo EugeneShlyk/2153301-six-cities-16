@@ -1,4 +1,4 @@
-import {OfferPreview} from '@customType/offer';
+import {OfferPreview} from '@customType/offer.ts';
 import PlacesSorting from '@components/places-sorting/places-sorting';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
@@ -35,12 +35,13 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                         variant="cities"
                         size="large"
                         key={dataCard.id}
+                        onOverCard={() => setHoveredOfferId(dataCard.id)}
                       />
                     ))}
                   </div>
                 </section>
                 <div className="cities__right-section">
-                  <Map currentCity={currentCity} offersOfCity={offersCurrentCity}></Map>
+                  <Map currentCity={currentCity} offersOfCity={offersCurrentCity} hoveredOfferId={hoveredOfferId}></Map>
                 </div>
               </div>
             </div>

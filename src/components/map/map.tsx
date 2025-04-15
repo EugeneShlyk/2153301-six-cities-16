@@ -9,6 +9,7 @@ import {OfferPreview} from '@customType/offer.ts';
 interface MapProps {
   currentCity: City;
   offersOfCity: OfferPreview[];
+  hoveredOfferId: string | undefined;
 }
 
 const defaultCustomIcon = new Icon({
@@ -23,9 +24,8 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-const hoveredOfferId = 'f641a4cd-06b9-4a1d-8957-3e19fcad7948';
 
-export default function Map({currentCity, offersOfCity}: MapProps): JSX.Element {
+export default function Map({currentCity, offersOfCity, hoveredOfferId}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);
   useEffect(() => {
@@ -43,6 +43,9 @@ export default function Map({currentCity, offersOfCity}: MapProps): JSX.Element 
         )
           .addTo(mapLayerGroup);
       });
+      return () => {
+        map.removeLayer(mapLayerGroup);
+      };
     }
   });
   return (
