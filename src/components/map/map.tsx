@@ -5,11 +5,13 @@ import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import {OfferPreview} from '@customType/offer.ts';
+import clsx from 'clsx';
 
 interface MapProps {
   currentCity: City;
   offersOfCity: OfferPreview[];
-  hoveredOfferId: string | undefined;
+  hoveredOfferId?: string | undefined;
+  mapClass: string;
 }
 
 const defaultCustomIcon = new Icon({
@@ -24,13 +26,19 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-
-export default function Map({currentCity, offersOfCity, hoveredOfferId}: MapProps): JSX.Element {
+export default function MapBox({currentCity, offersOfCity, hoveredOfferId, mapClass}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);
   useEffect(() => {
     if (map) {
       const mapLayerGroup = layerGroup().addTo(map);
+
+      // Проверка на пустой массив offersOfCity
+      if (offersOfCity.length === 0) {
+        return () => {
+          map.removeLayer(mapLayerGroup);
+        };
+      }
       offersOfCity.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -47,8 +55,8 @@ export default function Map({currentCity, offersOfCity, hoveredOfferId}: MapProp
         map.removeLayer(mapLayerGroup);
       };
     }
-  });
+  }, [map, offersOfCity, hoveredOfferId]);
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={clsx('map', mapClass)} ref={mapRef}></section>
   );
 }

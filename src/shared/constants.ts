@@ -41,7 +41,7 @@ export const CityMap = {
   },
 } as const;
 
-export const DEFAULT_CITY = CitiesName.Paris;
+export const DEFAULT_CITY = CityMap.Paris;
 
 export const BookmarkSizeMap: TSizeMap = {
   small: {width: '18', height: '19'},
@@ -68,5 +68,9 @@ export const largeButtonFavoriteDimensions = {
 export const URL_MARKER_DEFAULT: string = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 export const URL_MARKER_CURRENT: string = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-export const FORMAT_MONTH_YEAR = 'MMMM YYYY';
+export const FORMAT_MONTH_YEAR : string = 'MMMM YYYY';
 
+export const mapClasses = {
+  mainPage: 'cities__map',
+  offerPage: 'offer__map',
+};

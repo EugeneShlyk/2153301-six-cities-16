@@ -10,11 +10,13 @@ import {PublicRoute, PrivateRoute} from '@components/access-route';
 import {AuthorizationStatus} from '@customType/authorization-status.ts';
 import {useState} from 'react';
 import {City} from '@customType/city.ts';
+import {REVIEWS} from '@mocks/reviews.ts';
+import {DEFAULT_CITY} from '@constants';
 
 const currentStatus: AuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
-  const [currentCity, setCurrentCity] = useState<City>(CityMap.Paris);
+  const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
   const router = createBrowserRouter([
     {
       children: [
@@ -31,7 +33,7 @@ function App(): JSX.Element {
         },
         {
           path: `${AppRoute.Offer}/:offerId`,
-          element: <OfferPage/>
+          element: <OfferPage reviews={REVIEWS}/>
         },
         {
           path: AppRoute.Login,

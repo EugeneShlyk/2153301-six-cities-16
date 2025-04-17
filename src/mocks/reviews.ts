@@ -3,7 +3,7 @@ import {Review} from '@customType/reviews-type.ts';
 export const REVIEWS: Review[] = [
   {
     id: 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
-    date: '2019-05-08T14:13:56.569Z',
+    date: '2019-10-08T14:13:56.569Z',
     user: {
       name: 'Oliver Conner',
       avatarUrl: 'img/avatar-max.jpg',
@@ -14,7 +14,7 @@ export const REVIEWS: Review[] = [
   },
   {
     id: 'b67ddfd5-b953-6a30-8c8d-bd083cd6b62a',
-    date: '2019-05-08T14:13:56.569Z',
+    date: '1994-04-05T14:13:56.569Z',
     user: {
       name: 'Kurt Cobain',
       avatarUrl: 'img/avatar-max.jpg',

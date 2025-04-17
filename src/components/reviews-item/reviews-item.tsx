@@ -1,5 +1,6 @@
 import {Review} from '@customType/reviews-type.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
+import {getMonthYear} from '@utils/dayjs-transformation.ts';
 
 type ReviewsItemProps = {
   review: Review;
@@ -7,7 +8,8 @@ type ReviewsItemProps = {
 
 export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
   const rating = getRatingWidth(review.rating);
-  console.log(review);
+  const monthYearOfComment = getMonthYear(review.date);
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -31,7 +33,7 @@ export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime="2019-04-24">{monthYearOfComment}</time>
       </div>
     </li>
   );

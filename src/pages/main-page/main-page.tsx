@@ -3,10 +3,11 @@ import PlacesSorting from '@components/places-sorting/places-sorting';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
-import Map from '@components/map';
+import MapBox from '@components/map';
 import LocationList from '@components/location-list';
 import {MainPageProps} from '@customType/props.ts';
 import {useState} from 'react';
+import {mapClasses} from '@constants';
 
 function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
@@ -41,7 +42,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                   </div>
                 </section>
                 <div className="cities__right-section">
-                  <Map currentCity={currentCity} offersOfCity={offersCurrentCity} hoveredOfferId={hoveredOfferId}></Map>
+                  <MapBox currentCity={currentCity} offersOfCity={offersCurrentCity} hoveredOfferId={hoveredOfferId} mapClass={mapClasses.mainPage}></MapBox>
                 </div>
               </div>
             </div>
