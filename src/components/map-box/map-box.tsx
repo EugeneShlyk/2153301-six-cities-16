@@ -6,6 +6,7 @@ import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import {OfferPreview} from '@customType/offer.ts';
 import clsx from 'clsx';
+import style from './map-box.module.scss';
 
 interface MapProps {
   currentCity: City;
@@ -57,6 +58,6 @@ export default function MapBox({currentCity, offersOfCity, hoveredOfferId, mapCl
     }
   }, [map, offersOfCity, hoveredOfferId]);
   return (
-    <section className={clsx('map', mapClass)} ref={mapRef}></section>
+    <section className={clsx('map',style.map-box, mapClass)} ref={mapRef}></section>
   );
 }

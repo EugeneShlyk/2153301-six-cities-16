@@ -1,15 +1,14 @@
 import Header from '@components/header';
 import OfferFavoriteButton from '@components/offer-favorite-button';
-import {largeButtonFavoriteDimensions, smallButtonFavoriteDimension} from '@constants';
+import {largeButtonFavoriteDimensions, mapClasses, smallButtonFavoriteDimension} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
 import ReviewList from '@components/review-list';
-import {Review} from '@customType/reviews-type.ts';
+import {OfferPageProps} from '@customType/props.ts';
+import {OfferPreview} from '@customType/offer.ts';
+import MapBox from '@components/map-box';
 
-type OfferPageProps = {
-  reviews: Review[];
-}
-
-function OfferPage({reviews}: OfferPageProps): JSX.Element {
+function OfferPage({reviews, currentCity, offers}: OfferPageProps): JSX.Element {
+  const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
   const countReview: number = reviews.length;
   return (
     <div className="page">
@@ -210,7 +209,7 @@ function OfferPage({reviews}: OfferPageProps): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <MapBox currentCity={currentCity} offersOfCity={offersCurrentCity} mapClass={mapClasses.offerPage}></MapBox>
         </section>
         <div className="container">
           <section className="near-places places">

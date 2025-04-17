@@ -3,7 +3,7 @@ import PlacesSorting from '@components/places-sorting/places-sorting';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
 import OfferCard from '@components/offer-card';
-import MapBox from '@components/map';
+import MapBox from '@components/map-box';
 import LocationList from '@components/location-list';
 import {MainPageProps} from '@customType/props.ts';
 import {useState} from 'react';

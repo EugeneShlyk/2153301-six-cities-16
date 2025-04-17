@@ -33,7 +33,7 @@ function App(): JSX.Element {
         },
         {
           path: `${AppRoute.Offer}/:offerId`,
-          element: <OfferPage reviews={REVIEWS}/>
+          element: <OfferPage reviews={REVIEWS} currentCity={currentCity} offers={OFFERS}/>
         },
         {
           path: AppRoute.Login,

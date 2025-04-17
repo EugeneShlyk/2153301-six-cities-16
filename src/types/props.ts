@@ -1,6 +1,7 @@
 import {OfferPreview} from '@customType/offer.ts';
 import {CitiesName, CityMap} from '@constants';
 import {City} from '@customType/city.ts';
+import {Review} from '@customType/reviews-type.ts';
 
 export type MainPageProps = {
   offers: OfferPreview[];
@@ -8,6 +9,12 @@ export type MainPageProps = {
   currentCity: City;
   setCurrentCity: (city: City) => void;
 };
+
+export type OfferPageProps = {
+  offers: OfferPreview[];
+  reviews: Review[];
+  currentCity: City;
+}
 
 export type CityMapType = {
   [key: string]: City;
