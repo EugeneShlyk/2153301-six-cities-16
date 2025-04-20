@@ -1,13 +1,12 @@
 import clsx from 'clsx';
 import style from './error-page.module.scss';
-import {Link, useRouteError} from "react-router-dom";
-import {AppRoute} from "@constants";
+import {Link, useRouteError} from 'react-router-dom';
+import {AppRoute} from '@constants';
 
 function ErrorPage(): JSX.Element {
   const error = useRouteError();
 
   let message = '404. Page not found';
-
 
   if (error instanceof Error) {
     message = error.message;

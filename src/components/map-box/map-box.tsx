@@ -58,6 +58,6 @@ export default function MapBox({currentCity, offersOfCity, hoveredOfferId, mapCl
     }
   }, [map, offersOfCity, hoveredOfferId]);
   return (
-    <section className={clsx('map',style.map-box, mapClass)} ref={mapRef}></section>
+    <section className={clsx('map', style['map-box'], mapClass)} ref={mapRef}></section>
   );
 }
