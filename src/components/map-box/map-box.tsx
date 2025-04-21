@@ -10,7 +10,7 @@ import style from './map-box.module.scss';
 
 interface MapProps {
   currentCity: City;
-  offersOfCity: OfferPreview[];
+  offersOfCity?: OfferPreview[];
   hoveredOfferId?: string | undefined;
   mapClass: string;
 }
@@ -27,7 +27,12 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-export default function MapBox({currentCity, offersOfCity, hoveredOfferId, mapClass}: MapProps): JSX.Element {
+export default function MapBox({
+  currentCity,
+  offersOfCity,
+  hoveredOfferId,
+  mapClass,
+}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);
   useEffect(() => {
@@ -35,23 +40,25 @@ export default function MapBox({currentCity, offersOfCity, hoveredOfferId, mapCl
       const mapLayerGroup = layerGroup().addTo(map);
 
       // Проверка на пустой массив offersOfCity
-      if (offersOfCity.length === 0) {
+      if (offersOfCity && offersOfCity.length === 0) {
         return () => {
           map.removeLayer(mapLayerGroup);
         };
       }
-      offersOfCity.forEach((offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
+      if (offersOfCity) {
+        offersOfCity.forEach((offer) => {
+          const marker = new Marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          });
+          marker.setIcon(
+            hoveredOfferId !== undefined && hoveredOfferId === offer.id
+              ? currentCustomIcon
+              : defaultCustomIcon
+          )
+            .addTo(mapLayerGroup);
         });
-        marker.setIcon(
-          hoveredOfferId !== undefined && hoveredOfferId === offer.id
-            ? currentCustomIcon
-            : defaultCustomIcon
-        )
-          .addTo(mapLayerGroup);
-      });
+      }
       return () => {
         map.removeLayer(mapLayerGroup);
       };

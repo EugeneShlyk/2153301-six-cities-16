@@ -36,7 +36,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                         variant="cities"
                         size="large"
                         key={dataCard.id}
-                        onOverCard={() => setHoveredOfferId(dataCard.id)}
+                        onOverCard={setHoveredOfferId}
                       />
                     ))}
                   </div>

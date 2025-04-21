@@ -11,7 +11,7 @@ export type MainPageProps = {
 };
 
 export type OfferPageProps = {
-  offers: OfferPreview[];
+  closestOffers: OfferPreview[];
   reviews: Review[];
   currentCity: City;
 }

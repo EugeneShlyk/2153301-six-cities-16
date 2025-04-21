@@ -12,6 +12,7 @@ import {useState} from 'react';
 import {City} from '@customType/city.ts';
 import {REVIEWS} from '@mocks/reviews.ts';
 import {DEFAULT_CITY} from '@constants';
+import {OFFERS_FOR_OFFER_PAGE} from '@mocks/offers-for-offer-page.ts';
 
 const currentStatus: AuthorizationStatus = 'UNKNOWN';
 
@@ -33,7 +34,7 @@ function App(): JSX.Element {
         },
         {
           path: `${AppRoute.Offer}/:offerId`,
-          element: <OfferPage reviews={REVIEWS} currentCity={currentCity} offers={OFFERS}/>
+          element: <OfferPage reviews={REVIEWS} currentCity={currentCity} closestOffers={OFFERS_FOR_OFFER_PAGE}/>
         },
         {
           path: AppRoute.Login,

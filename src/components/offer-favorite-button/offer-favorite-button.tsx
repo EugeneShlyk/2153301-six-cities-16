@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+import {SetStateAction, Dispatch, MouseEvent} from 'react';
+
 
 interface ButtonProp {
   dimension: {
@@ -7,10 +9,15 @@ interface ButtonProp {
   };
   isFavorite?: boolean;
   isOfferPageBookmark?: boolean;
+  setIsFavorite: Dispatch<SetStateAction<boolean | undefined>>; // Типизация функции обновления состояния
 }
 
-export default function OfferFavoriteButton({dimension, isFavorite, isOfferPageBookmark}: ButtonProp) {
+export default function OfferFavoriteButton({dimension, isFavorite, isOfferPageBookmark, setIsFavorite}: ButtonProp) {
   const {height, width} = dimension;
+  const onButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    setIsFavorite((prevState): boolean | undefined => !prevState);
+  };
   return (
     <button
       className={clsx('button', {
@@ -19,6 +26,7 @@ export default function OfferFavoriteButton({dimension, isFavorite, isOfferPageB
         'place-card__bookmark-button--active': isFavorite,
       })}
       type="button"
+      onClick={onButtonClick}
     >
       <svg
         className={clsx({

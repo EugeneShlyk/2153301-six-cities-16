@@ -4,6 +4,7 @@ import {getRatingWidth} from '@utils/get-rating-width.ts';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import OfferFavoriteButton from '@components/offer-favorite-button';
+import {MouseEvent, useState} from 'react';
 
 const smallCardDimensions = {
   width: '150',
@@ -41,8 +42,10 @@ function OfferCard({
   size,
   onOverCard
 }: OfferCardProps): JSX.Element {
-  const isFavorite = offer?.isFavorite;
-  const onMouseEnter = () => {
+  const [isFavorite, setIsFavorite] = useState<boolean | undefined>(offer?.isFavorite);
+  // const isFavorite = offer?.isFavorite;
+  const onMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
     if (onOverCard) {
       onOverCard(offer.id);
     }
@@ -81,6 +84,7 @@ function OfferCard({
           <OfferFavoriteButton
             dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
             isFavorite={isFavorite}
+            setIsFavorite={setIsFavorite}
           >
           </OfferFavoriteButton>
         </div>
