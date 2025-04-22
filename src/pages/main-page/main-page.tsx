@@ -9,7 +9,7 @@ import {MainPageProps} from '@customType/props.ts';
 import {useState} from 'react';
 import {mapClasses} from '@constants';
 
-function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
+function MainPage({offers, locations, currentCity, setCurrentCity, setSelectedOfferId}: MainPageProps): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
   const [hoveredOfferId, setHoveredOfferId] = useState<string | undefined>(undefined);
   return (
@@ -37,6 +37,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                         size="large"
                         key={dataCard.id}
                         onOverCard={setHoveredOfferId}
+                        onClickCard={setSelectedOfferId}
                       />
                     ))}
                   </div>

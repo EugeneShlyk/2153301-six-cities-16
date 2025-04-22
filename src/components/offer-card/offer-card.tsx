@@ -23,6 +23,7 @@ type OfferCardProps = {
   size: Size;
   variant?: CardType;
   onOverCard?: (cardId: string) => void;
+  onClickCard?: (cardId: string) => void;
 };
 
 function getImageSize(size: Size) {
@@ -40,7 +41,8 @@ function OfferCard({
   offer,
   variant,
   size,
-  onOverCard
+  onOverCard,
+  onClickCard
 }: OfferCardProps): JSX.Element {
   const [isFavorite, setIsFavorite] = useState<boolean | undefined>(offer?.isFavorite);
   // const isFavorite = offer?.isFavorite;
@@ -50,10 +52,17 @@ function OfferCard({
       onOverCard(offer.id);
     }
   };
+  const CardClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    if (onClickCard) {
+      onClickCard(offer.id);
+    }
+  };
   return (
     <article
       className={clsx(variant && `${variant}__card`, 'place-card')}
       {...(onOverCard ? {onMouseEnter: onMouseEnter} : {})}
+      {...(onClickCard ? {onClick: CardClick} : {})}
     >
       {
         offer.isPremium

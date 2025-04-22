@@ -18,11 +18,12 @@ const currentStatus: AuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
   const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
+  const [selectedOfferId, setSelectedOfferId] = useState<string| undefined>(undefined);
   const router = createBrowserRouter([
     {
       children: [
         {
-          element: <MainPage offers={OFFERS} locations={CityMap} currentCity={currentCity} setCurrentCity={setCurrentCity}/>,
+          element: <MainPage offers={OFFERS} locations={CityMap} currentCity={currentCity} setCurrentCity={setCurrentCity} setSelectedOfferId={setSelectedOfferId}/>,
           index: true,
         },
         {
