@@ -7,16 +7,19 @@ interface ButtonProp {
     height: string;
     width: string;
   };
-  isFavorite?: boolean;
   isOfferPageBookmark?: boolean;
-  setIsFavorite: Dispatch<SetStateAction<boolean | undefined>>; // Типизация функции обновления состояния
+  isFavorite?: boolean;
+  setIsFavorite?: Dispatch<SetStateAction<boolean | undefined>>; // Типизация функции обновления состояния
 }
 
 export default function OfferFavoriteButton({dimension, isFavorite, isOfferPageBookmark, setIsFavorite}: ButtonProp) {
   const {height, width} = dimension;
+
   const onButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
-    setIsFavorite((prevState): boolean | undefined => !prevState);
+    if (setIsFavorite) {
+      setIsFavorite((prevState): boolean | undefined => !prevState);
+    }
   };
   return (
     <button

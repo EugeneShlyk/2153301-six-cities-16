@@ -13,7 +13,6 @@ import {Offer} from '@customType/offer.ts';
 function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOffers}: OfferPageProps): JSX.Element {
   const countReview: number = reviews.length;
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === selectedOfferId);
-  console.log(selectedOffer);
   return (
     <div className="page">
       <Header/>
@@ -51,11 +50,12 @@ function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOf
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {selectedOffer && selectedOffer.title}
                 </h1>
                 <OfferFavoriteButton
                   dimension={largeButtonFavoriteDimensions}
                   isOfferPageBookmark
+                  isFavorite={selectedOffer?.isFavorite ?? false}
                 />
               </div>
               <div className="offer__rating rating">
