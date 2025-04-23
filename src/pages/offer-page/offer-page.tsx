@@ -8,9 +8,12 @@ import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
 import CommentForm from '@components/comment-form';
+import {Offer} from '@customType/offer.ts';
 
-function OfferPage({reviews, currentCity, closestOffers}: OfferPageProps): JSX.Element {
+function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOffers}: OfferPageProps): JSX.Element {
   const countReview: number = reviews.length;
+  const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === selectedOfferId);
+  console.log(selectedOffer);
   return (
     <div className="page">
       <Header/>
@@ -41,9 +44,11 @@ function OfferPage({reviews, currentCity, closestOffers}: OfferPageProps): JSX.E
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {selectedOffer && selectedOffer.isPremium && (
+                <div className="offer__mark">
+                  <span>Premium</span>
+                </div>
+              )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   Beautiful &amp; luxurious studio at great location

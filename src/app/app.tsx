@@ -13,6 +13,7 @@ import {City} from '@customType/city.ts';
 import {REVIEWS} from '@mocks/reviews.ts';
 import {DEFAULT_CITY} from '@constants';
 import {OFFERS_FOR_OFFER_PAGE} from '@mocks/offers-for-offer-page.ts';
+import {virtualFullOffers} from '@mocks/virtual-full-offers.ts';
 
 const currentStatus: AuthorizationStatus = 'UNKNOWN';
 
@@ -35,7 +36,7 @@ function App(): JSX.Element {
         },
         {
           path: `${AppRoute.Offer}/:offerId`,
-          element: <OfferPage reviews={REVIEWS} currentCity={currentCity} closestOffers={OFFERS_FOR_OFFER_PAGE}/>
+          element: <OfferPage reviews={REVIEWS} currentCity={currentCity} closestOffers={OFFERS_FOR_OFFER_PAGE} FullOffers={virtualFullOffers} selectedOfferId={selectedOfferId}/>
         },
         {
           path: AppRoute.Login,
