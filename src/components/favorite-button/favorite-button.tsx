@@ -12,7 +12,7 @@ interface ButtonProp {
   setIsFavorite?: Dispatch<SetStateAction<boolean | undefined>>; // Типизация функции обновления состояния
 }
 
-export default function OfferFavoriteButton({dimension, isFavorite, isOfferPageBookmark, setIsFavorite}: ButtonProp) {
+export default function FavoriteButton({dimension, isFavorite, isOfferPageBookmark, setIsFavorite}: ButtonProp) {
   const {height, width} = dimension;
 
   const onButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {

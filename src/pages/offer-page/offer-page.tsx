@@ -1,5 +1,5 @@
 import Header from '@components/header';
-import OfferFavoriteButton from '@components/offer-favorite-button';
+import FavoriteButton from '../../components/favorite-button';
 import {largeButtonFavoriteDimensions, mapClasses} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
 import ReviewList from '@components/review-list';
@@ -52,7 +52,7 @@ function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOf
                 <h1 className="offer__name">
                   {selectedOffer && selectedOffer.title}
                 </h1>
-                <OfferFavoriteButton
+                <FavoriteButton
                   dimension={largeButtonFavoriteDimensions}
                   isOfferPageBookmark
                   isFavorite={selectedOffer?.isFavorite ?? false}
