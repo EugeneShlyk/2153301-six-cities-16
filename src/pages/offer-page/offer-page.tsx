@@ -14,6 +14,7 @@ import {getRatingWidth} from '@utils/get-rating-width.ts';
 function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOffers}: OfferPageProps): JSX.Element {
   const countReview: number = reviews.length;
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === selectedOfferId);
+  console.log(selectedOffer);
   return (
     <div className="page">
       <Header/>
@@ -61,20 +62,20 @@ function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOf
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: '80%'}}></span>
+                  <span style={{width: (getRatingWidth(selectedOffer?.rating))}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">{selectedOffer?.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  Apartment
+                  {selectedOffer?.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                  3 Bedrooms
+                  {selectedOffer?.bedrooms} Bedrooms
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  Max 4 adults
+                  Max {selectedOffer?.maxAdults} adults
                 </li>
               </ul>
               <div className="offer__price">
