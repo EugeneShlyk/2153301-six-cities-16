@@ -3,7 +3,7 @@ import {OfferPreview} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
-import OfferFavoriteButton from '@components/offer-favorite-button';
+import FavoriteButton from '../favorite-button';
 import {MouseEvent, useState} from 'react';
 
 const smallCardDimensions = {
@@ -90,12 +90,12 @@ function OfferCard({
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <OfferFavoriteButton
+          <FavoriteButton
             dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
             isFavorite={isFavorite}
             setIsFavorite={setIsFavorite}
           >
-          </OfferFavoriteButton>
+          </FavoriteButton>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
