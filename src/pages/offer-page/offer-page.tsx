@@ -9,6 +9,7 @@ import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
 import CommentForm from '@components/comment-form';
 import {Offer} from '@customType/offer.ts';
+import {getRatingWidth} from '@utils/get-rating-width.ts';
 
 function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOffers}: OfferPageProps): JSX.Element {
   const countReview: number = reviews.length;
