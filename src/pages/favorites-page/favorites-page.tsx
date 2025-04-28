@@ -2,6 +2,8 @@ import Header from '@components/header';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer';
 import FavoritesEmptyPage from '@pages/favorites-empty-page';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '@constants';
 
 type FavoritePageProps = {
   offers: OfferPreview[];
@@ -27,7 +29,6 @@ function FavoritePage({offers}: FavoritePageProps): JSX.Element {
   return (
     <div className="page">
       <Header/>
-
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           {hasFavorites ? (
@@ -39,9 +40,9 @@ function FavoritePage({offers}: FavoritePageProps): JSX.Element {
                     <li className="favorites__locations-items" key={location}>
                       <div className="favorites__locations locations locations--current">
                         <div className="locations__item">
-                          <a className="locations__item-link" href="#">
+                          <Link className="locations__item-link" to={AppRoute.Root}>
                             <span>{location}</span>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div className="favorites__places">
