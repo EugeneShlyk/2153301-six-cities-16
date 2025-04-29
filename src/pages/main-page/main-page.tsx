@@ -18,7 +18,7 @@ function MainPage({offers, locations, currentCity, setCurrentCity, setSelectedOf
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationList locations={locations} setCurrentCity={setCurrentCity}></LocationList>
+          <LocationList currentCity={currentCity} locations={locations} setCurrentCity={setCurrentCity}></LocationList>
         </div>
         {
           offers.length > 0 ? (

@@ -26,6 +26,7 @@ export type CityMapType = {
 
 export interface LocationListProps {
   locations: CityMapType; // Пропс для списка городов
+  currentCity: City;
   setCurrentCity: (city: City) => void; // Функция для установки текущего города
 }
 
