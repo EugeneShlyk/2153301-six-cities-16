@@ -14,7 +14,6 @@ import {getRatingWidth} from '@utils/get-rating-width.ts';
 function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOffers}: OfferPageProps): JSX.Element {
   const countReview: number = reviews.length;
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === selectedOfferId);
-  console.log(selectedOffer);
   return (
     <div className="page">
       <Header/>
@@ -79,42 +78,17 @@ function OfferPage({reviews, currentCity, closestOffers, selectedOfferId, FullOf
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;120</b>
+                <b className="offer__price-value">&euro;{selectedOffer?.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <ul className="offer__inside-list">
-                  <li className="offer__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="offer__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="offer__inside-item">
-                    Towels
-                  </li>
-                  <li className="offer__inside-item">
-                    Heating
-                  </li>
-                  <li className="offer__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="offer__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="offer__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="offer__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="offer__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="offer__inside-item">
-                    Fridge
-                  </li>
+                  {selectedOffer?.goods.map((good) => (
+                    <li className="offer__inside-item" key={good}>
+                      {good}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="offer__host">

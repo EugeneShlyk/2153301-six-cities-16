@@ -5,10 +5,6 @@ import {AppRoute} from '@constants';
 import clsx from 'clsx';
 
 export default function LocationList({locations, currentCity, setCurrentCity}: LocationListProps): JSX.Element {
-  // currentCity
-  // console.log(locations.name);
-  Object.values(locations).map((location) => console.log(location.name));
-  // console.log(currentCity.name);
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
