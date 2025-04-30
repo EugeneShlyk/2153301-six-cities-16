@@ -15,8 +15,8 @@ export const virtualFullOffers = OFFERS.map((offer) => ({
   goods: ['Heating', 'Washing machine', 'Cabel TV'],
   host: {
     name: 'Oliver Conner',
-    avatarUrl: 'https://url-to-image/image.png',
-    isPro: false,
+    avatarUrl: 'img/avatar-max.jpg',
+    isPro: true,
   },
   images: ['https://url-to-image/image.png'],
   maxAdults: 4,
