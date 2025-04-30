@@ -45,7 +45,6 @@ function OfferCard({
   onClickCard
 }: OfferCardProps): JSX.Element {
   const [isFavorite, setIsFavorite] = useState<boolean | undefined>(offer?.isFavorite);
-  // const isFavorite = offer?.isFavorite;
   const onMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (onOverCard) {
@@ -104,7 +103,8 @@ function OfferCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer}/${offer.id}`} state={'Привет, Вася'}>{offer.title}</Link>
+          <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
+          <Link to={AppRoute.Offer.replace(':id', offer.id)}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
