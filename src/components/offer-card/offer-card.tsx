@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import FavoriteButton from '../favorite-button';
 import {MouseEvent, useState} from 'react';
+import {capitalizeFirstLetter} from '@utils/capitalize-first-letter.ts';
 
 const smallCardDimensions = {
   width: '150',
@@ -104,9 +105,8 @@ function OfferCard({
         </div>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
-          <Link to={AppRoute.Offer.replace(':id', offer.id)}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{capitalizeFirstLetter(offer.type)}</p>
       </div>
     </article>
   );
