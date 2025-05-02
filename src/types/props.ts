@@ -9,14 +9,12 @@ export type MainPageProps = {
   locations: typeof CityMap;
   currentCity: City;
   setCurrentCity: (city: City) => void;
-  setSelectedOfferId: (cardId: string) => void;
 };
 
 export type OfferPageProps = {
   closestOffers: OfferPreview[];
   reviews: Review[];
   currentCity: City;
-  selectedOfferId: string | undefined;
   FullOffers: Offer[];
 }
 
