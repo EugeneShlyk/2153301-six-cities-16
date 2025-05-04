@@ -10,10 +10,16 @@ import {OfferPreview} from '@customType/offer.ts';
 import CommentForm from '@components/comment-form';
 import {Offer} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
+import {Navigate, useParams} from 'react-router-dom';
+import {AppRoute} from '@constants';
 
 function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
+  const {offerId} = useParams();
   const countReview: number = reviews.length;
-  const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === selectedOfferId);
+  const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
+  if (!selectedOffer) {
+    return <Navigate to={AppRoute.NotFound} replace/>;
+  }
   return (
     <div className="page">
       <Header/>
