@@ -12,6 +12,8 @@ import {Offer} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '@constants';
+import clsx from 'clsx';
+import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 
 function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
@@ -77,10 +79,10 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
                   {selectedOffer?.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                  {selectedOffer?.bedrooms} Bedrooms
+                  {getNumbersBedrooms(selectedOffer?.bedrooms)}
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  Max {selectedOffer?.maxAdults} adults
+                  {getNumbersAdults(selectedOffer?.maxAdults)}
                 </li>
               </ul>
               <div className="offer__price">
@@ -100,7 +102,11 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
                 <div className="offer__host-user user">
-                  <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                  <div
+                    className={clsx('offer__avatar-wrapper',
+                      'user__avatar-wrapper',
+                      {'offer__avatar-wrapper--pro': selectedOffer.host.isPro})}
+                  >
                     <img
                       className="offer__avatar user__avatar" src={selectedOffer?.host.avatarUrl} width="74" height="74"
                       alt="Host avatar"
@@ -109,9 +115,7 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
                   <span className="offer__user-name">
                     {selectedOffer?.host.name}
                   </span>
-                  <span className="offer__user-status">
-                    {(selectedOffer?.host.isPro) && 'Pro'}
-                  </span>
+                  {selectedOffer.host.isPro && (<span className="offer__user-status">Pro</span>)}
                 </div>
                 <div className="offer__description">
                   <p className="offer__text">
@@ -132,7 +136,7 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
               </section>
             </div>
           </div>
-          <MapBox currentCity={currentCity} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>
+          <MapBox currentCity={currentCity} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>;
         </section>
         <div className="container">
           <section className="near-places places">
@@ -149,9 +153,11 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
             </div>
           </section>
         </div>
+        ;
       </main>
     </div>
-  );
+  )
+    ;
 }
 
 export default OfferPage;
