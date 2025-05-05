@@ -40,7 +40,7 @@ function App(): JSX.Element {
           path: `${AppRoute.Offer}/:offerId`,
           element:
             <OfferPage
-              reviews={REVIEWS} currentCity={currentCity} closestOffers={OFFERS_FOR_OFFER_PAGE}
+              currentCity={currentCity} closestOffers={OFFERS_FOR_OFFER_PAGE}
               FullOffers={virtualFullOffers}
             />
         },

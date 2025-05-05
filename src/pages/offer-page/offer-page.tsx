@@ -2,7 +2,7 @@ import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
 import {largeButtonFavoriteDimensions, mapClasses} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
-import ReviewList from '@components/review-list';
+import ReviewsList from '../../components/reviews-list';
 import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
@@ -15,9 +15,9 @@ import {AppRoute} from '@constants';
 import clsx from 'clsx';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 
-function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
+function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
-  const countReview: number = reviews.length;
+  const countReview: number = REVIEWS.length;
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
   if (!selectedOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
@@ -131,7 +131,7 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{countReview}</span>
                 </h2>
-                <ReviewList reviews={REVIEWS}></ReviewList>
+                <ReviewsList reviews={REVIEWS}></ReviewsList>
                 <CommentForm/>
               </section>
             </div>
@@ -156,8 +156,7 @@ function OfferPage({reviews, currentCity, closestOffers, FullOffers}: OfferPageP
         ;
       </main>
     </div>
-  )
-    ;
+  );
 }
 
 export default OfferPage;
