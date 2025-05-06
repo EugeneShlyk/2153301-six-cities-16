@@ -1,19 +1,39 @@
 import CommentFormStar from '@components/comment-form-star';
-
-const stars: number[] = Array.from({length: 5}, (_, index) => index + 1).reverse();
+import {RATING} from '@constants';
+import {ChangeEvent, useState} from 'react';
 
 export default function CommentForm() {
+  const [userAnswer, setUserAnswer] = useState({
+    stars: 0,
+    description: ''
+  });
+  console.log(userAnswer);
   return (
     <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+      <label className="reviews__label form__label" htmlFor="review">
+        Your review
+      </label>
       <div className="reviews__rating-form form__rating">
-        {stars.map((number: number) => (
-          <CommentFormStar key={number} number={number}/>
+        {RATING.map((item) => (
+          <CommentFormStar
+            key={item.stars}
+            value={item.stars}
+            title={item.title}
+            onChange={({target}: ChangeEvent<HTMLInputElement>) => {
+              setUserAnswer({...userAnswer, stars: Number(target.value)});
+            }}
+          />
         ))}
       </div>
       <textarea
-        className="reviews__textarea form__textarea" id="review" name="review"
+        className="reviews__textarea form__textarea"
+        id="review"
+        name="review"
+        value={userAnswer.description}
         placeholder="Tell how was your stay, what you like and what can be improved"
+        onChange={({target}: ChangeEvent<HTMLTextAreaElement>) => {
+          setUserAnswer({...userAnswer, description: target.value});
+        }}
       >
       </textarea>
       <div className="reviews__button-wrapper">

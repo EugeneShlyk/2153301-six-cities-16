@@ -7,15 +7,15 @@ import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
 import {PublicRoute, PrivateRoute} from '@components/access-route';
-import {AuthorizationStatus} from '@customType/authorization-status.ts';
+import {TAuthorizationStatus} from '@customType/authorization-status.ts';
 import {useState} from 'react';
 import {City} from '@customType/city.ts';
-import {REVIEWS} from '@mocks/reviews.ts';
 import {DEFAULT_CITY} from '@constants';
 import {OFFERS_FOR_OFFER_PAGE} from '@mocks/offers-for-offer-page.ts';
 import {virtualFullOffers} from '@mocks/virtual-full-offers.ts';
+import {JSX} from 'react';
 
-const currentStatus: AuthorizationStatus = 'UNKNOWN';
+const currentStatus: TAuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
   const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
@@ -40,7 +40,8 @@ function App(): JSX.Element {
           path: `${AppRoute.Offer}/:offerId`,
           element:
             <OfferPage
-              currentCity={currentCity} closestOffers={OFFERS_FOR_OFFER_PAGE}
+              currentCity={currentCity}
+              closestOffers={OFFERS_FOR_OFFER_PAGE}
               FullOffers={virtualFullOffers}
             />
         },

@@ -53,7 +53,7 @@ export const ImageSizeMap: TSizeMap = {
   large: {width: '260', height: '200'},
 } as const;
 
-export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
+export type TAuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
 
 export const smallButtonFavoriteDimension = {
   height: '19',
@@ -68,9 +68,23 @@ export const largeButtonFavoriteDimensions = {
 export const URL_MARKER_DEFAULT: string = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 export const URL_MARKER_CURRENT: string = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-export const FORMAT_MONTH_YEAR : string = 'MMMM YYYY';
+export const FORMAT_MONTH_YEAR: string = 'MMMM YYYY';
 
 export const mapClasses = {
   mainPage: 'cities__map',
   offerPage: 'offer__map',
 };
+
+export const RATING = [
+  {stars: 5, title: 'perfect'},
+  {stars: 4, title: 'good'},
+  {stars: 3, title: 'not bad'},
+  {stars: 2, title: 'badly'},
+  {stars: 1, title: 'terribly'}
+];
+
+export enum AuthorizationStatus {
+  Unknown = 'UNKNOWN',
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+}

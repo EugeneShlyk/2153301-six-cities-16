@@ -1,14 +1,12 @@
 import {Review} from '@customType/reviews-type.ts';
 import ReviewsItem from '@components/reviews-item';
+import {REVIEWS} from '@mocks/reviews.ts';
+import {JSX} from 'react';
 
-type ReviewListProp = {
-  reviews: Review[];
-}
-
-export default function ReviewsList({reviews}: ReviewListProp): JSX.Element {
+export default function ReviewsList(): JSX.Element {
   return (
     <ul className="reviews__list">
-      {reviews.map((review: Review) => (
+      {REVIEWS.map((review: Review) => (
         <ReviewsItem review={review} key={review.id}></ReviewsItem>
       ))}
     </ul>

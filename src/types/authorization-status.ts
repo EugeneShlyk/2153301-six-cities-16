@@ -1,1 +1,1 @@
-export type AuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';
+export type TAuthorizationStatus = 'AUTH' | 'NO_AUTH' | 'UNKNOWN';

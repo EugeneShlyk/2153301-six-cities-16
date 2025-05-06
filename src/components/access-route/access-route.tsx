@@ -1,12 +1,13 @@
-import {AppRoute, AuthorizationStatus} from '@constants';
+import {AppRoute} from '@constants';
 import {Navigate} from 'react-router-dom';
+import {TAuthorizationStatus} from '@customType/authorization-status.ts';
 
 export interface AccessRouteProps {
   children: JSX.Element;
-  status: AuthorizationStatus;
+  status: TAuthorizationStatus;
 }
 
-const createAccessRoute = (statusToCheck: AuthorizationStatus, fallbackPath: AppRoute) =>
+const createAccessRoute = (statusToCheck: TAuthorizationStatus, fallbackPath: AppRoute) =>
   function AccessRoute ({children, status}: AccessRouteProps) {
 
     switch (status) {

@@ -14,6 +14,8 @@ import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '@constants';
 import clsx from 'clsx';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
+import {JSX} from 'react';
+// import {AuthorizationStatus} from '@constants';
 
 function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
@@ -131,7 +133,8 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{countReview}</span>
                 </h2>
-                <ReviewsList reviews={REVIEWS}></ReviewsList>
+                <ReviewsList/>
+                {}
                 <CommentForm/>
               </section>
             </div>
