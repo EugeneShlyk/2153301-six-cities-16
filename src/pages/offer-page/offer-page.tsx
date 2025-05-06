@@ -15,7 +15,10 @@ import {AppRoute} from '@constants';
 import clsx from 'clsx';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 import {JSX} from 'react';
-// import {AuthorizationStatus} from '@constants';
+import {AuthorizationStatus} from '@constants';
+
+const auth = AuthorizationStatus.NoAuth;
+
 
 function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
@@ -134,8 +137,7 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{countReview}</span>
                 </h2>
                 <ReviewsList/>
-                {}
-                <CommentForm/>
+                {auth && <CommentForm/>}
               </section>
             </div>
           </div>
