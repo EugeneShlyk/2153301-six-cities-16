@@ -7,7 +7,6 @@ import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
-import CommentForm from '@components/comment-form';
 import {Offer} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Navigate, useParams} from 'react-router-dom';
@@ -15,14 +14,10 @@ import {AppRoute} from '@constants';
 import clsx from 'clsx';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 import {JSX} from 'react';
-import {AuthorizationStatus} from '@constants';
-
-const auth = AuthorizationStatus.NoAuth;
-
+import Reviews from '@components/reviews';
 
 function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
-  const countReview: number = REVIEWS.length;
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
   if (!selectedOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
@@ -133,12 +128,7 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
                   </p>
                 </div>
               </div>
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{countReview}</span>
-                </h2>
-                <ReviewsList/>
-                {auth && <CommentForm/>}
-              </section>
+              <Reviews reviews={REVIEWS}/>
             </div>
           </div>
           <MapBox currentCity={currentCity} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>;

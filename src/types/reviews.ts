@@ -1,11 +1,9 @@
+import {Host} from '@customType/host.ts';
+
 export type Review = {
   id: string;
   date: string;
-  user: {
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-  };
+  user: Host;
   comment: string;
   rating: number;
 }

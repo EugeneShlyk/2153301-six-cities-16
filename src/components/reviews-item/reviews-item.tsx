@@ -1,6 +1,6 @@
-import {Review} from '@customType/reviews-type.ts';
+import {Review} from '@customType/reviews.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
-import {getMonthYear} from '@utils/dayjs-transformation.ts';
+import {getMonthYear, getYearMonthDay} from '@utils/dayjs-transformation.ts';
 
 type ReviewsItemProps = {
   review: Review;
@@ -8,14 +8,15 @@ type ReviewsItemProps = {
 
 export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
   const rating = getRatingWidth(review.rating);
-  const monthYearOfComment = getMonthYear(review.date);
-
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img
-            className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
+            className="reviews__avatar user__avatar"
+            src={review.user.avatarUrl}
+            width="54"
+            height="54"
             alt="Reviews avatar"
           />
         </div>
@@ -33,10 +34,8 @@ export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{monthYearOfComment}</time>
+        <time className="reviews__time" dateTime={getYearMonthDay(review.date)}>{getMonthYear(review.date)}</time>
       </div>
     </li>
   );
 }
-
-// img/avatar-max.jpg
