@@ -2,7 +2,6 @@ import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
 import {largeButtonFavoriteDimensions, mapClasses} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
-import ReviewsList from '../../components/reviews-list';
 import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
@@ -15,6 +14,7 @@ import clsx from 'clsx';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 import {JSX} from 'react';
 import Reviews from '@components/reviews';
+import PremiumBadge from '@components/premium-badge';
 
 function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
@@ -52,11 +52,7 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              {selectedOffer && selectedOffer.isPremium && (
-                <div className="offer__mark">
-                  <span>Premium</span>
-                </div>
-              )}
+              <PremiumBadge isPremium={selectedOffer.isPremium} extraClassName={'offer__mark'}/>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {selectedOffer && selectedOffer.title}

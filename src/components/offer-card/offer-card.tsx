@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import FavoriteButton from '../favorite-button';
 import {MouseEvent, useState} from 'react';
 import {capitalizeFirstLetter} from '@utils/capitalize-first-letter.ts';
+import PremiumBadge from '@components/premium-badge';
 
 const smallCardDimensions = {
   width: '150',
@@ -64,11 +65,7 @@ function OfferCard({
       {...(onOverCard ? {onMouseEnter: onMouseEnter} : {})}
       {...(onClickCard ? {onClick: CardClick} : {})}
     >
-      {
-        offer.isPremium
-          ? <div className="place-card__mark"><span>Premium</span></div>
-          : null
-      }
+      <PremiumBadge isPremium={offer.isPremium} extraClassName="place-card__mark" />
       <div
         className={clsx(
           variant && `${variant}__image-wrapper`,
