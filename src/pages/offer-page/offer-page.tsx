@@ -15,6 +15,7 @@ import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 import {JSX} from 'react';
 import Reviews from '@components/reviews';
 import PremiumBadge from '@components/premium-badge';
+import OfferList from '@components/offer-list';
 
 function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
@@ -132,16 +133,19 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              {closestOffers.map((dataCard: OfferPreview) => (
+            <OfferList
+              dataOffers={closestOffers}
+              extraClass="near-places__list"
+            >
+              {(dataCard: OfferPreview) => (
                 <OfferCard
                   offer={dataCard}
                   variant="cities"
                   size="large"
                   key={dataCard.id}
                 />
-              ))}
-            </div>
+              )}
+            </OfferList>
           </section>
         </div>
         ;
