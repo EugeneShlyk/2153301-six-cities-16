@@ -8,6 +8,7 @@ import LocationList from '@components/location-list';
 import {MainPageProps} from '@customType/props.ts';
 import {useState} from 'react';
 import {mapClasses} from '@constants';
+import OfferList from '@components/offer-list';
 
 function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
@@ -28,18 +29,20 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{offersCurrentCity.length} places to stay in {currentCity.name}</b>
                   <PlacesSorting/>
-
-                  <div className="cities__places-list places__list tabs__content">
-                    {offersCurrentCity.map((dataCard: OfferPreview) => (
+                  <OfferList
+                    dataOffers={offersCurrentCity}
+                    extraClass="cities__places-list tabs__content"
+                  >
+                    {(dataOffer: OfferPreview) => (
                       <OfferCard
-                        offer={dataCard}
-                        variant="cities"
+                        offer={dataOffer}
                         size="large"
-                        key={dataCard.id}
+                        variant="cities"
+                        key={dataOffer.id}
                         onOverCard={setHoveredOfferId}
                       />
-                    ))}
-                  </div>
+                    )}
+                  </OfferList>
                 </section>
                 <div className="cities__right-section">
                   <MapBox
