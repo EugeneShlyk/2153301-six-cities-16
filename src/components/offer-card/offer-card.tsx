@@ -24,8 +24,7 @@ type OfferCardProps = {
   offer: OfferPreview;
   size: Size;
   variant?: CardType;
-  onOverCard?: (cardId: string) => void;
-  onClickCard?: (cardId: string) => void;
+  onOverCard?: (cardId: string | null) => void;
 };
 
 function getImageSize(size: Size) {
@@ -44,26 +43,26 @@ function OfferCard({
   variant,
   size,
   onOverCard,
-  onClickCard
 }: OfferCardProps): JSX.Element {
   const [isFavorite, setIsFavorite] = useState<boolean | undefined>(offer?.isFavorite);
-  const onMouseEnter = (event: MouseEvent<HTMLDivElement>) => {
+  const onMouseEnterCard = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (onOverCard) {
       onOverCard(offer.id);
     }
   };
-  const CardClick = (event: MouseEvent<HTMLDivElement>) => {
+  const onMouseLeaveCard = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    if (onClickCard) {
-      onClickCard(offer.id);
+    if (onOverCard) {
+      onOverCard(null);
     }
   };
+
   return (
     <article
       className={clsx(variant && `${variant}__card`, 'place-card')}
-      {...(onOverCard ? {onMouseEnter: onMouseEnter} : {})}
-      {...(onClickCard ? {onClick: CardClick} : {})}
+      {...(onOverCard ? {onMouseEnter: onMouseEnterCard} : {})}
+      {...(onOverCard ? {onMouseLeave: onMouseLeaveCard} : {})}
     >
       <PremiumBadge isPremium={offer.isPremium} extraClassName="place-card__mark" />
       <div
