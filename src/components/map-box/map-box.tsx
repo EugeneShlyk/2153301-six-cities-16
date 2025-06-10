@@ -11,7 +11,7 @@ import style from './map-box.module.scss';
 interface MapProps {
   currentCity: City;
   offersOfCity?: OfferPreview[];
-  hoveredOfferId?: string | undefined;
+  hoveredOfferId?: string | null;
   mapClass: string;
 }
 

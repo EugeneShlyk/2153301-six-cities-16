@@ -75,6 +75,13 @@ export const mapClasses = {
   offerPage: 'offer__map',
 };
 
+export const enum SortOption {
+  Popular,
+  PriceLowToHigh,
+  PriceHighToLow,
+  TopRatedFirst
+}
+
 export const RATING = [
   {stars: 5, title: 'perfect'},
   {stars: 4, title: 'good'},

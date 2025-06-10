@@ -1,18 +1,13 @@
 import {OfferPreview} from '@customType/offer.ts';
-import PlacesSorting from '@components/places-sorting/places-sorting';
 import Header from '@components/header';
 import NoOffers from '@components/no-offers';
-import OfferCard from '@components/offer-card';
-import MapBox from '@components/map-box';
 import LocationList from '@components/location-list';
 import {MainPageProps} from '@customType/props.ts';
-import {useState} from 'react';
-import {mapClasses} from '@constants';
-import OfferList from '@components/offer-list';
+import PlacesListSection from '@components/places-list-section';
 
 function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
-  const [hoveredOfferId, setHoveredOfferId] = useState<string | undefined>(undefined);
+
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -23,37 +18,11 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
         </div>
         {
           offers.length > 0 ? (
-            <div className="cities">
-              <div className="cities__places-container container">
-                <section className="cities__places places">
-                  <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{offersCurrentCity.length} places to stay in {currentCity.name}</b>
-                  <PlacesSorting/>
-                  <OfferList
-                    dataOffers={offersCurrentCity}
-                    extraClass="cities__places-list tabs__content"
-                  >
-                    {(dataOffer: OfferPreview) => (
-                      <OfferCard
-                        offer={dataOffer}
-                        size="large"
-                        variant="cities"
-                        key={dataOffer.id}
-                        onOverCard={setHoveredOfferId}
-                      />
-                    )}
-                  </OfferList>
-                </section>
-                <div className="cities__right-section">
-                  <MapBox
-                    currentCity={currentCity}
-                    offersOfCity={offersCurrentCity}
-                    hoveredOfferId={hoveredOfferId}
-                    mapClass={mapClasses.mainPage}
-                  />
-                </div>
-              </div>
-            </div>
+            <PlacesListSection
+              currentCity={currentCity}
+              offersCurrentCity={offersCurrentCity}
+              extraClass="cities__places-list tabs__content"
+            />
           ) : <NoOffers currentLocation={locations.Paris.name}/>
         }
       </main>
