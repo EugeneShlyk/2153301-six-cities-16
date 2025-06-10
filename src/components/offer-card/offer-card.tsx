@@ -8,6 +8,15 @@ import {MouseEvent, useState} from 'react';
 import {capitalizeFirstLetter} from '@utils/capitalize-first-letter.ts';
 import PremiumBadge from '@components/premium-badge';
 
+type Size = 'small' | 'medium' | 'large';
+type CardType = 'favorites' | 'cities';
+type OfferCardProps = {
+  offer: OfferPreview;
+  size: Size;
+  variant?: CardType;
+  onOverCard?: (cardId: string | null) => void;
+};
+
 const smallCardDimensions = {
   width: '150',
   height: '110'
@@ -16,15 +25,6 @@ const smallCardDimensions = {
 const largeCardDimensions = {
   width: '260',
   height: '200'
-};
-
-type Size = 'small' | 'medium' | 'large';
-type CardType = 'favorites' | 'cities';
-type OfferCardProps = {
-  offer: OfferPreview;
-  size: Size;
-  variant?: CardType;
-  onOverCard?: (cardId: string | null) => void;
 };
 
 function getImageSize(size: Size) {

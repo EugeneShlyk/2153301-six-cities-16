@@ -1,4 +1,5 @@
 import {NoOffersProps} from '@customType/props.ts';
+import {JSX} from 'react';
 
 function NoOffers({currentLocation}: NoOffersProps): JSX.Element {
   return (

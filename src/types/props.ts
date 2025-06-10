@@ -27,5 +27,5 @@ export interface LocationListProps {
 }
 
 export type NoOffersProps = {
-  currentLocation: keyof typeof CitiesName;
+  currentLocation: CitiesName;
 }
