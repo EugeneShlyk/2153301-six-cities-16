@@ -16,6 +16,13 @@ export enum CitiesName {
   Dusseldorf = 'Dusseldorf',
 }
 
+export const enum SortOption {
+  Popular,
+  PriceLowToHigh,
+  PriceHighToLow,
+  TopRatedFirst
+}
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -74,13 +81,6 @@ export const mapClasses = {
   mainPage: 'cities__map',
   offerPage: 'offer__map',
 };
-
-export const enum SortOption {
-  Popular,
-  PriceLowToHigh,
-  PriceHighToLow,
-  TopRatedFirst
-}
 
 export const RATING = [
   {stars: 5, title: 'perfect'},

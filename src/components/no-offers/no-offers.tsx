@@ -1,5 +1,10 @@
-import {NoOffersProps} from '@customType/props.ts';
+// import {NoOffersProps} from '@customType/props.ts';
 import {JSX} from 'react';
+import {CitiesName} from '@constants';
+
+type NoOffersProps = {
+  currentLocation: CitiesName;
+}
 
 function NoOffers({currentLocation}: NoOffersProps): JSX.Element {
   return (
