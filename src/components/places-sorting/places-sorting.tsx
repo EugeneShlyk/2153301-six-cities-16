@@ -1,27 +1,36 @@
-import {sortingItems} from '@constants';
+import {SORT_OPTIONS, SortOption} from '@constants';
 import {spaceToUnderscore} from '@utils/utils';
 import PlacesSortingItem from '@components/places-sorting-item';
 import clsx from 'clsx';
 import {useState} from 'react';
 
 type TPlacesSortingProp = {
-  currentSorting: ;
-  setter: (sorting: string) => void;
+  current: SortOption;
+  setter: (option: SortOption) => void;
 }
 
-function PlacesSorting({currentSorting, setter}: TPlacesSortingProp): JSX.Element {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
+  const [isOpened, setOpen] = useState<boolean>(false);
 
-  const onOpenSortingClick = (event) => {
-    event.preventDefault();
-    if() {
-      event.closest()
+  const selectedOption = SORT_OPTIONS[current];
+
+  const onSortOpenClick = (evt: React.MouseEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    const target = evt.target as HTMLInputElement;
+
+    if (target.closest('.places__sorting') && target.tagName !== 'LI') {
+      setOpen((prevState) => !prevState);
     }
-  }
+  };
 
   return (
-    <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
+    <form
+      className="places__sorting"
+      action="#"
+      method="get"
+      onClick={onSortOpenClick}
+    >
+      <span className="places__sorting-caption">Sort by&nbsp;</span>
       <span className="places__sorting-type" tabIndex={0}>
                   Popular
         <svg className="places__sorting-arrow" width="7" height="4">
@@ -30,11 +39,11 @@ function PlacesSorting({currentSorting, setter}: TPlacesSortingProp): JSX.Elemen
       </span>
       <ul className={clsx(
         'places__options places__options--custom',
-        isOpen && 'places__options--opened'
+        isOpened && 'places__options--opened'
       )}
       >
         {/*<ul className="places__options places__options--custom places__options--opened">*/}
-        {sortingItems.map((item: string) => <PlacesSortingItem sortingItem={item} key={spaceToUnderscore(item)}/>)}
+        {SORT_OPTIONS.map((item: string) => <PlacesSortingItem sortingItem={item} key={spaceToUnderscore(item)}/>)}
       </ul>
     </form>
   );

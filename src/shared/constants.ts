@@ -1,12 +1,5 @@
 import {TSizeMap} from '@customType/size';
 
-export const sortingItems: string[] = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
-
 export enum CitiesName {
   Paris = 'Paris',
   Cologne = 'Cologne',
@@ -22,6 +15,8 @@ export const enum SortOption {
   PriceHighToLow,
   TopRatedFirst
 }
+
+export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'] satisfies Record<SortOption, string>;
 
 export enum AppRoute {
   Root = '/',
