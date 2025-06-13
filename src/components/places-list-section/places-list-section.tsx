@@ -47,9 +47,9 @@ function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlaces
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offersCurrentCity.length} places to stay in {currentCity.name}</b>
-          <PlacesSorting/>
+          <PlacesSorting current={activeSort} setter={setActiveSort}/>
           <OfferList
-            dataOffers={offersCurrentCity}
+            dataOffers={sortedOffers}
             extraClass={extraClass}
           >
             {(dataOffer: OfferPreview) => (

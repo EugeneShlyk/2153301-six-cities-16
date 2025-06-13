@@ -1,5 +1,4 @@
 import {SORT_OPTIONS, SortOption} from '@constants';
-import {spaceToUnderscore} from '@utils/utils';
 import PlacesSortingItem from '@components/places-sorting-item';
 import clsx from 'clsx';
 import {useState} from 'react';
@@ -33,7 +32,7 @@ function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
       <span className="places__sorting-caption">Sort by&nbsp;</span>
       <span className="places__sorting-type" tabIndex={0}>
                   Popular
-        <svg className="places__sorting-arrow" width="7" height="4">
+        <svg className="places__sorting-arrow" width={7} height={4}>
           <use href="#icon-arrow-select"></use>
         </svg>
       </span>
@@ -42,8 +41,16 @@ function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
         isOpened && 'places__options--opened'
       )}
       >
-        {/*<ul className="places__options places__options--custom places__options--opened">*/}
-        {SORT_OPTIONS.map((item: string) => <PlacesSortingItem sortingItem={item} key={spaceToUnderscore(item)}/>)}
+        {SORT_OPTIONS.map((nameSort: string, index: number) => (
+          <PlacesSortingItem
+            sortingItem={nameSort}
+            key={nameSort}
+            setOpen={setOpen}
+            setterOpenSort={setter}
+            SortOptionIndex={index}
+            selectedOption={selectedOption}
+          />
+        ))}
       </ul>
     </form>
   );
