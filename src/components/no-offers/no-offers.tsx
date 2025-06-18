@@ -1,9 +1,8 @@
-// import {NoOffersProps} from '@customType/props.ts';
 import {JSX} from 'react';
-import {CitiesName} from '@constants';
+import {CityName} from '@constants';
 
 type NoOffersProps = {
-  currentLocation: CitiesName;
+  currentLocation: CityName;
 }
 
 function NoOffers({currentLocation}: NoOffersProps): JSX.Element {
@@ -13,7 +12,9 @@ function NoOffers({currentLocation}: NoOffersProps): JSX.Element {
         <section className="cities__no-places">
           <div className="cities__status-wrapper tabs__content">
             <b className="cities__status">No places to stay available</b>
-            <p className="cities__status-description">We could not find any property available at the moment in {currentLocation}</p>
+            <p className="cities__status-description">We could not find any property available at the moment
+              in {currentLocation}
+            </p>
           </div>
         </section>
         <div className="cities__right-section"></div>

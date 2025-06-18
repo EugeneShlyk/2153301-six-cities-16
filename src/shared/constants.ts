@@ -9,6 +9,8 @@ export enum CitiesName {
   Dusseldorf = 'Dusseldorf',
 }
 
+export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+
 export const enum SortOption {
   Popular,
   PriceLowToHigh,

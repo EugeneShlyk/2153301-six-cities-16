@@ -140,7 +140,7 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
               {(dataCard: OfferPreview) => (
                 <OfferCard
                   offer={dataCard}
-                  variant="cities"
+                  variant="near-places"
                   size="large"
                   key={dataCard.id}
                 />

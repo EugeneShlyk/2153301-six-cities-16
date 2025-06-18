@@ -3,7 +3,7 @@ import OfferList from '@components/offer-list';
 import {OfferPreview} from '@customType/offer.ts';
 import OfferCard from '@components/offer-card';
 import MapBox from '@components/map-box';
-import {mapClasses, SortOption, CitiesName} from '@constants';
+import {mapClasses, SortOption} from '@constants';
 import {useState} from 'react';
 import {City} from '@customType/city.ts';
 import NoOffers from '@components/no-offers';
@@ -20,7 +20,6 @@ function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlaces
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
 
   const isEmpty = offersCurrentCity.length === 0;
-  // const isEmpty = true;
   let sortedOffers = offersCurrentCity;
 
   switch (activeSort) {
@@ -39,7 +38,6 @@ function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlaces
     <NoOffers currentLocation={currentCity.name}/>
   ) : (
     <div className="cities">
-      {/*<div className="cities__places-container container">*/}
       <div className={clsx(
         'cities__places-container container',
         isEmpty && 'cities__places-container--empty',)}

@@ -9,7 +9,7 @@ import {capitalizeFirstLetter} from '@utils/capitalize-first-letter.ts';
 import PremiumBadge from '@components/premium-badge';
 
 type Size = 'small' | 'medium' | 'large';
-type CardType = 'favorites' | 'cities';
+type CardType = 'favorites' | 'cities' | 'near-places';
 type OfferCardProps = {
   offer: OfferPreview;
   size: Size;
@@ -64,7 +64,7 @@ function OfferCard({
       {...(onOverCard ? {onMouseEnter: onMouseEnterCard} : {})}
       {...(onOverCard ? {onMouseLeave: onMouseLeaveCard} : {})}
     >
-      <PremiumBadge isPremium={offer.isPremium} extraClassName="place-card__mark" />
+      <PremiumBadge isPremium={offer.isPremium} extraClassName="place-card__mark"/>
       <div
         className={clsx(
           variant && `${variant}__image-wrapper`,
