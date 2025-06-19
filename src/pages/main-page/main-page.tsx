@@ -16,15 +16,11 @@ function MainPage({offers, locations, currentCity, setCurrentCity}: MainPageProp
         <div className="tabs">
           <LocationList currentCity={currentCity} locations={locations} setCurrentCity={setCurrentCity}></LocationList>
         </div>
-        {
-          offers.length > 0 ? (
-            <PlacesListSection
-              currentCity={currentCity}
-              offersCurrentCity={offersCurrentCity}
-              extraClass="cities__places-list tabs__content"
-            />
-          ) : <NoOffers currentLocation={locations.Paris.name}/>
-        }
+        <PlacesListSection
+          currentCity={currentCity}
+          offersCurrentCity={offersCurrentCity}
+          extraClass="cities__places-list tabs__content"
+        />
       </main>
     </div>
   );
