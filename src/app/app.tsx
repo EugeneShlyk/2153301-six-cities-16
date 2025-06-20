@@ -1,4 +1,4 @@
-import {AppRoute, CityMap} from '@constants';
+import {AppRoute} from '@constants';
 import {OFFERS} from '@mocks/offers';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import MainPage from '@pages/main-page';
@@ -25,7 +25,7 @@ function App(): JSX.Element {
         {
           element:
             <MainPage
-              offers={OFFERS} locations={CityMap} currentCity={currentCity} setCurrentCity={setCurrentCity}
+              offers={OFFERS} currentCity={currentCity} setCurrentCity={setCurrentCity}
             />,
           index: true,
         },
