@@ -3,10 +3,10 @@ import {LocationListProps} from '@customType/props.ts';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@constants';
 import clsx from 'clsx';
-import {CityMap, CITIES} from '@constants';
+import {CITIES} from '@constants';
 
 
-export default function LocationList({ currentCity, setCurrentCity}: LocationListProps): JSX.Element {
+export default function LocationList({currentCity, setCurrentCity}: LocationListProps): JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">

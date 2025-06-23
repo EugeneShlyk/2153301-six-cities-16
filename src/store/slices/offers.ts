@@ -9,7 +9,7 @@ const initialState: OffersState = {
   offers: OFFERS,
 };
 
-const offersSlice = createSlice({
+export const offersSlice = createSlice({
   initialState,
   name: 'offers',
   reducers: {
@@ -18,7 +18,7 @@ const offersSlice = createSlice({
     },
   },
   selectors: {
-    offers: (state) => state.offersByCurrentCity,
+    offers: (state) => state.offers,
     city: state => state.currentCity,
   },
 });
