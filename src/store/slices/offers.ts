@@ -3,13 +3,12 @@ import {OffersState} from './offers/types.ts';
 import {CITIES, CitiesName} from '@constants';
 import {OFFERS} from '@mocks/offers.ts';
 
-
 const initialState: OffersState = {
   currentCity: CITIES[0].name,
   offers: OFFERS,
 };
 
-export const offersSlice = createSlice({
+const offersSlice = createSlice({
   initialState,
   name: 'offers',
   reducers: {
@@ -18,7 +17,12 @@ export const offersSlice = createSlice({
     },
   },
   selectors: {
-    offers: (state) => state.offers,
-    city: state => state.currentCity,
+    offers: (state: OffersState) => state.offers,
+    city: (state: OffersState) => state.currentCity,
   },
 });
+
+const offersActions = offersSlice.actions;
+const offersSelectors = offersSlice.selectors;
+
+export {offersSlice, offersActions, offersSelectors};

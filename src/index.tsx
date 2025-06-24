@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
-// import {Provider} from 'react-redux';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,8 +10,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    {/*<Provider store={root}>*/}
+    <Provider store={store}>
       <App/>
-    {/*</Provider>*/}
+    </Provider>
   </React.StrictMode>
 );
