@@ -3,9 +3,12 @@ import Header from '@components/header';
 import LocationList from '@components/location-list';
 import {MainPageProps} from '@customType/props.ts';
 import PlacesListSection from '@components/places-list-section';
+import {CitiesName} from '@constants';
+
+const cityName = CitiesName.Paris;
 
 function MainPage({offers, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
-  const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity.name);
+  const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === cityName);
 
   return (
     <div className="page page--gray page--main">
@@ -14,7 +17,7 @@ function MainPage({offers, currentCity, setCurrentCity}: MainPageProps): JSX.Ele
         <h1 className="visually-hidden">Cities</h1>
         <LocationList currentCity={currentCity} setCurrentCity={setCurrentCity}></LocationList>
         <PlacesListSection
-          currentCity={currentCity}
+          cityName={cityName}
           offersCurrentCity={offersCurrentCity}
           extraClass="cities__places-list tabs__content"
         />

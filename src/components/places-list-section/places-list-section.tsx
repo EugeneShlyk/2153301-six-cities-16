@@ -3,19 +3,18 @@ import OfferList from '@components/offer-list';
 import {OfferPreview} from '@customType/offer.ts';
 import OfferCard from '@components/offer-card';
 import MapBox from '@components/map-box';
-import {mapClasses, SortOption} from '@constants';
+import {mapClasses, SortOption, CitiesName} from '@constants';
 import {useState} from 'react';
-import {City} from '@customType/city.ts';
 import NoOffers from '@components/no-offers';
 import clsx from 'clsx';
 
 type TPlacesListProps = {
-  currentCity: City;
+  cityName: CitiesName;
   offersCurrentCity: OfferPreview[];
   extraClass: string;
 }
 
-function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlacesListProps) {
+function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesListProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<string | null>(null);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
 
@@ -35,7 +34,7 @@ function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlaces
   }
 
   return isEmpty ? (
-    <NoOffers currentLocation={currentCity.name}/>
+    <NoOffers currentLocation={cityName}/>
   ) : (
     <div className="cities">
       <div className={clsx(
@@ -44,7 +43,7 @@ function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlaces
       >
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offersCurrentCity.length} places to stay in {currentCity.name}</b>
+          <b className="places__found">{offersCurrentCity.length} places to stay in {cityName.toLowerCase()}</b>
           <PlacesSorting current={activeSort} setter={setActiveSort}/>
           <OfferList
             dataOffers={sortedOffers}
@@ -63,7 +62,7 @@ function PlacesListSection({currentCity, offersCurrentCity, extraClass}: TPlaces
         </section>
         <div className="cities__right-section">
           <MapBox
-            currentCity={currentCity}
+            CityName={cityName}
             offersOfCity={offersCurrentCity}
             hoveredOfferId={hoveredOfferId}
             mapClass={mapClasses.mainPage}

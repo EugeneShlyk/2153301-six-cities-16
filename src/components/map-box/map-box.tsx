@@ -1,15 +1,14 @@
 import useMap from '../../hooks/use-map';
 import {useRef, useEffect} from 'react';
-import {City} from '@customType/city.ts';
 import 'leaflet/dist/leaflet.css';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
+import {CITIES, CitiesName, URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import {OfferPreview} from '@customType/offer.ts';
 import clsx from 'clsx';
 import style from './map-box.module.scss';
 
 interface MapProps {
-  currentCity: City;
+  cityName: CitiesName;
   offersOfCity?: OfferPreview[];
   hoveredOfferId?: string | null;
   mapClass: string;
@@ -28,11 +27,12 @@ const currentCustomIcon = new Icon({
 });
 
 export default function MapBox({
-  currentCity,
+  cityName,
   offersOfCity,
   hoveredOfferId,
   mapClass,
 }: MapProps): JSX.Element {
+  const currentCity = CITIES.find((city) => city.name === cityName) || CITIES[0];
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);
   useEffect(() => {
