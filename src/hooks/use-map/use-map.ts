@@ -1,12 +1,15 @@
-import {MutableRefObject, useEffect, useRef} from 'react';
+import {RefObject, MutableRefObject, useEffect, useRef} from 'react';
 import {useState} from 'react';
 import L, {Map, TileLayer} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {City} from '@customType/city.ts';
 
-export default function useMap(
-  mapRef: MutableRefObject<HTMLLIElement | null>,
-  city: City
+type TUseMapProps = {
+  city: City;
+  mapRef: RefObject<HTMLDivElement>;
+};
+
+export default function useMap({mapRef, city}: TUseMapProps
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
