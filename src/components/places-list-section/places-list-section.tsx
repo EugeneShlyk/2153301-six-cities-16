@@ -62,7 +62,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
         </section>
         <div className="cities__right-section">
           <MapBox
-            CityName={cityName}
+            cityName={cityName}
             offersOfCity={offersCurrentCity}
             hoveredOfferId={hoveredOfferId}
             mapClass={mapClasses.mainPage}

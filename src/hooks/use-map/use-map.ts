@@ -1,15 +1,17 @@
-import {RefObject, MutableRefObject, useEffect, useRef} from 'react';
+import {RefObject, useEffect, useRef} from 'react';
 import {useState} from 'react';
 import L, {Map, TileLayer} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {City} from '@customType/city.ts';
+import {CITIES} from '@constants';
+
+type CityItem = typeof CITIES[number];
 
 type TUseMapProps = {
-  city: City;
+  currentCity: CityItem;
   mapRef: RefObject<HTMLDivElement>;
 };
 
-export default function useMap({mapRef, city}: TUseMapProps
+export default function useMap({mapRef, currentCity}: TUseMapProps
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
@@ -18,10 +20,10 @@ export default function useMap({mapRef, city}: TUseMapProps
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.location.latitude,
-          lng: city.location.longitude,
+          lat: currentCity.location.latitude,
+          lng: currentCity.location.longitude,
         },
-        zoom: city.location.zoom,
+        zoom: currentCity.location.zoom,
       });
 
       const layer = new TileLayer(
@@ -37,9 +39,9 @@ export default function useMap({mapRef, city}: TUseMapProps
       setMap(instance);
       isRenderedRef.current = true;
     } else if (map) {
-      map.panTo(new L.LatLng(city.location.latitude, city.location.longitude));
+      map.panTo(new L.LatLng(currentCity.location.latitude, currentCity.location.longitude));
     }
-  }, [mapRef, city, map]);
+  }, [mapRef, currentCity, map]);
 
   return map;
 }

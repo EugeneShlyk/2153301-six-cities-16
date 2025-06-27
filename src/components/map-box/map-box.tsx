@@ -34,7 +34,7 @@ export default function MapBox({
 }: MapProps): JSX.Element {
   const currentCity = CITIES.find((city) => city.name === cityName) || CITIES[0];
   const mapRef = useRef(null);
-  const map = useMap(mapRef, currentCity);
+  const map = useMap({mapRef, currentCity});
   useEffect(() => {
     if (map) {
       const mapLayerGroup = layerGroup().addTo(map);
