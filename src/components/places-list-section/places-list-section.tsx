@@ -36,38 +36,36 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
   return isEmpty ? (
     <NoOffers currentLocation={cityName}/>
   ) : (
-    <div className="cities">
-      <div className={clsx(
-        'cities__places-container container',
-        isEmpty && 'cities__places-container--empty',)}
-      >
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offersCurrentCity.length} places to stay in {cityName.toLowerCase()}</b>
-          <PlacesSorting current={activeSort} setter={setActiveSort}/>
-          <OfferList
-            dataOffers={sortedOffers}
-            extraClass={extraClass}
-          >
-            {(dataOffer: OfferPreview) => (
-              <OfferCard
-                offer={dataOffer}
-                size="large"
-                variant="cities"
-                key={dataOffer.id}
-                onOverCard={setHoveredOfferId}
-              />
-            )}
-          </OfferList>
-        </section>
-        <div className="cities__right-section">
-          <MapBox
-            cityName={cityName}
-            offersOfCity={offersCurrentCity}
-            hoveredOfferId={hoveredOfferId}
-            mapClass={mapClasses.mainPage}
-          />
-        </div>
+    <div className={clsx(
+      'cities__places-container container',
+      isEmpty && 'cities__places-container--empty',)}
+    >
+      <section className="cities__places places">
+        <h2 className="visually-hidden">Places</h2>
+        <b className="places__found">{offersCurrentCity.length} places to stay in {cityName.toLowerCase()}</b>
+        <PlacesSorting current={activeSort} setter={setActiveSort}/>
+        <OfferList
+          dataOffers={sortedOffers}
+          extraClass={extraClass}
+        >
+          {(dataOffer: OfferPreview) => (
+            <OfferCard
+              offer={dataOffer}
+              size="large"
+              variant="cities"
+              key={dataOffer.id}
+              onOverCard={setHoveredOfferId}
+            />
+          )}
+        </OfferList>
+      </section>
+      <div className="cities__right-section">
+        <MapBox
+          cityName={cityName}
+          offersOfCity={offersCurrentCity}
+          hoveredOfferId={hoveredOfferId}
+          mapClass={mapClasses.mainPage}
+        />
       </div>
     </div>
   );

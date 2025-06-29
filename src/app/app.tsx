@@ -14,11 +14,14 @@ import {DEFAULT_CITY} from '@constants';
 import {OFFERS_FOR_OFFER_PAGE} from '@mocks/offers-for-offer-page.ts';
 import {virtualFullOffers} from '@mocks/virtual-full-offers.ts';
 import {JSX} from 'react';
+import {OfferPreview} from '@customType/offer.ts';
 
 const currentStatus: TAuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
   const [currentCity, setCurrentCity] = useState<City>(DEFAULT_CITY);
+  const currentOffers = OFFERS.filter((offer : OfferPreview) => offer.city.name === currentCity.name) || [];
+  console.log(currentOffers);
   const router = createBrowserRouter([
     {
       children: [

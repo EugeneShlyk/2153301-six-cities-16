@@ -16,11 +16,13 @@ function MainPage({offers, currentCity, setCurrentCity}: MainPageProps): JSX.Ele
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <LocationList currentCity={currentCity} setCurrentCity={setCurrentCity}></LocationList>
-        <PlacesListSection
-          cityName={cityName}
-          offersCurrentCity={offersCurrentCity}
-          extraClass="cities__places-list tabs__content"
-        />
+        <div className="cities">
+          <PlacesListSection
+            cityName={cityName}
+            offersCurrentCity={offersCurrentCity}
+            extraClass="cities__places-list tabs__content"
+          />
+        </div>
       </main>
     </div>
   );
