@@ -10,7 +10,6 @@ import {Offer} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '@constants';
-import clsx from 'clsx';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
 import {JSX} from 'react';
 import Reviews from '@components/reviews';
@@ -18,6 +17,7 @@ import PremiumBadge from '@components/premium-badge';
 import OfferList from '@components/offer-list';
 import Gallery from '@components/gallery';
 import OfferOptions from '@components/offer-options/offer-options.tsx';
+import OfferHost from '@components/offer-host/offer-host.tsx';
 
 function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const cityName = CitiesName.Hamburg;
@@ -72,35 +72,7 @@ function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
                 <OfferOptions offer={selectedOffer}/>
               </div>
-              {/*<div className="offer__host">*/}
-              {/*  <h2 className="offer__host-title">Meet the host</h2>*/}
-              {/*  <div className="offer__host-user user">*/}
-              {/*    <div*/}
-              {/*      className={clsx('offer__avatar-wrapper',*/}
-              {/*        'user__avatar-wrapper',*/}
-              {/*        {'offer__avatar-wrapper--pro': selectedOffer.host.isPro})}*/}
-              {/*    >*/}
-              {/*      <img*/}
-              {/*        className="offer__avatar user__avatar" src={selectedOffer?.host.avatarUrl} width="74" height="74"*/}
-              {/*        alt="Host avatar"*/}
-              {/*      />*/}
-              {/*    </div>*/}
-              {/*    <span className="offer__user-name">*/}
-              {/*      {selectedOffer?.host.name}*/}
-              {/*    </span>*/}
-              {/*    {selectedOffer.host.isPro && (<span className="offer__user-status">Pro</span>)}*/}
-              {/*  </div>*/}
-              {/*  <div className="offer__description">*/}
-              {/*    <p className="offer__text">*/}
-              {/*      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The*/}
-              {/*      building is green and from 18th century.*/}
-              {/*    </p>*/}
-              {/*    <p className="offer__text">*/}
-              {/*      An independent House, strategically located between Rembrand Square and National Opera, but where*/}
-              {/*      the bustle of the city comes to rest in this alley flowery and colorful.*/}
-              {/*    </p>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+              <OfferHost offer={selectedOffer}/>
               <Reviews reviews={REVIEWS}/>
             </div>
           </div>
