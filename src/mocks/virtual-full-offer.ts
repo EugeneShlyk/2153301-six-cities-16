@@ -1,6 +1,6 @@
 import {OFFERS} from '@mocks/offers.ts';
 
-export const virtualFullOffers = OFFERS.map((offer) => ({
+export const virtualFullOffer = OFFERS.map((offer) => ({
   id: offer.id,
   title: offer.title,
   type: offer.type,

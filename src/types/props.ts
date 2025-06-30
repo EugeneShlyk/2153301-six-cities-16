@@ -11,7 +11,6 @@ export type MainPageProps = {
 
 export type OfferPageProps = {
   closestOffers: OfferPreview[];
-  currentCity: City;
   FullOffers: Offer[];
 }
 

@@ -125,3 +125,12 @@ export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
 }
+
+export const galleryPhoto = [
+  'img/room.jpg',
+  'img/apartment-01.jpg',
+  'img/apartment-02.jpg',
+  'img/apartment-03.jpg',
+  'img/apartment-04.jpg',
+  'img/studio-01.jpg',
+];

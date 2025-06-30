@@ -1,6 +1,6 @@
 import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
-import {largeButtonFavoriteDimensions, mapClasses} from '@constants';
+import {CitiesName, largeButtonFavoriteDimensions, mapClasses, galleryPhoto} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
 import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
@@ -16,8 +16,11 @@ import {JSX} from 'react';
 import Reviews from '@components/reviews';
 import PremiumBadge from '@components/premium-badge';
 import OfferList from '@components/offer-list';
+import Gallery from '@components/gallery';
+import OfferOptions from '@components/offer-options/offer-options.tsx';
 
-function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JSX.Element {
+function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
+  const cityName = CitiesName.Hamburg;
   const {offerId} = useParams();
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
   if (!selectedOffer) {
@@ -29,28 +32,7 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
 
       <main className="page__main page__main--offer">
         <section className="offer">
-          <div className="offer__gallery-container container">
-            <div className="offer__gallery">
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="offer__image-wrapper">
-                <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-            </div>
-          </div>
+          <Gallery images={galleryPhoto}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
               <PremiumBadge isPremium={selectedOffer.isPremium} extraClassName={'offer__mark'}/>
@@ -88,47 +70,41 @@ function OfferPage({currentCity, closestOffers, FullOffers}: OfferPageProps): JS
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <ul className="offer__inside-list">
-                  {selectedOffer?.goods.map((good) => (
-                    <li className="offer__inside-item" key={good}>
-                      {good}
-                    </li>
-                  ))}
-                </ul>
+                <OfferOptions offer={selectedOffer}/>
               </div>
-              <div className="offer__host">
-                <h2 className="offer__host-title">Meet the host</h2>
-                <div className="offer__host-user user">
-                  <div
-                    className={clsx('offer__avatar-wrapper',
-                      'user__avatar-wrapper',
-                      {'offer__avatar-wrapper--pro': selectedOffer.host.isPro})}
-                  >
-                    <img
-                      className="offer__avatar user__avatar" src={selectedOffer?.host.avatarUrl} width="74" height="74"
-                      alt="Host avatar"
-                    />
-                  </div>
-                  <span className="offer__user-name">
-                    {selectedOffer?.host.name}
-                  </span>
-                  {selectedOffer.host.isPro && (<span className="offer__user-status">Pro</span>)}
-                </div>
-                <div className="offer__description">
-                  <p className="offer__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                    building is green and from 18th century.
-                  </p>
-                  <p className="offer__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where
-                    the bustle of the city comes to rest in this alley flowery and colorful.
-                  </p>
-                </div>
-              </div>
+              {/*<div className="offer__host">*/}
+              {/*  <h2 className="offer__host-title">Meet the host</h2>*/}
+              {/*  <div className="offer__host-user user">*/}
+              {/*    <div*/}
+              {/*      className={clsx('offer__avatar-wrapper',*/}
+              {/*        'user__avatar-wrapper',*/}
+              {/*        {'offer__avatar-wrapper--pro': selectedOffer.host.isPro})}*/}
+              {/*    >*/}
+              {/*      <img*/}
+              {/*        className="offer__avatar user__avatar" src={selectedOffer?.host.avatarUrl} width="74" height="74"*/}
+              {/*        alt="Host avatar"*/}
+              {/*      />*/}
+              {/*    </div>*/}
+              {/*    <span className="offer__user-name">*/}
+              {/*      {selectedOffer?.host.name}*/}
+              {/*    </span>*/}
+              {/*    {selectedOffer.host.isPro && (<span className="offer__user-status">Pro</span>)}*/}
+              {/*  </div>*/}
+              {/*  <div className="offer__description">*/}
+              {/*    <p className="offer__text">*/}
+              {/*      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The*/}
+              {/*      building is green and from 18th century.*/}
+              {/*    </p>*/}
+              {/*    <p className="offer__text">*/}
+              {/*      An independent House, strategically located between Rembrand Square and National Opera, but where*/}
+              {/*      the bustle of the city comes to rest in this alley flowery and colorful.*/}
+              {/*    </p>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
               <Reviews reviews={REVIEWS}/>
             </div>
           </div>
-          <MapBox currentCity={currentCity} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>;
+          <MapBox cityName={cityName} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>;
         </section>
         <div className="container">
           <section className="near-places places">
