@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {OffersState} from './offers/types.ts';
+import {OffersState} from './types.ts';
 import {CITIES, CitiesName} from '@constants';
 import {OFFERS} from '@mocks/offers.ts';
 
@@ -8,7 +8,7 @@ const initialState: OffersState = {
   offers: OFFERS,
 };
 
-const offersSlice = createSlice({
+export const offersSlice = createSlice({
   initialState,
   name: 'offers',
   reducers: {
@@ -21,8 +21,3 @@ const offersSlice = createSlice({
     city: (state: OffersState) => state.currentCity,
   },
 });
-
-const offersActions = offersSlice.actions;
-const offersSelectors = offersSlice.selectors;
-
-export {offersSlice, offersActions, offersSelectors};
