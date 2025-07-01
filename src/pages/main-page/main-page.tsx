@@ -10,6 +10,8 @@ const cityName = CitiesName.Paris;
 function MainPage({offers, currentCity, setCurrentCity}: MainPageProps): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === cityName);
 
+  console.log(currentCity);
+
   return (
     <div className="page page--gray page--main">
       <Header/>
