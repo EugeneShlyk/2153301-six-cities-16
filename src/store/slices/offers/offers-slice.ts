@@ -1,9 +1,14 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {OffersState} from './types.ts';
 import {CITIES, CitiesName} from '@constants';
 import {OFFERS} from '@mocks/offers.ts';
+import {OfferPreview} from '@customType/offer.ts';
 
-const initialState: OffersState = {
+export type OffersStateT = {
+  currentCity: CitiesName;
+  offers: OfferPreview[];
+}
+
+const initialState: OffersStateT = {
   currentCity: CITIES[0].name,
   offers: OFFERS,
 };
@@ -17,7 +22,7 @@ export const offersSlice = createSlice({
     },
   },
   selectors: {
-    offers: (state: OffersState) => state.offers,
-    city: (state: OffersState) => state.currentCity,
+    offers: (state: OffersStateT) => state.offers,
+    city: (state: OffersStateT) => state.currentCity,
   },
 });
