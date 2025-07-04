@@ -6,10 +6,13 @@ import {useAppSelector} from '../../store/hooks/useAppSelector.ts';
 import {offersAction, offersSelector} from '../../store/slices/offers';
 import {useAppDispatch} from '../../store/hooks/useAppDispatch.ts';
 import {MouseEvent} from 'react';
+import {useSearchParams} from 'react-router-dom';
 
 export default function LocationList(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.get('city'));
 
   const onCityClickHandler = (
     evt: MouseEvent<HTMLElement>,
