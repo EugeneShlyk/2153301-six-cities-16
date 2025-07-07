@@ -2,11 +2,8 @@ import {OfferPreview} from '@customType/offer.ts';
 import Header from '@components/header';
 import LocationList from '@components/location-list';
 import PlacesListSection from '@components/places-list-section';
-import {CitiesName} from '@constants';
 import {useAppSelector} from '../../store/hooks/useAppSelector.ts';
 import {offersSelector} from '../../store/slices/offers';
-
-const cityName = CitiesName.Paris;
 
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
@@ -21,7 +18,7 @@ function MainPage(): JSX.Element {
         <LocationList/>
         <div className="cities">
           <PlacesListSection
-            cityName={cityName}
+            cityName={currentCity}
             offersCurrentCity={offersCurrentCity}
             extraClass="cities__places-list tabs__content"
           />

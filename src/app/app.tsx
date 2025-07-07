@@ -20,10 +20,7 @@ function App(): JSX.Element {
       children: [
         {
           element:
-            // <MainPage
-            //   offers={OFFERS} currentCity={currentCity} setCurrentCity={setCurrentCity}
-            // />,
-        <MainPage/>,
+            <MainPage/>,
           index: true,
         },
         {

@@ -17,6 +17,7 @@ type TPlacesListProps = {
 function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesListProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<string | null>(null);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
+  // const cityName : CitiesName =
 
   const isEmpty = offersCurrentCity.length === 0;
   let sortedOffers = offersCurrentCity;
@@ -42,7 +43,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
     >
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offersCurrentCity.length} places to stay in {cityName.toLowerCase()}</b>
+        <b className="places__found">{offersCurrentCity.length} places to stay in {cityName}</b>
         <PlacesSorting current={activeSort} setter={setActiveSort}/>
         <OfferList
           dataOffers={sortedOffers}
