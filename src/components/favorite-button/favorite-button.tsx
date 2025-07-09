@@ -1,6 +1,14 @@
 import clsx from 'clsx';
 import {SetStateAction, Dispatch, MouseEvent} from 'react';
 
+type Size = 'small' | 'medium' | 'large';
+
+type FavoriteButtonProps = {
+  bemBlock?: 'offer' | 'place-card';
+  isFavorite?: boolean;
+  offerId: string;
+  size?: Size;
+}
 
 interface ButtonProp {
   dimension: {

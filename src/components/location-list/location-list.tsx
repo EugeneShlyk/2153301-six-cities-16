@@ -10,7 +10,7 @@ import {useSearchParams} from 'react-router-dom';
 export default function LocationList(): JSX.Element {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentCity: CitiesName = searchParams.get('city') as CitiesName || CitiesName.Paris;
+  const currentCity: CitiesName = searchParams.get('city') as CitiesName;
 
   useEffect(() => {
     if (!currentCity) {
