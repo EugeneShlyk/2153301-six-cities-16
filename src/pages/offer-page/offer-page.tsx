@@ -20,9 +20,10 @@ import OfferOptions from '@components/offer-options/offer-options.tsx';
 import OfferHost from '@components/offer-host/offer-host.tsx';
 
 function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
-  const cityName = CitiesName.Hamburg;
   const {offerId} = useParams();
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
+  const cityName = CitiesName.Paris;
+  // console.log(typeof cityName);
   if (!selectedOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
@@ -41,6 +42,8 @@ function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
                   {selectedOffer && selectedOffer.title}
                 </h1>
                 <FavoriteButton
+                  // size='large'
+                  // bemBlock="offer"
                   dimension={largeButtonFavoriteDimensions}
                   isOfferPageBookmark
                   isFavorite={selectedOffer?.isFavorite ?? false}

@@ -61,8 +61,6 @@ export enum AppRoute {
   NotFound = '*'
 }
 
-export const DEFAULT_CITY = CITIES[0];
-
 export const BookmarkSizeMap: TSizeMap = {
   small: {width: '18', height: '19'},
   large: {width: '31', height: '33'}
