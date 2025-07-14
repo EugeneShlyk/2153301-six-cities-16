@@ -90,8 +90,7 @@ function OfferCard({
             dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
             isFavorite={isFavorite}
             setIsFavorite={setIsFavorite}
-          >
-          </FavoriteButton>
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
