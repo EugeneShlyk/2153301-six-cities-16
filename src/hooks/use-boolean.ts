@@ -5,8 +5,8 @@ export function useBoolean(initialValue = false) {
 
   return {
     isOn,
-    off: () => setIsOn(false),
-    on: () => setIsOn(true),
+    // off: () => setIsOn(false),
+    // on: () => setIsOn(true),
     toggle: () => setIsOn((prev) => !prev),
   };
 }

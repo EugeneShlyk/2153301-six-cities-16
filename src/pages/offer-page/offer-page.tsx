@@ -23,7 +23,6 @@ function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
   const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
   const cityName = CitiesName.Paris;
-  // console.log(typeof cityName);
   if (!selectedOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
