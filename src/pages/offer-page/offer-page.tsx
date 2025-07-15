@@ -1,6 +1,6 @@
 import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
-import {CitiesName, largeButtonFavoriteDimensions, mapClasses, galleryPhoto} from '@constants';
+import {CitiesName, mapClasses, galleryPhoto} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
 import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
@@ -41,10 +41,9 @@ function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
                   {selectedOffer && selectedOffer.title}
                 </h1>
                 <FavoriteButton
-                  // size='large'
-                  // bemBlock="offer"
-                  dimension={largeButtonFavoriteDimensions}
-                  isOfferPageBookmark
+                  offerId={selectedOffer.id}
+                  size='large'
+                  bemBlock="offer"
                   isFavorite={selectedOffer?.isFavorite ?? false}
                 />
               </div>

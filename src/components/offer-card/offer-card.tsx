@@ -1,10 +1,10 @@
-import {AppRoute, smallButtonFavoriteDimension} from '@constants';
+import {AppRoute} from '@constants';
 import {OfferPreview} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import FavoriteButton from '../favorite-button';
-import {MouseEvent, useState} from 'react';
+import {MouseEvent} from 'react';
 import {capitalizeFirstLetter} from '@utils/capitalize-first-letter.ts';
 import PremiumBadge from '@components/premium-badge';
 
@@ -44,7 +44,6 @@ function OfferCard({
   size,
   onOverCard,
 }: OfferCardProps): JSX.Element {
-  const [isFavorite, setIsFavorite] = useState<boolean | undefined>(offer?.isFavorite);
   const onMouseEnterCard = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (onOverCard) {
@@ -87,9 +86,10 @@ function OfferCard({
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <FavoriteButton
-            dimension={smallButtonFavoriteDimension} isOfferPageBookmark={false}
-            isFavorite={isFavorite}
-            setIsFavorite={setIsFavorite}
+            size="small"
+            offerId={offer.id}
+            isFavorite={offer.isFavorite}
+            bemBlock="place-card"
           />
         </div>
         <div className="place-card__rating rating">
