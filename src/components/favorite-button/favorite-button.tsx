@@ -25,6 +25,7 @@ export default function FavoriteButton({
     if (userStatus !== AuthorizationStatus.Auth) {
       return navigate(AppRoute.Login);
     }
+    console.log('кнопка добавления в избранное нажата', offerId, Number(!isFavorite));
   };
   return (
     <Bookmark

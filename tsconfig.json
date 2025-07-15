@@ -24,10 +24,13 @@
       "@pages/*": ["./src/pages/*"],
       "@customType/*": ["./src/types/*"],
       "@shared/*": ["./src/shared/*"],
+      "@store/*": ["./src/store/*"],
+      "@slices/*": ["./src/store/slices/*",],
       "@mocks/*": ["./src/mocks/*"],
       "@utils/*": ["./src/utils/*"],
       "@constants": ["./src/shared/constants.ts"],
       "@components/*": ["./src/components/*"],
+
     }
   },
   "include": ["src", "vite.config.ts"],

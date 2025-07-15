@@ -2,6 +2,7 @@ import {SORT_OPTIONS, SortOption} from '@constants';
 import PlacesSortingItem from '@components/places-sorting-item';
 import clsx from 'clsx';
 import {useState} from 'react';
+import React from 'react';
 
 type TPlacesSortingProp = {
   current: SortOption;
