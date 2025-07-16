@@ -18,8 +18,8 @@ export const userSlice = createSlice({
   name: USER_SLICE_NAME,
   initialState,
   reducers: {},
-  // selectors: {
-  //   userStatus: sliceState => (state) => state.status,
-  //   user: sliceState => (state) => state.info,
-  // }
+  selectors: {
+    userStatus: sliceState => (state) => state.status,
+    user: sliceState => (state) => state.info,
+  }
 });
