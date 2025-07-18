@@ -1,7 +1,8 @@
 import {Host} from '@customType/host.ts';
 
 export type Review = {
-  id: string;
+  id?: string;
+  offerId?: string;
   date: string;
   user: Host;
   comment: string;
