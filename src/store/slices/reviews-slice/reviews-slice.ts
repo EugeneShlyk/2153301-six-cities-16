@@ -12,13 +12,12 @@ const initialState: ReviewsState = {
   items: REVIEWS,
 };
 
-export const rewiewsSlice = createSlice({
+export const reviewsSlice = createSlice({
   name: REVIEWS_SLICE_NAME,
   initialState,
   reducers: {
-
   },
   selectors: {
-    rewiews: (state) => state.items,
+    reviews: (state) => state.items,
   }
-})
+});
