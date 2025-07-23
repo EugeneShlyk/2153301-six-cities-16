@@ -1,7 +1,6 @@
 import {Offer, OfferPreview} from '@customType/offer.ts';
-import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {OFFER_SLICE_NAME} from '@slices/slice-name.ts';
-import {OffersStateT} from '@slices/offers/types.ts';
 
 type OfferState = {
   info: Offer | null;
@@ -23,7 +22,7 @@ export const offerSlice = createSlice({
     },
   },
   selectors: {
-    nearbyOffers: (state: OffersStateT) => state.nearby,
-    offer: (state: OffersStateT) => state.info,
+    nearbyOffers: (state: OfferState) => state.nearby,
+    offer: (state: OfferState) => state.info,
   }
 });

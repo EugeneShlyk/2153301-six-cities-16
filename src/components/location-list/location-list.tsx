@@ -2,8 +2,8 @@ import {Link} from 'react-router-dom';
 import {AppRoute, CitiesName} from '@constants';
 import clsx from 'clsx';
 import {CITIES} from '@constants';
-import {offersAction} from '../../store/slices/offers';
-import {useAppDispatch} from '../../store/hooks/useAppDispatch.ts';
+import {offersAction} from '@slices/offers';
+import {useAppDispatch} from '@store/hooks/useAppDispatch.ts';
 import {MouseEvent, useEffect} from 'react';
 import {useSearchParams} from 'react-router-dom';
 

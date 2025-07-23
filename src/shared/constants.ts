@@ -115,3 +115,7 @@ export const galleryPhoto: string[] = [
   'img/apartment-04.jpg',
   'img/studio-01.jpg',
 ];
+
+export const BACKEND_URL: string = 'https://16.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;
+export const AUTH_TOKEN_KEY_NAME = 'six cities token';
