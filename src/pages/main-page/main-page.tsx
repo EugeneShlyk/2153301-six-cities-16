@@ -2,8 +2,8 @@ import {OfferPreview} from '@customType/offer.ts';
 import Header from '@components/header';
 import LocationList from '@components/location-list';
 import PlacesListSection from '@components/places-list-section';
-import {useAppSelector} from '../../store/hooks/useAppSelector.ts';
-import {offersSelector} from '../../store/slices/offers';
+import {useAppSelector} from '@store/hooks/useAppSelector.ts';
+import {offersSelector} from '@slices/offers';
 
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
