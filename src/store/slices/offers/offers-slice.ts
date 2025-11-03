@@ -23,7 +23,7 @@ export const offersSlice = createSlice({
     builder
       .addCase(fetchOffersAction.pending, (state, action: PayloadAction<OfferPreview[]>) => {
         state.offers = action.payload;
-      })
+      });
   },
   selectors: {
     offers: (state: OffersStateT) => state.offers,

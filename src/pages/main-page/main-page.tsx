@@ -13,9 +13,10 @@ function MainPage(): JSX.Element {
   const offers = useAppSelector(offersSelector.offers);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchOffersAction());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchOffersAction());
+  // }, [dispatch]);
+
   const offersCurrentCity: OfferPreview[] = offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity);
 
   return (
