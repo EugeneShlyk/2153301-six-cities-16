@@ -47,7 +47,7 @@ export default function Bookmark({isActive, extraClass = 'place-card', size, act
       <svg
         className={`${extraClass}__bookmark-icon`} {...getBookmarkSize(size)}
       >
-        <use xlinkHref="#icon-bookmark"></use>
+        <use href="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">
         {isBookmarked ? 'In' : 'To'} bookmarks

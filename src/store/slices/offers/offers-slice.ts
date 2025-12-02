@@ -30,3 +30,5 @@ export const offersSlice = createSlice({
     city: (state: OffersStateT) => state.currentCity,
   },
 });
+
+console.log(offersSlice);
