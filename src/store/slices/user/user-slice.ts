@@ -19,7 +19,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    userStatus: sliceState => (state) => state.status,
-    user: sliceState => (state) => state.info,
+    userStatus: (state: UserState) => state.status,
+    user: (state: UserState) => state.info,
   }
 });
