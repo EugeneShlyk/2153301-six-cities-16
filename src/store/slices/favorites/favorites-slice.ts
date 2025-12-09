@@ -14,7 +14,8 @@ const initialState: FavoritesState = {
 export const favoritesSlice = createSlice({
   name: FAVORITES_SLICE_NAME,
   initialState,
-  reducers: {
-    favorites: (state) => state.items,
+  reducers : {},
+  selectors: {
+    favorites: (state: FavoritesState) => state.items,
   }
 });

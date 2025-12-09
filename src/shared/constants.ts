@@ -20,6 +20,10 @@ export enum CitiesName {
   Dusseldorf = 'Dusseldorf',
 }
 
+export enum ENDPOINTS {
+  OFFER = '/offers',
+}
+
 export const CITIES = [
   {
     id: 'paris',
