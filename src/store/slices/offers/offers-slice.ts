@@ -21,7 +21,7 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchOffersAction.pending, (state, action: PayloadAction<OfferPreview[]>) => {
+      .addCase(fetchOffersAction.fulfilled, (state, action: PayloadAction<OfferPreview[]>) => {
         state.offers = action.payload;
       });
   },

@@ -11,16 +11,13 @@ import {fetchOffersAction} from '@slices/offers/offers-thunk.ts';
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
-  console.log(offers);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffersAction());
   }, [dispatch]);
-  console.log(offers);
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
-
-  // const offersCurrentCity: OfferPreview[] = Array.isArray(offers) ? offers.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) : [];
+  console.log(offersCurrentCity);
 
   return (
     <div className="page page--gray page--main">
