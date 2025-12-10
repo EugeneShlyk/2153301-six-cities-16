@@ -17,7 +17,6 @@ function MainPage(): JSX.Element {
     dispatch(fetchOffersAction());
   }, [dispatch]);
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
-  console.log(offersCurrentCity);
 
   return (
     <div className="page page--gray page--main">

@@ -120,6 +120,13 @@ export const galleryPhoto: string[] = [
   'img/studio-01.jpg',
 ];
 
+export const enum RequestStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Failed = 'failed',
+}
+
 export const BACKEND_URL: string = 'https://16.design.htmlacademy.pro/six-cities';
 export const REQUEST_TIMEOUT = 5000;
 export const AUTH_TOKEN_KEY_NAME = 'six cities token';
