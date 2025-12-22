@@ -5,6 +5,7 @@ import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
 import {fetchOffersAction} from '@slices/offers/offers-thunk.ts';
 import {OfferPreview} from '@customType/offer.ts';
 
+
 const initialState: OffersStateT = {
   currentCity: CITIES[0].name,
   offers: [],
@@ -21,8 +22,15 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchOffersAction.pending, (state) => {
+        state.requestStatus = RequestStatus.Idle;
+      })
       .addCase(fetchOffersAction.fulfilled, (state, action: PayloadAction<OfferPreview[]>) => {
         state.offers = action.payload;
+        state.requestStatus = RequestStatus.Success;
+      })
+      .addCase(fetchOffersAction.rejected, (state) => {
+        state.requestStatus = RequestStatus.Failed;
       });
   },
   selectors: {
