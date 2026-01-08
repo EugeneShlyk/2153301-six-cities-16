@@ -120,6 +120,7 @@ export const galleryPhoto: string[] = [
   'img/studio-01.jpg',
 ];
 
+
 export const enum RequestStatus {
   Idle = 'idle',
   Loading = 'loading',
