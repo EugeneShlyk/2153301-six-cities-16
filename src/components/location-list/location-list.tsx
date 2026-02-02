@@ -3,29 +3,30 @@ import {AppRoute, CitiesName} from '@constants';
 import clsx from 'clsx';
 import {CITIES} from '@constants';
 import {offersAction} from '@slices/offers';
-import {useAppDispatch} from '@store/hooks/useAppDispatch.ts';
 import {MouseEvent, useEffect} from 'react';
 import {useSearchParams} from 'react-router-dom';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 
 export default function LocationList(): JSX.Element {
-  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentCity: CitiesName = searchParams.get('city') as CitiesName;
+  const {changeCity} = useActionCreators(offersAction);
 
   useEffect(() => {
     if (!currentCity) {
       const defaultCity = CITIES[0].name;
       setSearchParams({'city': defaultCity});
+      // changeCity(defaultCity);
     }
   }, [setSearchParams, currentCity]);
 
   const onCityClickHandler = (
     evt: MouseEvent<HTMLElement>,
     cityName: CitiesName
-  ) => {
+  ) : void => {
     evt.preventDefault();
     if (cityName !== currentCity) {
-      dispatch(offersAction.changeCity(cityName));
+      changeCity(cityName);
       setSearchParams({'city': cityName});
     }
   };

@@ -1,11 +1,13 @@
 import useMap from '../../hooks/use-map';
 import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
-import {CITIES, CitiesName, URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '@constants';
+import {CITIES, CitiesName} from '@constants';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import {OfferPreview} from '@customType/offer.ts';
 import clsx from 'clsx';
 import style from './map-box.module.scss';
+import Pin from './assets/pin.svg';
+import PinCurrent from './assets/pin-current.svg';
 
 interface MapProps {
   cityName: CitiesName;
@@ -15,15 +17,15 @@ interface MapProps {
 }
 
 const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconUrl: Pin as string,
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconUrl: PinCurrent as string,
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
 });
 
 export default function MapBox({

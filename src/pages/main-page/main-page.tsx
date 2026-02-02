@@ -2,20 +2,20 @@ import {OfferPreview} from '@customType/offer.ts';
 import Header from '@components/header';
 import LocationList from '@components/location-list';
 import PlacesListSection from '@components/places-list-section';
-import {useAppSelector} from '@store/hooks/useAppSelector.ts';
-import {offersSelector} from '@slices/offers';
-import {useAppDispatch} from '@store/hooks/useAppDispatch.ts';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {offersSelector, offersAction} from '@slices/offers';
 import {useEffect} from 'react';
-import {fetchOffersAction} from '@slices/offers/offers-thunk.ts';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
-  const dispatch = useAppDispatch();
+  const {fetchOffersAction} = useActionCreators(offersAction);
+  // const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchOffersAction());
-  }, [dispatch]);
+    fetchOffersAction();
+  }, []);
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
 
   return (
