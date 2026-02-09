@@ -4,6 +4,7 @@ import {OffersStateT} from '@slices/offers/types.ts';
 import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
 import {fetchOffersAction} from '@slices/offers/offers-thunk.ts';
 import {OfferPreview} from '@customType/offer.ts';
+import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
 
 const initialState: OffersStateT = {
@@ -22,16 +23,25 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchOffersAction.pending, (state) => {
-        state.requestStatus = RequestStatus.Idle;
-      })
-      .addCase(fetchOffersAction.fulfilled, (state, action: PayloadAction<OfferPreview[]>) => {
-        state.offers = action.payload;
-        state.requestStatus = RequestStatus.Success;
-      })
-      .addCase(fetchOffersAction.rejected, (state) => {
-        state.requestStatus = RequestStatus.Failed;
-      });
+      // .addCase(fetchOffersAction.pending, (state) => {
+      //   state.requestStatus = RequestStatus.Idle;
+      // })
+      .addCase(fetchOffersAction.fulfilled,
+        (state, action: PayloadAction<OfferPreview[]>) => {
+          state.offers = action.payload;
+          state.requestStatus = RequestStatus.Success;
+        })
+      // .addCase(fetchOffersAction.rejected, (state) => {
+      //   state.requestStatus = RequestStatus.Failed;
+      // })
+      .addMatcher(isActionPending(OFFERS_SLICE_NAME),
+        (state) => {
+          state.requestStatus = RequestStatus.Idle;
+        })
+      .addMatcher(isActionRejected(OFFERS_SLICE_NAME),
+        (state) => {
+          state.requestStatus = RequestStatus.Failed;
+        });
   },
   selectors: {
     offers: (state: OffersStateT) => state.offers,

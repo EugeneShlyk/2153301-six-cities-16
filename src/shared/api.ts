@@ -14,8 +14,8 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
+
       config.headers['x-token'] = 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=';
-      // console.log(config);
       return config;
     }
   );

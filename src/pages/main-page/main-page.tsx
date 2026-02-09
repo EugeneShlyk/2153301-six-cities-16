@@ -11,11 +11,10 @@ function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
   const {fetchOffersAction} = useActionCreators(offersAction);
-  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetchOffersAction();
-  }, []);
+  }, [fetchOffersAction]);
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
 
   return (
