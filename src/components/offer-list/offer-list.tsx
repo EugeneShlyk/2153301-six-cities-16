@@ -9,6 +9,7 @@ type OfferListType = {
 }
 
 function OfferList({dataOffers, extraClass, children}: OfferListType) {
+  // console.log(dataOffers);
   return (
     <div className={clsx('places__list', extraClass && extraClass)}>
       {dataOffers.map((dataOffer) => children(dataOffer))}

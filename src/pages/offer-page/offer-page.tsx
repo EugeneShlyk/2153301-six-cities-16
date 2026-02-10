@@ -19,9 +19,12 @@ import Gallery from '@components/gallery';
 import OfferOptions from '@components/offer-options/offer-options.tsx';
 import OfferHost from '@components/offer-host/offer-host.tsx';
 
-function OfferPage({closestOffers, FullOffers}: OfferPageProps): JSX.Element {
+function OfferPage({closestOffers, fullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
-  const selectedOffer: Offer | undefined = FullOffers.find((offer) => offer.id === offerId);
+  console.log(offerId);
+  console.log(fullOffers);
+  const selectedOffer: Offer | undefined = fullOffers.find((offer) => offer.id === offerId);
+  console.log(selectedOffer);
   const cityName = CitiesName.Paris;
   if (!selectedOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;

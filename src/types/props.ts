@@ -5,7 +5,7 @@ import {Offer} from '@customType/offer.ts';
 
 export type OfferPageProps = {
   closestOffers: OfferPreview[];
-  FullOffers: Offer[];
+  fullOffers: Offer[];
 }
 
 export type CityMapType = {

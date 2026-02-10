@@ -17,7 +17,6 @@ type TPlacesListProps = {
 function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesListProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<string | null>(null);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
-  // const cityName : CitiesName =
 
   const isEmpty = offersCurrentCity.length === 0;
   let sortedOffers = offersCurrentCity;

@@ -35,7 +35,7 @@ function App(): JSX.Element {
           element:
             <OfferPage
               closestOffers={OFFERS_FOR_OFFER_PAGE}
-              FullOffers={virtualFullOffer}
+              fullOffers={virtualFullOffer}
             />
         },
         {

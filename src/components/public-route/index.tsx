@@ -1,1 +1,1 @@
-export { default } from './public-route'
+export { default } from './public-route';

@@ -10,6 +10,7 @@ import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
+  console.log(offers);
   const {fetchOffersAction} = useActionCreators(offersAction);
 
   useEffect(() => {

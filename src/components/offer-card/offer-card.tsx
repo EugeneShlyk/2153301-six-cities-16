@@ -57,6 +57,8 @@ function OfferCard({
     }
   };
 
+  // console.log(offer);
+
   return (
     <article
       className={clsx(variant && `${variant}__card`, 'place-card')}

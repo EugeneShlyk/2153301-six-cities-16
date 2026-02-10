@@ -36,7 +36,7 @@ export const offersSlice = createSlice({
       // })
       .addMatcher(isActionPending(OFFERS_SLICE_NAME),
         (state) => {
-          state.requestStatus = RequestStatus.Idle;
+          state.requestStatus = RequestStatus.Loading;
         })
       .addMatcher(isActionRejected(OFFERS_SLICE_NAME),
         (state) => {

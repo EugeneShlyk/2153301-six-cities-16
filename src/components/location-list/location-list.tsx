@@ -16,9 +16,9 @@ export default function LocationList(): JSX.Element {
     if (!currentCity) {
       const defaultCity = CITIES[0].name;
       setSearchParams({'city': defaultCity});
-      // changeCity(defaultCity);
     }
-  }, [setSearchParams, currentCity]);
+    changeCity(currentCity);
+  }, [setSearchParams, currentCity, changeCity]);
 
   const onCityClickHandler = (
     evt: MouseEvent<HTMLElement>,
