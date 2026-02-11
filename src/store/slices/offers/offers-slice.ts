@@ -23,17 +23,11 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // .addCase(fetchOffersAction.pending, (state) => {
-      //   state.requestStatus = RequestStatus.Idle;
-      // })
       .addCase(fetchOffersAction.fulfilled,
         (state, action: PayloadAction<OfferPreview[]>) => {
           state.offers = action.payload;
           state.requestStatus = RequestStatus.Success;
         })
-      // .addCase(fetchOffersAction.rejected, (state) => {
-      //   state.requestStatus = RequestStatus.Failed;
-      // })
       .addMatcher(isActionPending(OFFERS_SLICE_NAME),
         (state) => {
           state.requestStatus = RequestStatus.Loading;
