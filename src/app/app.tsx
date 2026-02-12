@@ -12,6 +12,8 @@ import {OFFERS_FOR_OFFER_PAGE} from '@mocks/offers-for-offer-page.ts';
 import {virtualFullOffer} from '@mocks/virtual-full-offer.ts';
 import {JSX} from 'react';
 
+// console.log(virtualFullOffer);
+
 const currentStatus: TAuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {

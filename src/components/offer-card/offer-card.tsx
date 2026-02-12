@@ -44,6 +44,7 @@ function OfferCard({
   size,
   onOverCard,
 }: OfferCardProps): JSX.Element {
+
   const onMouseEnterCard = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (onOverCard) {

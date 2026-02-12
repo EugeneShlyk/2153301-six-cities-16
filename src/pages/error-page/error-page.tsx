@@ -6,7 +6,8 @@ import {AppRoute} from '@constants';
 function ErrorPage(): JSX.Element {
   const error = useRouteError();
 
-  let message = '404. Page not found';
+  let message = '' +
+    '404. Page not found';
 
   if (error instanceof Error) {
     message = error.message;

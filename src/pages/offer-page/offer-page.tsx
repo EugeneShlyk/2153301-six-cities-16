@@ -11,19 +11,30 @@ import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '@constants';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
-import {JSX} from 'react';
+import {JSX, useEffect} from 'react';
 import Reviews from '@components/reviews';
 import PremiumBadge from '@components/premium-badge';
 import OfferList from '@components/offer-list';
 import Gallery from '@components/gallery';
 import OfferOptions from '@components/offer-options/offer-options.tsx';
 import OfferHost from '@components/offer-host/offer-host.tsx';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {offersAction, offersSelector} from '@slices/offers';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 
 function OfferPage({closestOffers, fullOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
-  console.log(offerId);
+  const offers = useAppSelector(offersSelector.offers);
+  const {fetchOffersAction} = useActionCreators(offersAction);
+
+  useEffect(() => {
+    fetchOffersAction();
+  }, [fetchOffersAction]);
+
+  // console.log(offerId);
+  console.log(offers);
   console.log(fullOffers);
-  const selectedOffer: Offer | undefined = fullOffers.find((offer) => offer.id === offerId);
+  const selectedOffer: Offer | undefined = offers.find((offer) => offer.id === offerId);
   console.log(selectedOffer);
   const cityName = CitiesName.Paris;
   if (!selectedOffer) {
