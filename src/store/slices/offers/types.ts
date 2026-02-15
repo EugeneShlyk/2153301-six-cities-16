@@ -1,7 +1,7 @@
 import {CitiesName, RequestStatus} from '@constants';
 import {OfferPreview} from '@customType/offer.ts';
 
-export type OffersStateT = {
+export interface IOffersState {
   currentCity: CitiesName;
   offers: OfferPreview[];
   requestStatus: RequestStatus;

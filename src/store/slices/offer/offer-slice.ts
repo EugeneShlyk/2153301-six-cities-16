@@ -1,13 +1,8 @@
-import {Offer, OfferPreview} from '@customType/offer.ts';
 import {createSlice} from '@reduxjs/toolkit';
 import {OFFER_SLICE_NAME} from '@slices/slice-name.ts';
+import {IOfferState} from '@slices/offer/types.ts';
 
-type OfferState = {
-  info: Offer | null;
-  nearby: OfferPreview[];
-}
-
-const initialState: OfferState = {
+const initialState: IOfferState = {
   info: null,
   nearby: [],
 };
@@ -16,13 +11,13 @@ export const offerSlice = createSlice({
   name: OFFER_SLICE_NAME,
   initialState,
   reducers: {
-    clear: (state: OfferState) => {
+    clear: (state: IOfferState) => {
       state.info = null;
       state.nearby = [];
     },
   },
   selectors: {
-    nearbyOffers: (state: OfferState) => state.nearby,
-    offer: (state: OfferState) => state.info,
+    nearbyOffers: (state: IOfferState) => state.nearby,
+    offer: (state: IOfferState) => state.info,
   }
 });
