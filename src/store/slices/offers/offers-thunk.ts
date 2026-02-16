@@ -8,6 +8,5 @@ export const fetchOffersAction = createAppAsyncThunk<OfferPreview[], void, { ext
   `${OFFERS_SLICE_NAME}/fetchOffers`,
   async (_, {extra: api,}) => {
     const {data} = await api.get<OfferPreview[]>(ENDPOINTS.OFFERS);
-    console.log(data);
     return data;
   });
