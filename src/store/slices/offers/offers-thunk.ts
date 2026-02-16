@@ -7,6 +7,7 @@ import {AxiosInstance} from 'axios';
 export const fetchOffersAction = createAppAsyncThunk<OfferPreview[], void, { extra: AxiosInstance }>(
   `${OFFERS_SLICE_NAME}/fetchOffers`,
   async (_, {extra: api,}) => {
-    const {data} = await api.get<OfferPreview[]>(ENDPOINTS.OFFER);
+    const {data} = await api.get<OfferPreview[]>(ENDPOINTS.OFFERS);
+    console.log(data);
     return data;
   });

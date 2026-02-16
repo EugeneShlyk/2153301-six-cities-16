@@ -33,7 +33,7 @@ function App(): JSX.Element {
             </PrivateRoute>
         },
         {
-          path: `${AppRoute.Offer}/:offerId`,
+          path: `${AppRoute.Offer}/:offerId/`,
           element:
             <OfferPage
               closestOffers={OFFERS_FOR_OFFER_PAGE}

@@ -22,7 +22,7 @@ import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {offersAction, offersSelector} from '@slices/offers';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 
-function OfferPage({closestOffers, fullOffers}: OfferPageProps): JSX.Element {
+function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
   const offers = useAppSelector(offersSelector.offers);
   const {fetchOffersAction} = useActionCreators(offersAction);
@@ -30,12 +30,7 @@ function OfferPage({closestOffers, fullOffers}: OfferPageProps): JSX.Element {
   useEffect(() => {
     fetchOffersAction();
   }, [fetchOffersAction]);
-
-  // console.log(offerId);
-  console.log(offers);
-  console.log(fullOffers);
   const selectedOffer: Offer | undefined = offers.find((offer) => offer.id === offerId);
-  console.log(selectedOffer);
   const cityName = CitiesName.Paris;
   if (!selectedOffer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
