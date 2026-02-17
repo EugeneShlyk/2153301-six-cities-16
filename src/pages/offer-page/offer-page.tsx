@@ -19,20 +19,28 @@ import Gallery from '@components/gallery';
 import OfferOptions from '@components/offer-options/offer-options.tsx';
 import OfferHost from '@components/offer-host/offer-host.tsx';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
-import {offersAction, offersSelector} from '@slices/offers';
+import {offerSelector, offerAction} from '@slices/offer';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 
 function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
   const {offerId} = useParams();
-  const offers = useAppSelector(offersSelector.offers);
-  const {fetchOffersAction} = useActionCreators(offersAction);
+  const offer = useAppSelector(offerSelector.offer);
+  const offerStatus = useAppSelector(offerSelector.offerStatus);
+  // const nearbyOffers = useAppSelector(offerSelector.nearbyOffers);
+
+  const {fetchOfferAction} = useActionCreators(offerAction);
 
   useEffect(() => {
-    fetchOffersAction();
-  }, [fetchOffersAction]);
-  const selectedOffer: Offer | undefined = offers.find((offer) => offer.id === offerId);
+    if (offerId) {
+      fetchOfferAction(offerId);
+    }
+  }, [fetchOfferAction, offerId]);
+
+  console.log(offer);
+  console.log(offerStatus);
+
   const cityName = CitiesName.Paris;
-  if (!selectedOffer) {
+  if (!offer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
   return (
@@ -44,45 +52,45 @@ function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
           <Gallery images={galleryPhoto}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <PremiumBadge isPremium={selectedOffer.isPremium} extraClassName={'offer__mark'}/>
+              <PremiumBadge isPremium={offer.isPremium} extraClassName={'offer__mark'}/>
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  {selectedOffer && selectedOffer.title}
+                  {offer && offer.title}
                 </h1>
                 <FavoriteButton
-                  offerId={selectedOffer.id}
-                  size='large'
+                  offerId={offer.id}
+                  size="large"
                   bemBlock="offer"
-                  isFavorite={selectedOffer?.isFavorite ?? false}
+                  isFavorite={offer?.isFavorite ?? false}
                 />
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: (getRatingWidth(selectedOffer?.rating))}}></span>
+                  <span style={{width: (getRatingWidth(offer?.rating))}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">{selectedOffer?.rating}</span>
+                <span className="offer__rating-value rating__value">{offer?.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  {selectedOffer?.type}
+                  {offer?.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
-                  {getNumbersBedrooms(selectedOffer?.bedrooms)}
+                  {getNumbersBedrooms(offer?.bedrooms)}
                 </li>
                 <li className="offer__feature offer__feature--adults">
-                  {getNumbersAdults(selectedOffer?.maxAdults)}
+                  {getNumbersAdults(offer?.maxAdults)}
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;{selectedOffer?.price}</b>
+                <b className="offer__price-value">&euro;{offer?.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
                 <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <OfferOptions offer={selectedOffer}/>
+                <OfferOptions offer={offer}/>
               </div>
-              <OfferHost offer={selectedOffer}/>
+              <OfferHost offer={offer}/>
               <Reviews reviews={REVIEWS}/>
             </div>
           </div>

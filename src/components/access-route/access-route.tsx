@@ -24,5 +24,3 @@ const PrivateRoute = createAccessRoute('AUTH', AppRoute.Login);
 const PublicRoute = createAccessRoute('NO_AUTH', AppRoute.Root);
 
 export {PublicRoute, PrivateRoute};
-
-// const COLORS = ['red', 'white', 'black'];
