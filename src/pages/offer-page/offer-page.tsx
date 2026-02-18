@@ -1,12 +1,11 @@
 import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
-import {CitiesName, mapClasses, galleryPhoto} from '@constants';
+import {mapClasses, galleryPhoto, RequestStatus} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
 import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
-import {Offer} from '@customType/offer.ts';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '@constants';
@@ -21,25 +20,29 @@ import OfferHost from '@components/offer-host/offer-host.tsx';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {offerSelector, offerAction} from '@slices/offer';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {offersSelector} from '@slices/offers';
+import Spinner from '@components/spinner';
 
 function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
-  const {offerId} = useParams();
-  const offer = useAppSelector(offerSelector.offer);
-  const offerStatus = useAppSelector(offerSelector.offerStatus);
-  // const nearbyOffers = useAppSelector(offerSelector.nearbyOffers);
-
   const {fetchOfferAction} = useActionCreators(offerAction);
-
+  const {offerId} = useParams();
   useEffect(() => {
     if (offerId) {
       fetchOfferAction(offerId);
     }
   }, [fetchOfferAction, offerId]);
+  const offer = useAppSelector(offerSelector.offer);
+  // const nearbyOffers = useAppSelector(offerSelector.nearbyOffers);
+  const offerStatus = useAppSelector(offerSelector.offerStatus);
+  const cityName = useAppSelector(offersSelector.city);
 
   console.log(offer);
   console.log(offerStatus);
 
-  const cityName = CitiesName.Paris;
+  if (!offer && offerStatus === RequestStatus.Loading)  {
+    return <Spinner/>
+  }
+
   if (!offer) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
@@ -94,7 +97,7 @@ function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
               <Reviews reviews={REVIEWS}/>
             </div>
           </div>
-          <MapBox cityName={cityName} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>;
+          <MapBox cityName={cityName} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>
         </section>
         <div className="container">
           <section className="near-places places">

@@ -2,8 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CITIES, CitiesName, RequestStatus} from '@constants';
 import {IOffersState} from '@slices/offers/types.ts';
 import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
-import {fetchOffersAction} from '@slices/offers/offers-thunk.ts';
-import {OfferPreview} from '@customType/offer.ts';
+import {fetchOffers} from '@slices/offers/offers-thunk.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
 
@@ -23,8 +22,8 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchOffersAction.fulfilled,
-        (state, action: PayloadAction<OfferPreview[]>) => {
+      .addCase(fetchOffers.fulfilled,
+        (state, action) => {
           state.offers = action.payload;
           state.requestStatus = RequestStatus.Success;
         })

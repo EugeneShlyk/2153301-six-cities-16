@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {OFFER_SLICE_NAME} from '@slices/slice-name.ts';
 import {IOfferState} from '@slices/offer/types.ts';
-import {fetchOfferAction} from '@slices/offer/offer-thunk.ts';
+import {fetchNearbyOffers, fetchOffer} from '@slices/offer/offer-thunk.ts';
 import {Offer} from '@customType/offer.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 import {RequestStatus} from '@constants';
@@ -23,14 +23,19 @@ export const offerSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchOfferAction.fulfilled,
+      .addCase(fetchOffer.fulfilled,
         (state, action: PayloadAction<Offer>) => {
           state.requestStatus = RequestStatus.Success;
           state.info = action.payload;
         })
+      .addCase(fetchNearbyOffers.fulfilled,
+        (state, action) => {
+          state.requestStatus = RequestStatus.Success;
+          state.nearby = action.payload;
+        })
       .addMatcher(isActionPending(OFFER_SLICE_NAME),
         (state) => {
-          state.requestStatus = RequestStatus.Success;
+          state.requestStatus = RequestStatus.Loading;
         })
       .addMatcher(isActionRejected(OFFER_SLICE_NAME),
         (state) => {

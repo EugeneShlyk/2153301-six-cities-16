@@ -5,7 +5,6 @@ type OfferOptionsT = {
 }
 
 export default function OfferOptions({offer}: OfferOptionsT) {
-  console.log(offer);
   return (
     <ul className="offer__inside-list">
       {offer.goods.map((good) => (
