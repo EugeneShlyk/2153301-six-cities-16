@@ -16,9 +16,10 @@ export const offerSlice = createSlice({
   name: OFFER_SLICE_NAME,
   initialState,
   reducers: {
-    clear: (state: IOfferState) => {
+    clearOffer: (state: IOfferState) => {
       state.info = null;
       state.nearby = [];
+      state.requestStatus = RequestStatus.Idle;
     },
   },
   extraReducers: (builder) => {
@@ -36,6 +37,7 @@ export const offerSlice = createSlice({
       .addMatcher(isActionPending(OFFER_SLICE_NAME),
         (state) => {
           state.requestStatus = RequestStatus.Loading;
+          state.info = null;
         })
       .addMatcher(isActionRejected(OFFER_SLICE_NAME),
         (state) => {

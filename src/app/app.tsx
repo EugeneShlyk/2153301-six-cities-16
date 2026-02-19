@@ -8,8 +8,6 @@ import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
 import {PublicRoute, PrivateRoute} from '@components/access-route';
 import {TAuthorizationStatus} from '@customType/authorization-status.ts';
-import {OFFERS_FOR_OFFER_PAGE} from '@mocks/offers-for-offer-page.ts';
-import {virtualFullOffer} from '@mocks/virtual-full-offer.ts';
 import {JSX} from 'react';
 
 const currentStatus: TAuthorizationStatus = 'UNKNOWN';
@@ -33,10 +31,7 @@ function App(): JSX.Element {
         {
           path: `${AppRoute.Offer}/:offerId/`,
           element:
-            <OfferPage
-              closestOffers={OFFERS_FOR_OFFER_PAGE}
-              fullOffers={virtualFullOffer}
-            />
+            <OfferPage/>
         },
         {
           path: AppRoute.Login,

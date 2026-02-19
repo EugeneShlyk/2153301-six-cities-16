@@ -2,7 +2,6 @@ import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
 import {mapClasses, galleryPhoto, RequestStatus} from '@constants';
 import {REVIEWS} from '@mocks/reviews.ts';
-import {OfferPageProps} from '@customType/props.ts';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
@@ -23,29 +22,30 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {offersSelector} from '@slices/offers';
 import Spinner from '@components/spinner';
 
-function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
-  const {fetchOfferAction} = useActionCreators(offerAction);
+function OfferPage(): JSX.Element {
+  const {fetchOffer, fetchNearbyOffers, clearOffer} = useActionCreators(offerAction);
   const {offerId} = useParams();
   useEffect(() => {
     if (offerId) {
-      fetchOfferAction(offerId);
+      fetchOffer(offerId);
+      fetchNearbyOffers(offerId);
     }
-  }, [fetchOfferAction, offerId]);
+    return () => {
+      clearOffer();
+    };
+  }, [fetchOffer, fetchNearbyOffers, offerId]);
   const offer = useAppSelector(offerSelector.offer);
-  // const nearbyOffers = useAppSelector(offerSelector.nearbyOffers);
+  const nearbyOffers = useAppSelector(offerSelector.nearbyOffers).slice(0, 3);
   const offerStatus = useAppSelector(offerSelector.offerStatus);
   const cityName = useAppSelector(offersSelector.city);
 
-  console.log(offer);
-  console.log(offerStatus);
-
-  if (!offer && offerStatus === RequestStatus.Loading)  {
-    return <Spinner/>
+  if (offerStatus === RequestStatus.Loading || offerStatus === RequestStatus.Idle || !offer) {
+    return <Spinner/>;
   }
-
-  if (!offer) {
+  if (offerStatus === RequestStatus.Failed) {
     return <Navigate to={AppRoute.NotFound} replace/>;
   }
+
   return (
     <div className="page">
       <Header/>
@@ -97,13 +97,13 @@ function OfferPage({closestOffers}: OfferPageProps): JSX.Element {
               <Reviews reviews={REVIEWS}/>
             </div>
           </div>
-          <MapBox cityName={cityName} offersOfCity={closestOffers} mapClass={mapClasses.offerPage}></MapBox>
+          <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={mapClasses.offerPage}></MapBox>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <OfferList
-              dataOffers={closestOffers}
+              dataOffers={nearbyOffers}
               extraClass="near-places__list"
             >
               {(dataCard: OfferPreview) => (
