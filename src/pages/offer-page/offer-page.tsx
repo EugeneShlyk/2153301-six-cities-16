@@ -1,7 +1,6 @@
 import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
 import {mapClasses, galleryPhoto, RequestStatus} from '@constants';
-import {REVIEWS} from '@mocks/reviews.ts';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
@@ -21,23 +20,28 @@ import {offerSelector, offerAction} from '@slices/offer';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {offersSelector} from '@slices/offers';
 import Spinner from '@components/spinner';
+import {reviewsAction, reviewsSelector} from '@slices/reviews';
 
 function OfferPage(): JSX.Element {
   const {fetchOffer, fetchNearbyOffers, clearOffer} = useActionCreators(offerAction);
+  const {fetchReviews} = useActionCreators(reviewsAction);
   const {offerId} = useParams();
   useEffect(() => {
     if (offerId) {
       fetchOffer(offerId);
       fetchNearbyOffers(offerId);
+      fetchReviews(offerId);
     }
     return () => {
       clearOffer();
     };
-  }, [fetchOffer, fetchNearbyOffers, offerId]);
+  }, [fetchReviews, fetchOffer, fetchNearbyOffers, offerId]);
+
   const offer = useAppSelector(offerSelector.offer);
   const nearbyOffers = useAppSelector(offerSelector.nearbyOffers).slice(0, 3);
   const offerStatus = useAppSelector(offerSelector.offerStatus);
   const cityName = useAppSelector(offersSelector.city);
+  const reviews = useAppSelector(reviewsSelector.reviews);
 
   if (offerStatus === RequestStatus.Loading || offerStatus === RequestStatus.Idle || !offer) {
     return <Spinner/>;
@@ -94,7 +98,7 @@ function OfferPage(): JSX.Element {
                 <OfferOptions offer={offer}/>
               </div>
               <OfferHost offer={offer}/>
-              <Reviews reviews={REVIEWS}/>
+              <Reviews reviews={reviews}/>
             </div>
           </div>
           <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={mapClasses.offerPage}></MapBox>

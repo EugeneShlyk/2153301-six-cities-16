@@ -1,18 +1,7 @@
 import {Review} from '@customType/reviews.ts';
+import {RequestStatus} from '@constants';
 
-export interface IReviews {
-  id: string;
-  date: string;
-  user: {
-    name: string;
-    avatarUrl: string;
-    isPro: boolean;
-  };
-  comment: string;
-  rating: number;
-}
-
-export interface ReviewsState {
-  items: Review[];
+export interface IReviewsState {
   reviews: Review[];
+  requestStatus: RequestStatus;
 }
