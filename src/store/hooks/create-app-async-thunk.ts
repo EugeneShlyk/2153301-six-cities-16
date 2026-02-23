@@ -4,6 +4,6 @@ import {AppDispatch, RootState} from '@store/index.ts';
 
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   extra: AxiosInstance;
-  state: () => RootState;
+  state: RootState;
   dispatch: AppDispatch;
 }>();
