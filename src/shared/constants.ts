@@ -23,6 +23,8 @@ export enum CitiesName {
 export enum ENDPOINTS {
   OFFERS = '/offers',
   COMMENTS = 'comments',
+  LOGIN = 'login',
+  LOGOUT = 'logout',
 }
 
 export const CITIES = [
