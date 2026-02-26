@@ -25,6 +25,7 @@ export const logout = createAppAsyncThunk<unknown, undefined>(
 export const checkAuth = createAppAsyncThunk<User, undefined>(
   `${USER_SLICE_NAME}/checkAuth`,
   async (_arg, {extra: api}) => {
-    return api.get<User>(ENDPOINTS.LOGIN);
+    const response = await api.get<User>(ENDPOINTS.LOGIN);
+    return response.data;
   }
 );

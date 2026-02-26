@@ -9,13 +9,14 @@ import OfferPage from '@pages/offer-page/offer-page';
 import {PublicRoute, PrivateRoute} from '@components/access-route';
 import {TAuthorizationStatus} from '@customType/authorization-status.ts';
 import {JSX} from 'react';
+import Layout from '@components/layout';
 
 const currentStatus: TAuthorizationStatus = 'UNKNOWN';
 
 function App(): JSX.Element {
   const router = createBrowserRouter([
     {
-      // element: <Layout/>,
+      element: <Layout/>,
       errorElement: <ErrorPage/>,
       children: [
         {

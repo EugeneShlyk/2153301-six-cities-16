@@ -1,8 +1,11 @@
 import Logo from '@components/logo';
 import {AppRoute} from '@constants';
 import {Link} from 'react-router-dom';
+import {userSelector, userAction} from '@slices/user';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 
 function Header(): JSX.Element {
+  const authorizationStatus = useAppSelector(userSelector.userStatusAuth);
   return (
     <header className="header">
       <div className="container">

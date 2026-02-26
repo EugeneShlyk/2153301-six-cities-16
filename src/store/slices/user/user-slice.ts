@@ -1,7 +1,7 @@
 import {AuthorizationStatus, RequestStatus} from '@constants';
 import {createSlice} from '@reduxjs/toolkit';
 import {USER_SLICE_NAME} from '@slices/slice-name.ts';
-import {login, logout} from '@slices/user/user-thunk.ts';
+import {checkAuth, login, logout} from '@slices/user/user-thunk.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 import {UserState} from '@slices/user/types.ts';
 
@@ -23,9 +23,14 @@ export const userSlice = createSlice({
         state.status = RequestStatus.Success;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.statusAuthorization = AuthorizationStatus.NoAuth;
         state.info = null;
+        state.statusAuthorization = AuthorizationStatus.NoAuth;
         state.status = RequestStatus.Idle;
+      })
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.info = action.payload;
+        state.statusAuthorization = AuthorizationStatus.Auth;
+        state.status = RequestStatus.Success;
       })
       .addMatcher(isActionPending(USER_SLICE_NAME),
         (state) => {
