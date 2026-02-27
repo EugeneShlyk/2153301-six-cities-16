@@ -32,7 +32,7 @@ function App(): JSX.Element {
             </PrivateRoute>
         },
         {
-          path: `${AppRoute.Offer}/:offerId/`,
+          path: AppRoute.OfferId,
           element:
             <OfferPage/>
         },

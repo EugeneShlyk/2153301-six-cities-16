@@ -25,6 +25,7 @@ export enum ENDPOINTS {
   COMMENTS = 'comments',
   LOGIN = 'login',
   LOGOUT = 'logout',
+  FAVORITE = 'favorite',
 }
 
 export const CITIES = [
@@ -65,6 +66,7 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',
+  OfferId = '/offer/:offerId',
   NotFound = '*'
 }
 
