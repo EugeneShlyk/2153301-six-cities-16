@@ -7,13 +7,15 @@ export const useGetLayoutState = (pathName: AppRoute, state: RootState) => {
   let pageClassName = '';
   let mainClassName = '';
   const offers = useAppSelector(offersSelector.offers);
+  const favorites = useAppSelector()
   switch (pathName) {
     case AppRoute.Root:
       pageClassName = 'page--gray page--main';
-      mainClassName = offers.length === 0 ? 'page__main--index' : 'page__main--index page__main--index-empty';
+      mainClassName = offers.length ? 'page__main--index' : 'page__main--index page__main--index-empty';
       break;
     case AppRoute.Favorites:
       pageClassName = '';
+
       break;
     case AppRoute.Login:
       pageClassName = 'page--gray page--login';

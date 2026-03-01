@@ -12,6 +12,9 @@ export const fetchFavorites = createAppAsyncThunk<OfferPreview[], void>(
   }
 );
 
-export const changeFavorites = createAppAsyncThunk<Offer>(
-
-)
+export const changeFavorites = createAppAsyncThunk<Offer, string>(
+  `${FAVORITES_SLICE_NAME}/changeFavorites`,
+  async ({offerId, status}, {extra: api}) => {
+     const response = await api.post<Offer>(`${ENDPOINTS.FAVORITE}/${offerId}/${status}`)
+  }
+);
