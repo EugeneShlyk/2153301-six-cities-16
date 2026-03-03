@@ -1,7 +1,7 @@
 import {Review} from '@customType/reviews.ts';
 import {RequestStatus} from '@constants';
 
-export interface IReviewsState {
+export type ReviewsState = {
   reviews: Review[];
   requestStatus: RequestStatus;
 }

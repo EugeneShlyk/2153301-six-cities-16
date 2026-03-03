@@ -27,6 +27,7 @@ export enum ENDPOINTS {
   LOGOUT = 'logout',
   FAVORITE = 'favorite',
 }
+// export enum
 
 export const CITIES = [
   {

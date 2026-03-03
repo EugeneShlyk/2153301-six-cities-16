@@ -1,12 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CITIES, CitiesName, RequestStatus} from '@constants';
-import {IOffersState} from '@slices/offers/types.ts';
+import {OffersState} from '@slices/offers/types.ts';
 import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
 import {fetchOffers} from '@slices/offers/offers-thunk.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
 
-const initialState: IOffersState = {
+const initialState: OffersState = {
   currentCity: CITIES[0].name,
   offers: [],
   requestStatus: RequestStatus.Idle,
@@ -37,7 +37,7 @@ export const offersSlice = createSlice({
         });
   },
   selectors: {
-    offers: (state: IOffersState) => state.offers,
-    city: (state: IOffersState) => state.currentCity,
+    offers: (state: OffersState) => state.offers,
+    city: (state: OffersState) => state.currentCity,
   },
 });

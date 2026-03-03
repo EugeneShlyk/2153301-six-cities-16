@@ -2,16 +2,7 @@ import {City} from './city';
 import {Host} from './host';
 import {Location} from './location';
 
-export type Offer = Omit<OfferPreview, 'previewImage'> & {
-  description: string;
-  bedrooms: number;
-  goods: string[];
-  host: Host;
-  images: string[];
-  maxAdults: number;
-};
-
-export type OfferPreview = {
+export interface OfferPreview {
   id: string;
   title: string;
   type: string;
@@ -22,4 +13,13 @@ export type OfferPreview = {
   isPremium: boolean;
   rating: number;
   previewImage: string;
-};
+}
+
+export interface Offer extends Omit<OfferPreview, 'previewImage'> {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: Host;
+  images: string[];
+  maxAdults: number;
+}

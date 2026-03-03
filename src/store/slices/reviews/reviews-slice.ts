@@ -1,11 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {REVIEWS_SLICE_NAME} from '@slices/slice-name.ts';
-import {IReviewsState} from '@slices/reviews/types.ts';
+import {ReviewsState} from '@slices/reviews/types.ts';
 import {fetchReviews} from '@slices/reviews/reviews-thunk.ts';
 import {RequestStatus} from '@constants';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
-const initialState: IReviewsState = {
+const initialState: ReviewsState = {
   reviews: [],
   requestStatus: RequestStatus.Idle,
 };
