@@ -23,3 +23,12 @@ export interface Offer extends Omit<OfferPreview, 'previewImage'> {
   images: string[];
   maxAdults: number;
 }
+
+export interface OfferWithImage extends OfferPreview {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: Host;
+  images: string[];
+  maxAdults: number;
+}
