@@ -4,6 +4,7 @@ import {FAVORITES_SLICE_NAME} from '@slices/slice-name.ts';
 import {FavoritesState, FavoritesStatus} from '@slices/favorites/types.ts';
 import {RequestStatus} from '@constants';
 import {changeFavorites, fetchFavorites} from '@slices/favorites/favorites-thunk.ts';
+import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
 const initialState: FavoritesState = {
   items: OFFERS.filter((offer) => offer.isFavorite),
@@ -22,11 +23,24 @@ export const favoritesSlice = createSlice({
       .addCase(changeFavorites.fulfilled, (state, action) => {
         switch (action.payload.status) {
           case FavoritesStatus.Added:
-            const {description, bedrooms, goods, host, images, maxAdults, ...previewData} = action.payload.offer;
+            state.items.push(action.payload.offer);
+            break;
+          case FavoritesStatus.Removed:
+            state.items.filter(({id}) => id !== action.payload.offer.id);
+            break;
         }
-      });
+      })
+      .addMatcher(isActionPending(FAVORITES_SLICE_NAME),
+        (state) => {
+          state.status = RequestStatus.Loading;
+        })
+      .addMatcher(isActionRejected(FAVORITES_SLICE_NAME),
+        (state) => {
+          state.status = RequestStatus.Failed;
+        });
   },
   selectors: {
     favorites: (state: FavoritesState) => state.items,
+    favoritesStatus: (state: FavoritesState) => state.status,
   }
 });

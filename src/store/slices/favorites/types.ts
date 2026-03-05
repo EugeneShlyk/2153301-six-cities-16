@@ -1,4 +1,4 @@
-import {OfferPreview, OfferWithImage} from '@customType/offer.ts';
+import {OfferPreview} from '@customType/offer.ts';
 import {RequestStatus} from '@constants';
 
 export type FavoritesState = {
@@ -17,6 +17,6 @@ export type FavoritesChangeProps = {
 }
 
 export type FavoritesChangeResponse = {
-  offer: OfferWithImage;
+  offer: OfferPreview;
   status: FavoritesStatus;
 }
