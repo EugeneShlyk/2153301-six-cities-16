@@ -1,17 +1,18 @@
 import Logo from '@components/logo';
 import {AppRoute} from '@constants';
 import {Link} from 'react-router-dom';
-import {userSelector, userAction} from '@slices/user';
-import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 
-function Header(): JSX.Element {
-  const authorizationStatus = useAppSelector(userSelector.userStatusAuth);
+type HeaderProps = {
+  isDisabledLogo: boolean;
+}
+
+function Header({isDisabledLogo}: HeaderProps): JSX.Element {
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo/>
+            <Logo isDisabledLogo={isDisabledLogo}/>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">

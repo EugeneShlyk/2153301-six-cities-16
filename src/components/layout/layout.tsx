@@ -16,11 +16,11 @@ const Layout = () => {
   } = useGetLayoutState(pathname as AppRoute);
   return (
     <div className={clsx('page')}>
-      <Header></Header>
+      <Header isDisabledLogo={isDisabledLogo}></Header>
       <main className={clsx('page__main')}>
         <Outlet></Outlet>
       </main>
-      <Footer></Footer>
+      {shouldRenderFooter && <Footer></Footer>}
     </div>
   );
 };
