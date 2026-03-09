@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom';
 
-export const HeaderNavigationAuth = () => {
+export const HeaderNavigateAuth = () => {
   return (
     <>
       <li className="header__nav-item user">
-        <Link className="header__nav-link header__nav-link--profile" href="#">
+        <Link className="header__nav-link header__nav-link--profile" to="#">
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -12,11 +12,10 @@ export const HeaderNavigationAuth = () => {
         </Link>
       </li>
       <li className="header__nav-item">
-        <span className="header__nav-link">
+        <a className="header__nav-link">
           <span className="header__signout">Sign out</span>
-        </span>
+        </a>
       </li>
-      ;
     </>
   );
 };

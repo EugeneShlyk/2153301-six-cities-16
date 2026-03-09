@@ -1,5 +1,4 @@
 import {OfferPreview} from '@customType/offer.ts';
-import Header from '@components/header';
 import LocationList from '@components/location-list';
 import PlacesListSection from '@components/places-list-section';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
@@ -18,7 +17,6 @@ function MainPage(): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
   return (
     <div className="page page--gray page--main">
-      <Header/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <LocationList/>

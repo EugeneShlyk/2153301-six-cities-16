@@ -1,4 +1,3 @@
-import Header from '@components/header';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer';
 import FavoritesEmptyPage from '@pages/favorites-empty-page';
@@ -28,7 +27,6 @@ function FavoritePage({offers}: FavoritePageProps): JSX.Element {
 
   return (
     <div className="page">
-      <Header/>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           {hasFavorites ?

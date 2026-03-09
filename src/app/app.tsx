@@ -1,17 +1,16 @@
-import {AppRoute} from '@constants';
+import {AppRoute, AuthorizationStatus} from '@constants';
 import {OFFERS} from '@mocks/offers';
-import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
 import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
-import {PublicRoute, PrivateRoute} from '@components/access-route';
-import {TAuthorizationStatus} from '@customType/authorization-status.ts';
+import {PrivateRoute, PublicRoute} from '@components/access-route';
 import {JSX} from 'react';
 import Layout from '@components/layout';
 
-const currentStatus: TAuthorizationStatus = 'UNKNOWN';
+const currentStatus = AuthorizationStatus.Unknown;
 
 function App(): JSX.Element {
   const router = createBrowserRouter([
@@ -27,7 +26,7 @@ function App(): JSX.Element {
         {
           path: AppRoute.Favorites,
           element:
-            <PrivateRoute status={'AUTH'}>
+            <PrivateRoute status={AuthorizationStatus.Auth}>
               <FavoritePage offers={OFFERS}/>
             </PrivateRoute>
         },
@@ -44,7 +43,6 @@ function App(): JSX.Element {
             </PublicRoute>
         },
       ],
-      // errorElement: <ErrorPage/>,
     }
   ]);
 
