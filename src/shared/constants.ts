@@ -1,7 +1,5 @@
 import {TSizeMap} from '@customType/size';
 
-export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
-
 export const enum SortOption {
   Popular,
   PriceLowToHigh,
@@ -19,6 +17,15 @@ export enum CitiesName {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
 }
+
+export const LOCATIONS = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+] as const;
 
 export enum ENDPOINTS {
   OFFERS = 'offers',

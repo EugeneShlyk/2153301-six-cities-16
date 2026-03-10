@@ -1,8 +1,8 @@
 import {JSX} from 'react';
-import {CityName} from '@constants';
+import {CitiesName} from '@constants';
 
 type NoOffersProps = {
-  currentLocation: CityName;
+  currentLocation: CitiesName;
 }
 
 function NoOffers({currentLocation}: NoOffersProps): JSX.Element {

@@ -1,5 +1,8 @@
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {userAction} from '@slices/user';
+import {Link} from 'react-router-dom';
+import {getRandomCity} from '@utils/getRandomCity.ts';
+import {useMemo} from 'react';
 
 function LoginPage(): JSX.Element {
   const {login} = useActionCreators(userAction);
@@ -8,6 +11,8 @@ function LoginPage(): JSX.Element {
     event.preventDefault();
 
   }
+
+  const cityForPage = useMemo(() => getRandomCity(), []);
   return (
     <div className="page page--gray page--login">
       <main className="page__main page__main--login">
@@ -28,9 +33,9 @@ function LoginPage(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to="#">
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
