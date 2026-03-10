@@ -21,13 +21,12 @@ export enum CitiesName {
 }
 
 export enum ENDPOINTS {
-  OFFERS = '/offers',
+  OFFERS = 'offers',
   COMMENTS = 'comments',
   LOGIN = 'login',
   LOGOUT = 'logout',
   FAVORITE = 'favorite',
 }
-// export enum
 
 export const CITIES = [
   {
@@ -130,6 +129,6 @@ export const enum RequestStatus {
   Failed = 'failed',
 }
 
-export const BACKEND_URL: string = 'https://16.design.htmlacademy.pro/six-cities';
+export const BACKEND_URL: string = 'https://16.design.htmlacademy.pro/six-cities/';
 export const REQUEST_TIMEOUT = 5000;
 export const AUTH_TOKEN_KEY_NAME = 'six cities token';

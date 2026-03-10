@@ -1,4 +1,4 @@
-import {AppRoute, AuthorizationStatus} from '@constants';
+import {AppRoute} from '@constants';
 import {OFFERS} from '@mocks/offers';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MainPage from '@pages/main-page';
@@ -6,13 +6,17 @@ import FavoritePage from '@pages/favorites-page';
 import ErrorPage from '@pages/error-page';
 import LoginPage from '@pages/login-page/login-page';
 import OfferPage from '@pages/offer-page/offer-page';
-import {PrivateRoute, PublicRoute} from '@components/access-route';
-import {JSX} from 'react';
+import {JSX, useEffect} from 'react';
 import Layout from '@components/layout';
-
-const currentStatus = AuthorizationStatus.Unknown;
+import ProtectRoute from '@components/protect-route';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {userAction} from '@slices/user';
 
 function App(): JSX.Element {
+  const {checkAuth} = useActionCreators(userAction);
+  useEffect(() => {
+    checkAuth();
+  }, []);
   const router = createBrowserRouter([
     {
       element: <Layout/>,
@@ -26,9 +30,12 @@ function App(): JSX.Element {
         {
           path: AppRoute.Favorites,
           element:
-            <PrivateRoute status={AuthorizationStatus.Auth}>
+            <ProtectRoute>
               <FavoritePage offers={OFFERS}/>
-            </PrivateRoute>
+            </ProtectRoute>
+          // <PrivateRoute status={AuthorizationStatus.Auth}>
+          //   <FavoritePage offers={OFFERS}/>
+          // </PrivateRoute>
         },
         {
           path: AppRoute.OfferId,
@@ -38,9 +45,9 @@ function App(): JSX.Element {
         {
           path: AppRoute.Login,
           element:
-            <PublicRoute status={currentStatus}>
+            <ProtectRoute onlyUnAuth>
               <LoginPage/>
-            </PublicRoute>
+            </ProtectRoute>
         },
       ],
     }

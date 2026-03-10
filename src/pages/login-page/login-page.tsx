@@ -1,4 +1,13 @@
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {userAction} from '@slices/user';
+
 function LoginPage(): JSX.Element {
+  const {login} = useActionCreators(userAction);
+
+  const handleSubmit = (event: Event) => {
+    event.preventDefault();
+
+  }
   return (
     <div className="page page--gray page--login">
       <main className="page__main page__main--login">

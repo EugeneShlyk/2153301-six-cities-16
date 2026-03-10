@@ -32,6 +32,11 @@ export const userSlice = createSlice({
         state.statusAuthorization = AuthorizationStatus.Auth;
         state.status = RequestStatus.Success;
       })
+      .addCase(checkAuth.rejected, (state) => {
+        state.info = null;
+        state.statusAuthorization = AuthorizationStatus.NoAuth; // Теперь спиннер исчезнет
+        state.status = RequestStatus.Failed;
+      })
       .addMatcher(isActionPending(USER_SLICE_NAME),
         (state) => {
           state.status = RequestStatus.Loading;

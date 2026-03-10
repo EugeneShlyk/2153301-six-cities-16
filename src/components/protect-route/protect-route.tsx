@@ -9,10 +9,16 @@ type ProtectRouteProps = {
   onlyUnAuth?: boolean;
   children?: JSX.Element;
 }
+type LocationState = {
+  from?: {
+    pathname: string;
+  };
+}
 
 export default function ProtectRoute({onlyUnAuth, children}: ProtectRouteProps) {
-  const isAuth = useAuth();
+  const {isAuth} = useAuth();
   const location = useLocation();
+  const state = location.state as LocationState;
   const authStatus = useAppSelector(userSelector.userAuthStatus);
 
   const isGuestPage = onlyUnAuth;
@@ -23,7 +29,7 @@ export default function ProtectRoute({onlyUnAuth, children}: ProtectRouteProps) 
   }
 
   if (isAuth && isGuestPage) {
-    const from = location.state?.from || {pathname: AppRoute.Root};
+    const from = state?.from || {pathname: AppRoute.Root};
     return <Navigate to={from}/>;
   }
 
