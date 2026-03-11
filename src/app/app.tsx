@@ -33,9 +33,6 @@ function App(): JSX.Element {
             <ProtectRoute>
               <FavoritePage offers={OFFERS}/>
             </ProtectRoute>
-          // <PrivateRoute status={AuthorizationStatus.Auth}>
-          //   <FavoritePage offers={OFFERS}/>
-          // </PrivateRoute>
         },
         {
           path: AppRoute.OfferId,

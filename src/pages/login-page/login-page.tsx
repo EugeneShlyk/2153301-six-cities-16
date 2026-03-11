@@ -2,15 +2,29 @@ import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {userAction} from '@slices/user';
 import {Link} from 'react-router-dom';
 import {getRandomCity} from '@utils/getRandomCity.ts';
-import {useMemo} from 'react';
+import {useMemo, useState} from 'react';
+import {AppRoute} from '@constants';
+import React from 'react';
+
+type FormDataT = {
+  email: string;
+  password: string;
+}
 
 function LoginPage(): JSX.Element {
+  const [formData, setFormData] = useState<FormDataT>({email: '', password: ''});
   const {login} = useActionCreators(userAction);
+
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData, [evt.target.name]: evt.target.value
+    });
+  };
 
   const handleSubmit = (event: Event) => {
     event.preventDefault();
 
-  }
+  };
 
   const cityForPage = useMemo(() => getRandomCity(), []);
   return (
@@ -26,15 +40,16 @@ function LoginPage(): JSX.Element {
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" placeholder="Password" required/>
+                <input className="login__input form__input" type="password" name="password" placeholder="Password"
+                       required/>
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to="#">
-                <span>Amsterdam</span>
+              <Link className="locations__item-link" to={`${AppRoute.Root}?city=${cityForPage}`}>
+                <span>{cityForPage}</span>
               </Link>
             </div>
           </section>
@@ -45,4 +60,5 @@ function LoginPage(): JSX.Element {
   );
 
 }
+
 export default LoginPage;
