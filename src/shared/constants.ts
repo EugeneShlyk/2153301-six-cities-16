@@ -136,6 +136,11 @@ export const enum RequestStatus {
   Failed = 'failed',
 }
 
+export const textError = {
+  EMAIL_VALIDATION_ERROR: 'Пожалуйста, введите корректный адрес электронной почты',
+  PASSWORD_VALIDATION_ERROR: 'Длина пароля не может быть менее двух символов',
+};
+
 export const BACKEND_URL: string = 'https://16.design.htmlacademy.pro/six-cities/';
 export const REQUEST_TIMEOUT = 5000;
 export const AUTH_TOKEN_KEY_NAME = 'six cities token';
