@@ -1,6 +1,6 @@
 import {AppRoute} from '@constants';
 import {Navigate} from 'react-router-dom';
-import {TAuthorizationStatus} from '@customType/authorization-status.ts';
+import {TAuthorizationStatus} from '@constants';
 
 export interface AccessRouteProps {
   children: JSX.Element;

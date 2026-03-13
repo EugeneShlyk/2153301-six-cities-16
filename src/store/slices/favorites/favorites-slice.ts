@@ -1,4 +1,3 @@
-import {OFFERS} from '@mocks/offers.ts';
 import {createSlice} from '@reduxjs/toolkit';
 import {FAVORITES_SLICE_NAME} from '@slices/slice-name.ts';
 import {FavoritesState, FavoritesStatus} from '@slices/favorites/types.ts';
@@ -7,7 +6,7 @@ import {changeFavorites, fetchFavorites} from '@slices/favorites/favorites-thunk
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
 const initialState: FavoritesState = {
-  items: OFFERS.filter((offer) => offer.isFavorite),
+  items: [],
   status: RequestStatus.Idle,
 };
 

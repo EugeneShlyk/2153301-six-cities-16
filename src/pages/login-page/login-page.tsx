@@ -1,7 +1,7 @@
-import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {useActionCreators} from '@store/hooks/use-action-creator';
 import {userAction} from '@slices/user';
 import {Link} from 'react-router-dom';
-import {getRandomCity} from '@utils/getRandomCity.ts';
+import {getRandomCity} from '@utils/getRandomCity';
 import {useMemo, useState} from 'react';
 import {AppRoute, textError} from '@constants';
 import React from 'react';
@@ -35,7 +35,7 @@ function LoginPage(): JSX.Element {
     correctPasswordValue = true;
   }
 
-  const handleSubmit = (event: Event) => {
+  const handleButtonSubmitClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (!correctEmailValue || !correctPasswordValue) {
       if (!correctEmailValue) {
@@ -44,8 +44,11 @@ function LoginPage(): JSX.Element {
       if (!correctPasswordValue) {
         toast.error(textError.PASSWORD_VALIDATION_ERROR);
       }
-      return;
     }
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     login(formData);
   };
 
@@ -55,7 +58,7 @@ function LoginPage(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post">
+            <form className="login__form form" action="#" onClick={handleSubmit} method="post">
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
@@ -78,13 +81,15 @@ function LoginPage(): JSX.Element {
                   required
                 />
               </div>
-              <button className="login__submit form__submit button" type="submit" onClick={handleSubmit}>Sign in
-              </button>
+              <button className="login__submit form__submit button" type="submit" onClick={handleButtonSubmitClick}>Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to={`${AppRoute.Root}?city=${cityForPage}`}>
+              <Link
+                className="locations__item-link"
+                to={{pathname: `${AppRoute.Root}`, search: `?city=${cityForPage}`}}
+              >
                 <span>{cityForPage}</span>
               </Link>
             </div>

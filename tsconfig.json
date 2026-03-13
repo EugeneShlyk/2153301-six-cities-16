@@ -5,6 +5,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "baseUrl": ".",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -25,7 +26,7 @@
       "@customType/*": ["./src/types/*"],
       "@shared/*": ["./src/shared/*"],
       "@store/*": ["./src/store/*"],
-      "@slices/*": ["./src/store/slices/*",],
+      "@slices/*": ["./src/store/slices/*"],
       "@mocks/*": ["./src/mocks/*"],
       "@utils/*": ["./src/utils/*"],
       "@constants": ["./src/shared/constants.ts"],

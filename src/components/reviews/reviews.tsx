@@ -1,7 +1,7 @@
 import {JSX} from 'react';
 import ReviewsList from '@components/reviews-list';
 import {AuthorizationStatus} from '@constants';
-import {getAuthorizationStatus} from '@mocks/getAuthorizationStatus.ts';
+import {getAuthorizationStatus} from '@utils/getAuthorizationStatus.ts';
 import CommentForm from '@components/comment-form';
 import {Review} from '@customType/reviews.ts';
 

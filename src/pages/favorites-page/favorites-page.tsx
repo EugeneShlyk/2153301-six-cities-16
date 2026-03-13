@@ -3,10 +3,8 @@ import {OfferPreview} from '@customType/offer';
 import FavoritesEmptyPage from '@pages/favorites-empty-page';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@constants';
-
-type FavoritePageProps = {
-  offers: OfferPreview[];
-};
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {favoritesSelector} from '@slices/favorites';
 
 function getFavoritesByLocation(items: OfferPreview[]) {
   return items.reduce<{ [key: string]: OfferPreview[] }>((acc, current) => {
@@ -20,8 +18,9 @@ function getFavoritesByLocation(items: OfferPreview[]) {
   }, {});
 }
 
-function FavoritePage({offers}: FavoritePageProps): JSX.Element {
-  const favorites = offers.filter((item) => item.isFavorite);
+function FavoritePage(): JSX.Element {
+  const favorites = useAppSelector(favoritesSelector.favorites);
+  // const favorites = favotites.filter((item) => item.isFavorite);
   const favoritesByLocation = getFavoritesByLocation(favorites);
   const hasFavorites = Boolean(favorites?.length);
 

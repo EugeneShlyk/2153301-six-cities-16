@@ -1,5 +1,4 @@
 import {AppRoute} from '@constants';
-import {OFFERS} from '@mocks/offers';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
@@ -31,7 +30,7 @@ function App(): JSX.Element {
           path: AppRoute.Favorites,
           element:
             <ProtectRoute>
-              <FavoritePage offers={OFFERS}/>
+              <FavoritePage/>
             </ProtectRoute>
         },
         {
