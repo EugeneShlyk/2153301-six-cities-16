@@ -1,4 +1,4 @@
-3import {AuthorizationStatus} from '@constants';
+import {AuthorizationStatus} from '@constants';
 
 export const getAuthorizationStatus = () => AuthorizationStatus.Auth;
 

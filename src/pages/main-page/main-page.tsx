@@ -5,18 +5,11 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {offersSelector, offersAction} from '@slices/offers';
 import {useEffect} from 'react';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
-import {deleteToken} from '@shared/token.ts';
-import {AUTH_TOKEN_KEY_NAME} from '@constants';
 
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
   const {fetchOffersAction} = useActionCreators(offersAction);
-  console.log(localStorage);
-
-  // deleteToken();
-  // localStorage.removeItem('six-cities-token');
-  console.log(localStorage);
 
   useEffect(() => {
     fetchOffersAction();
