@@ -5,8 +5,17 @@ import {ChangeEvent, useState} from 'react';
 export default function CommentForm() {
   const [userAnswer, setUserAnswer] = useState({
     stars: 0,
-    description: ''
+    review: ''
   });
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {value, name} = event.target;
+
+    (setUserAnswer((prev) => ({
+      ...prev,
+      [name]: name === 'rating' ? Number(value) : value
+    })));
+  };
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -18,9 +27,7 @@ export default function CommentForm() {
             key={item.stars}
             value={item.stars}
             title={item.title}
-            onChange={({target}: ChangeEvent<HTMLInputElement>) => {
-              setUserAnswer({...userAnswer, stars: Number(target.value)});
-            }}
+            onChange={handleInputChange}
           />
         ))}
       </div>
@@ -28,11 +35,9 @@ export default function CommentForm() {
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
-        value={userAnswer.description}
+        value={userAnswer.review}
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={({target}: ChangeEvent<HTMLTextAreaElement>) => {
-          setUserAnswer({...userAnswer, description: target.value});
-        }}
+        onChange={handleInputChange}
       >
       </textarea>
       <div className="reviews__button-wrapper">
