@@ -4,12 +4,15 @@ import {ChangeEvent, useState} from 'react';
 
 export default function CommentForm() {
   const [userAnswer, setUserAnswer] = useState({
-    stars: 0,
-    review: ''
+    rating: 0,
+    review: '',
+    isChecked: false,
   });
 
+  console.log(userAnswer);
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {value, name} = event.target;
+    const {value, name, } = event.target;
 
     (setUserAnswer((prev) => ({
       ...prev,
