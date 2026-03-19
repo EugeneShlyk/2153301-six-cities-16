@@ -8,7 +8,7 @@ type CommentFormStarProp = {
   isChecked: boolean;
 }
 
-export default function ReviewFormStar({value, title, onChange, isChecked}: CommentFormStarProp): JSX.Element {
+export default function RatingInput({value, title, onChange, isChecked}: CommentFormStarProp): JSX.Element {
   return (
     <>
       <input

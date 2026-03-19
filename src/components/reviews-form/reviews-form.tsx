@@ -1,4 +1,4 @@
-import ReviewFormStar from 'src/components/review-form-star';
+import RatingInput from 'src/components/rating-input';
 import {RATING} from '@constants';
 import {ChangeEvent, useState} from 'react';
 
@@ -26,7 +26,7 @@ export default function ReviewsForm() {
       </label>
       <div className="reviews__rating-form form__rating">
         {RATING.map((item) => (
-          <ReviewFormStar
+          <RatingInput
             key={item.stars}
             value={item.stars}
             title={item.title}

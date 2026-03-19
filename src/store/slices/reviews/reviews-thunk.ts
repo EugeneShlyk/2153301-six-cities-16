@@ -11,4 +11,4 @@ export const fetchReviews = createAppAsyncThunk<Review[], string>(
   }
 );
 
-export const postReview = createAppAsyncThunk<Review, >()
+// export const postReview = createAppAsyncThunk<Review, >()
