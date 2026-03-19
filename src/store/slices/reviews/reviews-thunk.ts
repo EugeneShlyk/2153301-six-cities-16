@@ -10,3 +10,5 @@ export const fetchReviews = createAppAsyncThunk<Review[], string>(
     return data;
   }
 );
+
+export const postReview = createAppAsyncThunk<Review, >()

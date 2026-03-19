@@ -1,18 +1,18 @@
-import CommentFormStar from '@components/comment-form-star';
+import ReviewFormStar from 'src/components/review-form-star';
 import {RATING} from '@constants';
 import {ChangeEvent, useState} from 'react';
 
-export default function CommentForm() {
+export default function ReviewsForm() {
   const [userAnswer, setUserAnswer] = useState({
     rating: 0,
     review: '',
-    isChecked: false,
   });
-
-  console.log(userAnswer);
+  const isValid = userAnswer.rating > 0 &&
+    userAnswer.review.length >= 50 &&
+    userAnswer.review.length <= 300;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {value, name, } = event.target;
+    const {value, name,} = event.target;
 
     (setUserAnswer((prev) => ({
       ...prev,
@@ -26,11 +26,12 @@ export default function CommentForm() {
       </label>
       <div className="reviews__rating-form form__rating">
         {RATING.map((item) => (
-          <CommentFormStar
+          <ReviewFormStar
             key={item.stars}
             value={item.stars}
             title={item.title}
             onChange={handleInputChange}
+            isChecked={userAnswer.rating === item.stars}
           />
         ))}
       </div>
@@ -48,7 +49,12 @@ export default function CommentForm() {
           To submit review please make sure to set <span className="reviews__star">rating</span> and
           describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={!isValid}
+        >Submit
+        </button>
       </div>
     </form>
   );

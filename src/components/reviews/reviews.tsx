@@ -1,6 +1,6 @@
 import {JSX} from 'react';
 import ReviewsList from '@components/reviews-list';
-import CommentForm from '@components/comment-form';
+import ReviewsForm from 'src/components/reviews-form';
 import {Review} from '@customType/reviews.ts';
 import {useAuth} from '../../hooks/use-auth.ts';
 
@@ -16,7 +16,7 @@ export default function Reviews({reviews}: TReviewsProps): JSX.Element {
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ReviewsList reviews={reviews}/>
-      {isAuth && <CommentForm/>}
+      {isAuth && <ReviewsForm/>}
     </section>
   );
 }

@@ -112,7 +112,7 @@ export const RATING = [
   {stars: 3, title: 'not bad'},
   {stars: 2, title: 'badly'},
   {stars: 1, title: 'terribly'}
-];
+] as const;
 
 export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',

@@ -2,18 +2,16 @@ import {JSX} from 'react';
 import {ChangeEvent} from 'react';
 
 type CommentFormStarProp = {
-  key: string;
   value: number;
   title: string;
   onChange: ({target}: ChangeEvent<HTMLInputElement>) => void;
   isChecked: boolean;
 }
 
-export default function CommentFormStar({key, value, title, onChange, isChecked}: CommentFormStarProp): JSX.Element {
+export default function ReviewFormStar({value, title, onChange, isChecked}: CommentFormStarProp): JSX.Element {
   return (
     <>
       <input
-        key={key}
         className="form__rating-input visually-hidden"
         name="rating"
         value={value}
