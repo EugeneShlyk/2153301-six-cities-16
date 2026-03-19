@@ -1,15 +1,17 @@
 import {JSX} from 'react';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Offer} from '@customType/offer.ts';
+import clsx from 'clsx';
 
 type RatingDisplayProps = {
   offer: Offer;
+  extraClassName: string;
 }
 
-export default function RatingDisplay({offer}: RatingDisplayProps): JSX.Element {
+export default function RatingDisplay({offer, extraClassName}: RatingDisplayProps): JSX.Element {
   return (
-    <div className="offer__rating rating">
-      <div className="offer__stars rating__stars">
+    <div className={clsx(`${extraClassName}__rating rating`)}>
+      <div className={`${extraClassName}__stars rating__stars`}>
         <span style={{width: (getRatingWidth(offer?.rating))}}></span>
         <span className="visually-hidden">Rating</span>
       </div>

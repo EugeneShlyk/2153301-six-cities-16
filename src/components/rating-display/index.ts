@@ -1,3 +1,1 @@
-import RatingDisplay from './rating-display';
-
-export default RatingDisplay;
+export {default} from './rating-display';
