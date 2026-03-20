@@ -1,10 +1,9 @@
 import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
-import {mapClasses, galleryPhoto, RequestStatus} from '@constants';
+import {mapClasses, galleryPhoto, RequestStatus, ExtraClassRating} from '@constants';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
-import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {AppRoute} from '@constants';
 import {getNumbersBedrooms, getNumbersAdults} from '@utils/utils.tsx';
@@ -21,6 +20,7 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {offersSelector} from '@slices/offers';
 import Spinner from '@components/spinner';
 import {reviewsAction, reviewsSelector} from '@slices/reviews';
+import RatingDisplay from '@components/rating-display';
 
 function OfferPage(): JSX.Element {
   const {fetchOffer, fetchNearbyOffers, clearOffer} = useActionCreators(offerAction);
@@ -42,6 +42,7 @@ function OfferPage(): JSX.Element {
   const offerStatus = useAppSelector(offerSelector.offerStatus);
   const cityName = useAppSelector(offersSelector.city);
   const reviews = useAppSelector(reviewsSelector.reviews);
+  const rating = offer?.rating;
 
   if (offerStatus === RequestStatus.Loading || offerStatus === RequestStatus.Idle || !offer) {
     return <Spinner/>;
@@ -71,13 +72,7 @@ function OfferPage(): JSX.Element {
                   isFavorite={offer?.isFavorite ?? false}
                 />
               </div>
-              <div className="offer__rating rating">
-                <div className="offer__stars rating__stars">
-                  <span style={{width: (getRatingWidth(offer?.rating))}}></span>
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="offer__rating-value rating__value">{offer?.rating}</span>
-              </div>
+              <RatingDisplay rating={rating ?? 0} extraClassName={ExtraClassRating.offer}/>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
                   {offer?.type}

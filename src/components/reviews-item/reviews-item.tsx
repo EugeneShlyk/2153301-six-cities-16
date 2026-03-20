@@ -1,13 +1,14 @@
 import {Review} from '@customType/reviews.ts';
-import {getRatingWidth} from '@utils/get-rating-width.ts';
 import {getMonthYear, getYearMonthDay} from '@utils/dayjs-transformation.ts';
+import RatingDisplay from '@components/rating-display';
+import {ExtraClassRating} from '@constants';
 
 type ReviewsItemProps = {
   review: Review;
 }
 
 export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
-  const rating = getRatingWidth(review.rating);
+  const ratingNumber = review.rating;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -25,12 +26,7 @@ export default function ReviewsItem({review}: ReviewsItemProps): JSX.Element {
         </span>
       </div>
       <div className="reviews__info">
-        <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{width: rating}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <RatingDisplay rating={ratingNumber} extraClassName={ExtraClassRating.reviews}/>
         <p className="reviews__text">
           {review.comment}
         </p>

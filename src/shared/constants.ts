@@ -106,6 +106,12 @@ export const mapClasses = {
   offerPage: 'offer__map',
 };
 
+export enum ExtraClassRating {
+  reviews = 'reviews',
+  offer = 'offer',
+  placeCard = 'place-card',
+}
+
 export const RATING = [
   {stars: 5, title: 'perfect'},
   {stars: 4, title: 'good'},

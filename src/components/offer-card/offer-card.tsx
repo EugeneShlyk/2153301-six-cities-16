@@ -1,12 +1,12 @@
-import {AppRoute} from '@constants';
+import {AppRoute, ExtraClassRating} from '@constants';
 import {OfferPreview} from '@customType/offer.ts';
-import {getRatingWidth} from '@utils/get-rating-width.ts';
 import clsx from 'clsx';
 import {Link} from 'react-router-dom';
 import FavoriteButton from '../favorite-button';
 import {MouseEvent} from 'react';
 import {capitalizeFirstLetter} from '@utils/capitalize-first-letter.ts';
 import PremiumBadge from '@components/premium-badge';
+import RatingDisplay from '@components/rating-display';
 
 type Size = 'small' | 'medium' | 'large';
 type CardType = 'favorites' | 'cities' | 'near-places';
@@ -93,12 +93,7 @@ function OfferCard({
             bemBlock="place-card"
           />
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${getRatingWidth(offer.rating)}`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <RatingDisplay rating={offer.rating} extraClassName={ExtraClassRating.placeCard}/>
         <h2 className="place-card__name">
           <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>

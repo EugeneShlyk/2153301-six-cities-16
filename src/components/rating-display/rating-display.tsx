@@ -1,21 +1,22 @@
 import {JSX} from 'react';
 import {getRatingWidth} from '@utils/get-rating-width.ts';
-import {Offer} from '@customType/offer.ts';
 import clsx from 'clsx';
+import {ExtraClassRating} from '@constants';
 
 type RatingDisplayProps = {
-  offer: Offer;
-  extraClassName: string;
+  rating: number;
+  extraClassName: ExtraClassRating;
 }
 
-export default function RatingDisplay({offer, extraClassName}: RatingDisplayProps): JSX.Element {
+export default function RatingDisplay({rating, extraClassName}: RatingDisplayProps): JSX.Element {
+  const isOfferClass = extraClassName === ExtraClassRating.offer;
   return (
     <div className={clsx(`${extraClassName}__rating rating`)}>
       <div className={`${extraClassName}__stars rating__stars`}>
-        <span style={{width: (getRatingWidth(offer?.rating))}}></span>
+        <span style={{width: (getRatingWidth(rating))}}></span>
         <span className="visually-hidden">Rating</span>
       </div>
-      <span className="offer__rating-value rating__value">{offer?.rating}</span>
+      {isOfferClass && (<span className="offer__rating-value rating__value">{rating}</span>)}
     </div>
   );
 }
