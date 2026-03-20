@@ -2,10 +2,10 @@ import {useActionCreators} from '@store/hooks/use-action-creator';
 import {userAction} from '@slices/user';
 import {Link} from 'react-router-dom';
 import {getRandomCity} from '@utils/getRandomCity';
-import {useMemo, useState} from 'react';
-import {AppRoute, textError} from '@constants';
-import React from 'react';
+import React, {useMemo, useState} from 'react';
+import {AppRoute, ExtraClassButton, TextButton, textError} from '@constants';
 import {toast} from 'react-toastify';
+import ButtonSubmit from '@components/button-submit';
 
 type FormDataT = {
   email: string;
@@ -34,6 +34,8 @@ function LoginPage(): JSX.Element {
   if (formData.password.length > 1) {
     correctPasswordValue = true;
   }
+
+  const isValid = correctEmailValue && correctPasswordValue;
 
   const handleButtonSubmitClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -81,7 +83,10 @@ function LoginPage(): JSX.Element {
                   required
                 />
               </div>
-              <button className="login__submit form__submit button" type="submit" onClick={handleButtonSubmitClick}>Sign in</button>
+              {/*<button className="login__submit form__submit button" type="submit" onClick={handleButtonSubmitClick}>Sign in</button>*/}
+              <ButtonSubmit extraClass={ExtraClassButton.login} isValid={isValid}>
+                {TextButton.signIn}
+              </ButtonSubmit>
             </form>
           </section>
           <section className="locations locations--login locations--current">

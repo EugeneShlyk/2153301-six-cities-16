@@ -112,6 +112,16 @@ export enum ExtraClassRating {
   placeCard = 'place-card',
 }
 
+export enum ExtraClassButton {
+  reviews = 'reviews',
+  login = 'login',
+}
+
+export enum TextButton {
+  signIn = 'Sign in',
+  submit = 'Submit'
+}
+
 export const RATING = [
   {stars: 5, title: 'perfect'},
   {stars: 4, title: 'good'},

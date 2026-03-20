@@ -1,6 +1,7 @@
 import RatingInput from 'src/components/rating-input';
-import {RATING} from '@constants';
+import {ExtraClassButton, RATING, TextButton} from '@constants';
 import {ChangeEvent, useState} from 'react';
+import ButtonSubmit from '@components/button-submit';
 
 export default function ReviewsForm() {
   const [userAnswer, setUserAnswer] = useState({
@@ -49,12 +50,9 @@ export default function ReviewsForm() {
           To submit review please make sure to set <span className="reviews__star">rating</span> and
           describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button
-          className="reviews__submit form__submit button"
-          type="submit"
-          disabled={!isValid}
-        >Submit
-        </button>
+        <ButtonSubmit extraClass={ExtraClassButton.reviews} isValid={isValid}>
+          {TextButton.submit}
+        </ButtonSubmit>
       </div>
     </form>
   );
