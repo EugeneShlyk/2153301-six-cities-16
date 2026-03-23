@@ -6,6 +6,8 @@ import React, {useMemo, useState} from 'react';
 import {AppRoute, ExtraClassButton, TextButton, textError} from '@constants';
 import {toast} from 'react-toastify';
 import ButtonSubmit from '@components/button-submit';
+import style from './login-page.module.scss';
+import clsx from 'clsx';
 
 type FormDataT = {
   email: string;
@@ -13,7 +15,10 @@ type FormDataT = {
 }
 
 function LoginPage(): JSX.Element {
-  const [formData, setFormData] = useState<FormDataT>({email: '', password: ''});
+  const [formData, setFormData] =
+    useState<FormDataT>({email: '', password: ''});
+  const [touched, setTouched] =
+    useState<{ email: boolean; password: boolean }>({email: false, password: false});
   const {login} = useActionCreators(userAction);
   const cityForPage = useMemo(() => getRandomCity(), []);
 
@@ -21,6 +26,11 @@ function LoginPage(): JSX.Element {
     setFormData({
       ...formData, [evt.target.name]: evt.target.value
     });
+  };
+
+  const handleTouched = (event: React.FocusEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setTouched({...touched, [event.target.name]: true});
   };
 
   const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+(\.[A-Z0-9-]+)*\.[A-Z]{2,}$/i;
@@ -37,20 +47,19 @@ function LoginPage(): JSX.Element {
 
   const isValid = correctEmailValue && correctPasswordValue;
 
-  const handleButtonSubmitClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!correctEmailValue || !correctPasswordValue) {
+
+    if (!isValid) {
       if (!correctEmailValue) {
         toast.error(textError.EMAIL_VALIDATION_ERROR);
       }
       if (!correctPasswordValue) {
         toast.error(textError.PASSWORD_VALIDATION_ERROR);
       }
+      return; // Прерываем выполнение, login не вызывается
     }
-  };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
     login(formData);
   };
 
@@ -60,7 +69,13 @@ function LoginPage(): JSX.Element {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" onClick={handleSubmit} method="post">
+            <form
+              className="login__form form"
+              action="#"
+              onSubmit={handleSubmit}
+              method="post"
+              noValidate
+            >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
@@ -69,8 +84,15 @@ function LoginPage(): JSX.Element {
                   name="email"
                   onChange={handleChange}
                   placeholder="Email"
-                  required
+                  value={formData.email}
+                  onBlur={handleTouched}
                 />
+                {touched.email && !correctEmailValue && formData.email.length > 0 && (
+                  <span className={clsx(style['login__input-error'])}>
+                    {textError.EMAIL_VALIDATION_ERROR}
+                  </span>
+                )}
+
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
@@ -78,13 +100,17 @@ function LoginPage(): JSX.Element {
                   className="login__input form__input"
                   type="password"
                   name="password"
+                  value={formData.password}
                   onChange={handleChange}
                   placeholder="Password"
                   required
+                  onBlur={handleTouched}
                 />
               </div>
-              {/*<button className="login__submit form__submit button" type="submit" onClick={handleButtonSubmitClick}>Sign in</button>*/}
-              <ButtonSubmit extraClass={ExtraClassButton.login} isValid={isValid}>
+              <ButtonSubmit
+                extraClass={ExtraClassButton.login}
+                isValid={isValid}
+              >
                 {TextButton.signIn}
               </ButtonSubmit>
             </form>

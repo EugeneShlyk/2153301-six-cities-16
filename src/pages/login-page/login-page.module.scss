@@ -1,0 +1,11 @@
+.login__input-wrapper {
+  position: relative;
+}
+
+.login__input-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 11px;
+}

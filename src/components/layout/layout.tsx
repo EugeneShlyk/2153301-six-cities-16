@@ -16,7 +16,11 @@ const Layout = () => {
   } = useGetLayoutState(pathname as AppRoute);
   return (
     <div className={clsx('page')}>
-      <Header isDisabledLogo={isDisabledLogo} shouldRenderUser={shouldRenderUser}></Header>
+      <Header
+        isDisabledLogo={isDisabledLogo}
+        shouldRenderUser={shouldRenderUser}
+      >
+      </Header>
       <main className={clsx('page__main')}>
         <Outlet></Outlet>
       </main>
