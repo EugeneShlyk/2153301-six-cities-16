@@ -47,6 +47,8 @@
     "faker": "5.5.3",
     "jsdom": "22.1.0",
     "sass": "1.86.3",
+    "stylelint": "^16.26.1",
+    "stylelint-config-htmlacademy": "^4.4.0",
     "typescript": "5.7.2",
     "vite": "4.4.11",
     "vite-tsconfig-paths": "4.3.2",

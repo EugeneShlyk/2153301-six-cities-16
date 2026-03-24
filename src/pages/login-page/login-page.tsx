@@ -41,7 +41,7 @@ function LoginPage(): JSX.Element {
     correctEmailValue = true;
   }
 
-  if (formData.password.length > 1) {
+  if (formData.password.length > 1 && /[a-zA-Z]/.test(formData.password) && /[0-9]/.test(formData.password)) {
     correctPasswordValue = true;
   }
 
