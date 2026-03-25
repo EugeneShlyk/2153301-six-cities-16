@@ -1,7 +1,5 @@
 {
   "extends": "stylelint-config-htmlacademy",
   "rules": {
-    "stylistic/declaration-block-trailing-semicolon": "always"
   }
 }
-
