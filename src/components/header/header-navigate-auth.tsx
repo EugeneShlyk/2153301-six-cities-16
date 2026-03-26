@@ -11,6 +11,8 @@ export const HeaderNavigateAuth = () => {
 
   const {logout} = useActionCreators(userAction);
   const user = useAppSelector(userSelector.user);
+  const countFavorites = useFavoriteCount();
+  console.log(countFavorites);
   return (
     <>
       <li className="header__nav-item user">
@@ -18,7 +20,7 @@ export const HeaderNavigateAuth = () => {
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
           <span className="header__user-name user__name">{user?.email}</span>
-          <span className="header__favorite-count">3</span>
+          <span className="header__favorite-count">{countFavorites}</span>
 
         </Link>
       </li>
