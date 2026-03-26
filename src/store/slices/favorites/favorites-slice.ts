@@ -25,7 +25,7 @@ export const favoritesSlice = createSlice({
             state.items.push(action.payload.offer);
             break;
           case FavoritesStatus.Removed:
-            state.items.filter(({id}) => id !== action.payload.offer.id);
+            state.items = state.items.filter(({id}) => id !== action.payload.offer.id);
             break;
         }
       })

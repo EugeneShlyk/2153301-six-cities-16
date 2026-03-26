@@ -9,7 +9,6 @@ export const fetchFavorites = createAppAsyncThunk<OfferPreview[], void>(
   `${FAVORITES_SLICE_NAME}/fetchFavorites`,
   async (_arg, {extra: api}) => {
     const response = await api.get<OfferPreview[]>(ENDPOINTS.FAVORITE);
-    console.log(response.data);
     return response.data;
   }
 );
@@ -19,7 +18,6 @@ export const changeFavorites = createAppAsyncThunk<FavoritesChangeResponse, Favo
   async ({offerId, status}, {extra: api}) => {
     const {data} = await api.post<OfferWithImage>(`${ENDPOINTS.FAVORITE}/${offerId}/${status}`);
     const adaptedOffer = adaptToPreview(data);
-    console.log(data);
     return {offer: adaptedOffer, status};
   }
 );

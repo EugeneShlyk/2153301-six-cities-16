@@ -4,8 +4,11 @@ import {userAction} from '@slices/user';
 import {AppRoute} from '@constants';
 import {userSelector} from '@slices/user';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {useFavoriteCount} from '../../hooks/use-favorite-count.ts';
 
 export const HeaderNavigateAuth = () => {
+  useFavoriteCount();
+
   const {logout} = useActionCreators(userAction);
   const user = useAppSelector(userSelector.user);
   return (

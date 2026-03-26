@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '@constants';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {favoritesSelector} from '@slices/favorites';
-import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {useEffect} from 'react';
 
 function getFavoritesByLocation(items: OfferPreview[]) {
   return items.reduce<{ [key: string]: OfferPreview[] }>((acc, current) => {
@@ -21,11 +21,12 @@ function getFavoritesByLocation(items: OfferPreview[]) {
 
 function FavoritePage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelector.favorites);
-  console.log(favorites);
   const favoritesByLocation = getFavoritesByLocation(favorites);
   const hasFavorites = Boolean(favorites?.length);
-  console.log(favoritesByLocation);
 
+  useEffect(() => {
+
+  }, []);
   return (
     <div className="page">
       <main className="page__main page__main--favorites">
