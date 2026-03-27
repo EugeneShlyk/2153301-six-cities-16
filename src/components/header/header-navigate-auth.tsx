@@ -12,7 +12,6 @@ export const HeaderNavigateAuth = () => {
   const {logout} = useActionCreators(userAction);
   const user = useAppSelector(userSelector.user);
   const countFavorites = useFavoriteCount();
-  console.log(countFavorites);
   return (
     <>
       <li className="header__nav-item user">
