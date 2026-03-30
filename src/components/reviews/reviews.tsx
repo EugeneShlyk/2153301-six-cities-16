@@ -6,9 +6,10 @@ import {useAuth} from '../../hooks/use-auth.ts';
 
 type TReviewsProps = {
   reviews: Review[];
+  offerId: string;
 }
 
-export default function Reviews({reviews}: TReviewsProps): JSX.Element {
+export default function Reviews({reviews, offerId}: TReviewsProps): JSX.Element {
   const {isAuth} = useAuth();
 
   return (
@@ -16,7 +17,7 @@ export default function Reviews({reviews}: TReviewsProps): JSX.Element {
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ReviewsList reviews={reviews}/>
-      {isAuth && <ReviewsForm/>}
+      {isAuth && <ReviewsForm offerId={offerId}/>}
     </section>
   );
 }

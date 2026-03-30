@@ -1,9 +1,15 @@
 import RatingInput from 'src/components/rating-input';
 import {ExtraClassButton, RATING, TextButton} from '@constants';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import ButtonSubmit from '@components/button-submit';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {reviewsAction} from '@slices/reviews';
 
-export default function ReviewsForm() {
+type ReviewsFormProps = {
+  offerId: string;
+}
+
+export default function ReviewsForm({offerId}: ReviewsFormProps) {
   const [userAnswer, setUserAnswer] = useState({
     rating: 0,
     review: '',
@@ -19,6 +25,15 @@ export default function ReviewsForm() {
       ...prev,
       [name]: name === 'rating' ? Number(value) : value
     })));
+  };
+  const {postReview} = useActionCreators(reviewsAction);
+  const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    useEffect(() => {
+      postReview({
+        offerId,
+      })
+    }, []);
   };
   return (
     <form className="reviews__form form" action="#" method="post">

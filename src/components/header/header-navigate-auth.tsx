@@ -7,7 +7,6 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {useFavoriteCount} from '../../hooks/use-favorite-count.ts';
 
 export const HeaderNavigateAuth = () => {
-  useFavoriteCount();
 
   const {logout} = useActionCreators(userAction);
   const user = useAppSelector(userSelector.user);

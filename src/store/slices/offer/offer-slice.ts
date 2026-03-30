@@ -5,6 +5,7 @@ import {fetchNearbyOffers, fetchOffer} from '@slices/offer/offer-thunk.ts';
 import {Offer} from '@customType/offer.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 import {RequestStatus} from '@constants';
+import {changeFavorites} from '@slices/favorites/favorites-thunk.ts';
 
 const initialState: IOfferState = {
   info: null,
@@ -21,6 +22,12 @@ export const offerSlice = createSlice({
       state.nearby = [];
       state.requestStatus = RequestStatus.Idle;
     },
+    updateOffer: (state: IOfferState, action: PayloadAction<string>) => {
+      state.info =
+        state.info?.id === action.payload
+          ? {...state.info, isFavorite: !state.info?.isFavorite}
+          : state.info;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -34,6 +41,9 @@ export const offerSlice = createSlice({
           state.requestStatus = RequestStatus.Success;
           state.nearby = action.payload;
         })
+      .addCase(changeFavorites.fulfilled, (state, action) => {
+        state.info = action.payload.adaptedOffer;
+      })
       .addMatcher(isActionPending(OFFER_SLICE_NAME),
         (state) => {
           state.requestStatus = RequestStatus.Loading;

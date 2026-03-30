@@ -1,6 +1,6 @@
 import {OfferPreview, OfferWithImage} from '@customType/offer.ts';
 
-export const adaptToPreview = (offer: OfferWithImage): OfferPreview => ({
+export const adaptToOfferPreview = (offer: OfferWithImage): OfferPreview => ({
   id: offer.id,
   title: offer.title,
   type: offer.type,

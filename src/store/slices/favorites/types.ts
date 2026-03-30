@@ -1,9 +1,10 @@
-import {OfferPreview} from '@customType/offer.ts';
+import {Offer, OfferPreview} from '@customType/offer.ts';
 import {RequestStatus} from '@constants';
 
 export type FavoritesState = {
   items: OfferPreview[];
   status: RequestStatus;
+  length: number;
 }
 
 export enum FavoritesStatus {
@@ -16,7 +17,8 @@ export type FavoritesChangeProps = {
   status: FavoritesStatus;
 }
 
-export type FavoritesChangeResponse = {
-  offer: OfferPreview;
-  status: FavoritesStatus;
+export type FavoritesChangePayload = {
+  adaptedOfferPreview: OfferPreview;
+  statusFavorite: FavoritesStatus;
+  adaptedOffer: Offer;
 }

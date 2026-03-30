@@ -8,6 +8,7 @@ import {isActionPending, isActionRejected} from '@utils/redux.ts';
 const initialState: FavoritesState = {
   items: [],
   status: RequestStatus.Idle,
+  length: 0,
 };
 
 export const favoritesSlice = createSlice({
@@ -20,12 +21,12 @@ export const favoritesSlice = createSlice({
         state.items = action.payload;
       })
       .addCase(changeFavorites.fulfilled, (state, action) => {
-        switch (action.payload.status) {
+        switch (action.payload.statusFavorite) {
           case FavoritesStatus.Added:
-            state.items.push(action.payload.offer);
+            state.items.push(action.payload.adaptedOfferPreview);
             break;
           case FavoritesStatus.Removed:
-            state.items = state.items.filter(({id}) => id !== action.payload.offer.id);
+            state.items = state.items.filter(({id}) => id !== action.payload.adaptedOfferPreview.id);
             break;
         }
       })
@@ -41,5 +42,6 @@ export const favoritesSlice = createSlice({
   selectors: {
     favorites: (state: FavoritesState) => state.items,
     favoritesStatus: (state: FavoritesState) => state.status,
+    favoritesLength: (state: FavoritesState) => state.items.length,
   }
 });

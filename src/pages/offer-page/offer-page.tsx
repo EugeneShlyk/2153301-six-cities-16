@@ -1,4 +1,3 @@
-import Header from '@components/header';
 import FavoriteButton from '../../components/favorite-button';
 import {mapClasses, galleryPhoto, RequestStatus, ExtraClassRating} from '@constants';
 import MapBox from '@components/map-box';
@@ -91,7 +90,7 @@ function OfferPage(): JSX.Element {
                 <OfferOptions offer={offer}/>
               </div>
               <OfferHost offer={offer}/>
-              <Reviews reviews={reviews}/>
+              <Reviews reviews={reviews} offerId={offer.id}/>
             </div>
           </div>
           <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={mapClasses.offerPage}></MapBox>

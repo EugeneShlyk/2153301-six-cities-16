@@ -7,15 +7,15 @@ import {getToken} from '@shared/token.ts';
 
 export const useFavoriteCount = () => {
   const {fetchFavorites} = useActionCreators(favoritesAction);
-  const count = useAppSelector(favoritesSelector.favorites).length;
-  const fetchFavoriteStatus = useAppSelector(favoritesSelector.favoritesStatus);
+  const count = useAppSelector(favoritesSelector.favoritesLength);
+  const favoriteStatus = useAppSelector(favoritesSelector.favoritesStatus);
   const token = getToken();
 
   useEffect(() => {
-    if (fetchFavoriteStatus === RequestStatus.Idle && token) {
+    if (favoriteStatus === RequestStatus.Idle && token) {
       fetchFavorites();
     }
-  }, [fetchFavorites, token]);
+  }, [fetchFavorites, token, favoriteStatus]);
 
   return count;
 };

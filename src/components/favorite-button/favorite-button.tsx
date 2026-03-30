@@ -3,14 +3,15 @@ import {AppRoute, AuthorizationStatus} from '@constants';
 import {useNavigate} from 'react-router-dom';
 import {userSelector} from '@slices/user';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
-import {useEffect} from 'react';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {favoritesAction} from '@slices/favorites';
 
 type Size = 'small' | 'medium' | 'large';
 
 interface FavoriteButtonProps {
   bemBlock?: 'offer' | 'place-card';
   isFavorite?: boolean;
-  offerId?: string;
+  offerId: string;
   size?: Size;
 }
 
@@ -22,14 +23,14 @@ export default function FavoriteButton({
 }: FavoriteButtonProps) {
 
   const userAuthStatus = useAppSelector(userSelector.userAuthStatus);
-  console.log(userAuthStatus);
   const navigate = useNavigate();
+  const {changeFavorites} = useActionCreators(favoritesAction);
 
   const onButtonClick = () => {
     if (userAuthStatus !== AuthorizationStatus.Auth) {
       return navigate(AppRoute.Login);
     }
-
+    changeFavorites({offerId, status: Number(!isFavorite)});
   };
   return (
     <Bookmark

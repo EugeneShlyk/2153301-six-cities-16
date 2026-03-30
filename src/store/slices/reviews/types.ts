@@ -10,7 +10,7 @@ export type ReviewsState = {
 
 type RatingStars = typeof RATING[number]['stars'];
 
-export type postReviewsProp = {
+export type PostReviewsProps = {
   body: {
     comment: string;
     rating: RatingStars;
