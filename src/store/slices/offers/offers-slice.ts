@@ -4,6 +4,7 @@ import {OffersState} from '@slices/offers/types.ts';
 import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
 import {fetchOffers} from '@slices/offers/offers-thunk.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
+import {changeFavorites} from '@slices/favorites/favorites-thunk.ts';
 
 
 const initialState: OffersState = {
@@ -27,6 +28,9 @@ export const offersSlice = createSlice({
           state.offers = action.payload;
           state.requestStatus = RequestStatus.Success;
         })
+      // .addCase(changeFavorites.fulfilled, (state, action) => {
+      //   state.offers =
+      // })
       .addMatcher(isActionPending(OFFERS_SLICE_NAME),
         (state) => {
           state.requestStatus = RequestStatus.Loading;

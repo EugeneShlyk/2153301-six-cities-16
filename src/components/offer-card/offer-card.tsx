@@ -44,6 +44,7 @@ function OfferCard({
   size,
   onOverCard,
 }: OfferCardProps): JSX.Element {
+  // console.log(offer.isFavorite);
 
   const onMouseEnterCard = (event: MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
