@@ -4,19 +4,25 @@ import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import ButtonSubmit from '@components/button-submit';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {reviewsAction} from '@slices/reviews';
+import {RatingStars} from '@slices/reviews/types.ts';
 
 type ReviewsFormProps = {
   offerId: string;
 }
 
+type UserAnswerState = {
+  rating: RatingStars | 0;
+  comment: string;
+}
+
 export default function ReviewsForm({offerId}: ReviewsFormProps) {
-  const [userAnswer, setUserAnswer] = useState({
+  const [userAnswer, setUserAnswer] = useState<UserAnswerState>({
     rating: 0,
-    review: '',
+    comment: '',
   });
   const isValid = userAnswer.rating > 0 &&
-    userAnswer.review.length >= 50 &&
-    userAnswer.review.length <= 300;
+    userAnswer.comment.length >= 50 &&
+    userAnswer.comment.length <= 300;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {value, name,} = event.target;
@@ -32,7 +38,8 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
     useEffect(() => {
       postReview({
         offerId,
-      })
+        body: userAnswer
+      });
     }, []);
   };
   return (

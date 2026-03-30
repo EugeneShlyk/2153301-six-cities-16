@@ -8,7 +8,7 @@ export type ReviewsState = {
   requestStatus: RequestStatus;
 }
 
-type RatingStars = typeof RATING[number]['stars'];
+export type RatingStars = typeof RATING[number]['stars'];
 
 export type PostReviewsProps = {
   body: {
