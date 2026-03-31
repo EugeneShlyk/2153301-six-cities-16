@@ -32,16 +32,16 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
       [name]: name === 'rating' ? Number(value) : value
     })));
   };
-  const {postReview} = useActionCreators(reviewsAction);
-  const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    useEffect(() => {
-      postReview({
-        offerId,
-        body: userAnswer
-      });
-    }, []);
-  };
+  // const {postReview} = useActionCreators(reviewsAction);
+  // const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   useEffect(() => {
+  //     postReview({
+  //       offerId,
+  //       body: userAnswer
+  //     });
+  //   }, []);
+  // };
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -62,7 +62,7 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
-        value={userAnswer.review}
+        value={userAnswer.comment}
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleInputChange}
       >

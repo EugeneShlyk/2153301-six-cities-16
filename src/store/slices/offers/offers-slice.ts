@@ -5,7 +5,7 @@ import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
 import {fetchOffers} from '@slices/offers/offers-thunk.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 import {changeFavorites} from '@slices/favorites/favorites-thunk.ts';
-
+// import offer from '@slices/offer';
 
 const initialState: OffersState = {
   currentCity: CITIES[0].name,
@@ -28,9 +28,29 @@ export const offersSlice = createSlice({
           state.offers = action.payload;
           state.requestStatus = RequestStatus.Success;
         })
-      // .addCase(changeFavorites.fulfilled, (state, action) => {
-      //   state.offers =
-      // })
+      .addCase(changeFavorites.pending, (state, action) => {
+        const {status, offerId} = action.meta.arg;
+        const indexOffer = state.offers.findIndex((offer) =>
+          offer.id === offerId);
+        if (indexOffer !== -1) {
+          state.offers[indexOffer].isFavorite = !!status;
+        }
+      })
+      .addCase(changeFavorites.fulfilled, (state, action) => {
+        const {offerId} = action.meta.arg;
+        const index = state.offers.findIndex((offer) =>
+          offer.id === offerId);
+        if (index !== -1) {
+          state.offers[index] = action.payload.adaptedOfferPreview;
+        }
+      })
+      .addCase(changeFavorites.rejected, (state, action) => {
+        const {status, offerId} = action.meta.arg;
+        const index = state.offers.findIndex((offer) => offer.id === offerId);
+        if (index !== -1) {
+          state.offers[index].isFavorite = !status;
+        }
+      })
       .addMatcher(isActionPending(OFFERS_SLICE_NAME),
         (state) => {
           state.requestStatus = RequestStatus.Loading;

@@ -5,6 +5,7 @@ import {ENDPOINTS} from '@constants';
 import {FavoritesChangePayload, FavoritesChangeProps, FavoritesStatus} from '@slices/favorites/types.ts';
 import {adaptToOfferPreview} from '@utils/adapt-to-offer-preview.ts';
 import {adaptToOffer} from '@utils/adapt-to-offer.ts';
+import {toast} from 'react-toastify';
 
 export const fetchFavorites = createAppAsyncThunk<OfferPreview[], void>(
   `${FAVORITES_SLICE_NAME}/fetchFavorites`,
@@ -17,14 +18,19 @@ export const fetchFavorites = createAppAsyncThunk<OfferPreview[], void>(
 export const changeFavorites = createAppAsyncThunk<FavoritesChangePayload, FavoritesChangeProps>(
   `${FAVORITES_SLICE_NAME}/changeFavorites`,
   async ({offerId, status}, {extra: api}) => {
-    const {data} = await api.post<OfferWithImage>(`${ENDPOINTS.FAVORITE}/${offerId}/${status}`);
-    const adaptedOfferPreview = adaptToOfferPreview(data);
-    const adaptedOffer = adaptToOffer(data);
-    const statusFavorite = Number(data.isFavorite) as FavoritesStatus;
-    return {
-      adaptedOfferPreview: adaptedOfferPreview,
-      statusFavorite,
-      adaptedOffer: adaptedOffer
-    };
+    try {
+      const {data} = await api.post<OfferWithImage>(`${ENDPOINTS.FAVORITE}/${offerId}/${status}`);
+      const adaptedOfferPreview = adaptToOfferPreview(data);
+      const adaptedOffer = adaptToOffer(data);
+      const statusFavorite = Number(data.isFavorite) as FavoritesStatus;
+      return {
+        adaptedOfferPreview: adaptedOfferPreview,
+        statusFavorite,
+        adaptedOffer: adaptedOffer
+      };
+    } catch (error) {
+      toast.error('Не удалось сохранить в избранное, повторите позже.');
+      throw error;
+    }
   }
 );
