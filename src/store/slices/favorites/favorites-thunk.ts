@@ -29,7 +29,12 @@ export const changeFavorites = createAppAsyncThunk<FavoritesChangePayload, Favor
         adaptedOffer: adaptedOffer
       };
     } catch (error) {
-      toast.error('Не удалось сохранить в избранное, повторите позже.');
+      if (status === FavoritesStatus.Added) {
+        toast.error('Не удалось сохранить в избранное, повторите позже.');
+      } if (status === FavoritesStatus.Removed) {
+        toast.error('Не удалось удалить предложение из избраного, повторите позже.');
+      }
+
       throw error;
     }
   }

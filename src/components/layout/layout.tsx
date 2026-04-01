@@ -8,6 +8,7 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {offerSelector} from '@slices/offer';
 
 const Layout = () => {
+
   const {pathname} = useLocation();
   const {
     pageClassName,

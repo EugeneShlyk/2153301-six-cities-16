@@ -41,8 +41,20 @@ export const offerSlice = createSlice({
           state.requestStatus = RequestStatus.Success;
           state.nearby = action.payload;
         })
+      .addCase(changeFavorites.pending, (state, action) => {
+        const {status} = action.meta.arg;
+        if (state.info) {
+          state.info.isFavorite = !!status;
+        }
+      })
       .addCase(changeFavorites.fulfilled, (state, action) => {
         state.info = action.payload.adaptedOffer;
+      })
+      .addCase(changeFavorites.rejected, (state, action) => {
+        const {status} = action.meta.arg;
+        if (state.info) {
+          state.info.isFavorite = !status;
+        }
       })
       .addMatcher(isActionPending(OFFER_SLICE_NAME),
         (state) => {

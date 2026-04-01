@@ -16,7 +16,6 @@ export const postReview = createAppAsyncThunk<Review, PostReviewsProps>(
   `${REVIEWS_SLICE_NAME}/postReview`,
   async ({body, offerId}, {extra: api}) => {
     const {data} = await api.post<Review>(`${ENDPOINTS.COMMENTS}/${offerId}`, body);
-    console.log(data);
     return data;
   }
 );
