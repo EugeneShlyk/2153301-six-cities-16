@@ -1,10 +1,11 @@
 import RatingInput from 'src/components/rating-input';
 import {ExtraClassButton, RATING, TextButton} from '@constants';
-import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import {ChangeEvent, FormEvent, useState} from 'react';
 import ButtonSubmit from '@components/button-submit';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {reviewsAction} from '@slices/reviews';
 import {RatingStars} from '@slices/reviews/types.ts';
+import {PostReviewsProps} from '@slices/reviews/types.ts';
 
 type ReviewsFormProps = {
   offerId: string;
@@ -32,19 +33,24 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
       [name]: name === 'rating' ? Number(value) : value
     })));
   };
-  // const {postReview} = useActionCreators(reviewsAction);
-  // const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   useEffect(() => {
-  //     postReview({
-  //       offerId,
-  //       body: userAnswer
-  //     });
-  //   }, []);
-  // };
+  const {postReview} = useActionCreators(reviewsAction);
+  const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isValid && userAnswer.rating !== 0) {
+      const reviewData: PostReviewsProps = {
+        offerId: offerId,
+        body: {
+          comment: userAnswer.comment,
+          rating: userAnswer.rating,
+        }
+      };
+      const result = postReview(reviewData);
+      console.log(result);
+    }
+  };
   return (
-    <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">
+    <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
+      <label className="reviews__label form__label" htmlFor="comment">
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
@@ -60,8 +66,8 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
       </div>
       <textarea
         className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
+        id="comment"
+        name="comment"
         value={userAnswer.comment}
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleInputChange}

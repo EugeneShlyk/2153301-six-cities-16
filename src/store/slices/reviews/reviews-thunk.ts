@@ -15,7 +15,7 @@ export const fetchReviews = createAppAsyncThunk<Review[], string>(
 export const postReview = createAppAsyncThunk<Review, PostReviewsProps>(
   `${REVIEWS_SLICE_NAME}/postReview`,
   async ({body, offerId}, {extra: api}) => {
-    const {data} = await api.post<Review>(`${ENDPOINTS.COMMENTS}/${offerId}`, body);
+    const {data} = await api.post<Review>(`${ENDPOINTS.COMMENTS}/hf/${offerId}`, body);
     return data;
   }
 );
