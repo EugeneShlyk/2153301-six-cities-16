@@ -57,7 +57,7 @@ function LoginPage(): JSX.Element {
       if (!correctPasswordValue) {
         toast.error(textError.PASSWORD_VALIDATION_ERROR);
       }
-      return; // Прерываем выполнение, login не вызывается
+      return;
     }
 
     login(formData);

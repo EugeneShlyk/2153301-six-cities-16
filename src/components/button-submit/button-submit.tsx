@@ -7,14 +7,18 @@ type ButtonSubmitProps = {
   extraClass: ExtraClassButton;
   isValid: boolean;
   children: ReactNode;
+  disabled: boolean;
 }
 
-export default function ButtonSubmit({extraClass, isValid, children}: ButtonSubmitProps): JSX.Element {
+export default function ButtonSubmit({extraClass, isValid, children, disabled}: ButtonSubmitProps): JSX.Element {
   return (
     <button
       className={clsx(
-        `${extraClass}__submit form__submit button`, !isValid && style['button-disabled'])}
+        `${extraClass}__submit form__submit button`, {
+          [style['button-disabled']]: !isValid
+        })}
       type="submit"
+      disabled={disabled}
     >
       {children}
     </button>

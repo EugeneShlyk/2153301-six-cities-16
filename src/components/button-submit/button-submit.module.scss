@@ -1,7 +1,12 @@
 .button-disabled {
   background-color: #c7c7c7;
-}
 
-.button-disabled:hover {
-  background-color: #c7c7c7;
+  &:hover,
+  &:focus {
+    background-color: #c7c7c7;
+  }
+
+  &:focus-visible {
+    background-color: #3069a6;
+  }
 }

@@ -152,10 +152,26 @@ export const enum RequestStatus {
   Failed = 'failed',
 }
 
+export enum RatingValue {
+  Terrible = 1,
+  Bad = 2,
+  NotBad = 3,
+  Good = 4,
+  Perfect = 5,
+}
+
 export const textError = {
   EMAIL_VALIDATION_ERROR: 'Пожалуйста, введите корректный адрес электронной почты',
   PASSWORD_VALIDATION_ERROR: 'Длина пароля не может быть менее двух символов',
 };
+
+export const commentError = {
+  COMMENT_VALIDATION_ERROR: 'Длина комментария должна быть не менее 50 символов',
+  RATING_VALIDATION_ERROR: 'Добавьте пожалуйста оценку',
+};
+
+export const MIN_COMMENT_LENGTH = 50;
+export const MAX_COMMENT_LENGTH = 300;
 
 export const BACKEND_URL: string = 'https://16.design.htmlacademy.pro/six-cities/';
 export const REQUEST_TIMEOUT = 5000;

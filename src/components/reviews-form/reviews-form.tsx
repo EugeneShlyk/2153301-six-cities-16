@@ -1,11 +1,21 @@
 import RatingInput from 'src/components/rating-input';
-import {ExtraClassButton, RATING, TextButton} from '@constants';
+import {
+  commentError,
+  ExtraClassButton,
+  MAX_COMMENT_LENGTH,
+  MIN_COMMENT_LENGTH,
+  RATING,
+  RequestStatus,
+  TextButton,
+} from '@constants';
 import {ChangeEvent, FormEvent, useState} from 'react';
 import ButtonSubmit from '@components/button-submit';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
-import {reviewsAction} from '@slices/reviews';
+import {reviewsAction, reviewsSelector} from '@slices/reviews';
 import {RatingStars} from '@slices/reviews/types.ts';
 import {PostReviewsProps} from '@slices/reviews/types.ts';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {toast} from 'react-toastify';
 
 type ReviewsFormProps = {
   offerId: string;
@@ -21,9 +31,13 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
     rating: 0,
     comment: '',
   });
-  const isValid = userAnswer.rating > 0 &&
-    userAnswer.comment.length >= 50 &&
-    userAnswer.comment.length <= 300;
+  const isValidForm = userAnswer.rating !== 0 &&
+    userAnswer.comment.length >= MIN_COMMENT_LENGTH &&
+    userAnswer.comment.length <= MAX_COMMENT_LENGTH;
+  const isValidRating = userAnswer.rating > 0 && userAnswer.rating < 6;
+  const isValidComment =
+    userAnswer.comment.length >= MIN_COMMENT_LENGTH &&
+    userAnswer.comment.length <= MAX_COMMENT_LENGTH;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {value, name,} = event.target;
@@ -36,7 +50,14 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
   const {postReview} = useActionCreators(reviewsAction);
   const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (isValid && userAnswer.rating !== 0) {
+    if (!isValidRating) {
+      toast.error(commentError.RATING_VALIDATION_ERROR);
+    }
+    if (!isValidComment) {
+      toast.error(commentError.COMMENT_VALIDATION_ERROR);
+    }
+
+    if (isValidForm && userAnswer.rating !== 0) {
       const reviewData: PostReviewsProps = {
         offerId: offerId,
         body: {
@@ -44,10 +65,11 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
           rating: userAnswer.rating,
         }
       };
-      const result = postReview(reviewData);
-      console.log(result);
+      postReview(reviewData);
     }
   };
+  const requestStatusReviews = useAppSelector(reviewsSelector.requestStatus);
+  const isDisabledButton = requestStatusReviews === RequestStatus.Loading;
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={onFormSubmit}>
       <label className="reviews__label form__label" htmlFor="comment">
@@ -78,7 +100,7 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
           To submit review please make sure to set <span className="reviews__star">rating</span> and
           describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <ButtonSubmit extraClass={ExtraClassButton.reviews} isValid={isValid}>
+        <ButtonSubmit extraClass={ExtraClassButton.reviews} isValid={isValidForm} disabled={isDisabledButton}>
           {TextButton.submit}
         </ButtonSubmit>
       </div>

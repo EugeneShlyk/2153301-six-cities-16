@@ -32,5 +32,6 @@ export const reviewsSlice = createSlice({
   },
   selectors: {
     reviews: (state) => state.reviews,
+    requestStatus: (state) => state.requestStatus,
   }
 });
