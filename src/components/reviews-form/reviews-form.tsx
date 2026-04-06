@@ -17,6 +17,7 @@ import {PostReviewsProps} from '@slices/reviews/types.ts';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {toast} from 'react-toastify';
 
+
 type ReviewsFormProps = {
   offerId: string;
 }
@@ -40,7 +41,7 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
     userAnswer.comment.length <= MAX_COMMENT_LENGTH;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {value, name,} = event.target;
+    const {value, name} = event.target;
 
     (setUserAnswer((prev) => ({
       ...prev,
@@ -65,7 +66,8 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
           rating: userAnswer.rating,
         }
       };
-      postReview(reviewData);
+      postReview(reviewData)
+    .unwrap()
     }
   };
   const requestStatusReviews = useAppSelector(reviewsSelector.requestStatus);
