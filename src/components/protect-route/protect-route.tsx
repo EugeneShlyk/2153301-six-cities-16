@@ -19,7 +19,7 @@ export default function ProtectRoute({onlyUnAuth, children}: ProtectRouteProps) 
   const {isAuth} = useAuth();
   const location = useLocation();
   const state = location.state as LocationState;
-  const authStatus = useAppSelector(userSelector.userAuthStatus);
+  const authStatus = useAppSelector(userSelector.authStatus);
 
   const isGuestPage = onlyUnAuth;
   const isProtectPage = !onlyUnAuth;

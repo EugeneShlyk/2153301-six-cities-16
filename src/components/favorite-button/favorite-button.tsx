@@ -22,12 +22,12 @@ export default function FavoriteButton({
   size = 'small'
 }: FavoriteButtonProps) {
 
-  const userAuthStatus = useAppSelector(userSelector.userAuthStatus);
+  const authStatus = useAppSelector(userSelector.authStatus);
   const navigate = useNavigate();
   const {changeFavorites} = useActionCreators(favoritesAction);
 
   const onButtonClick = () => {
-    if (userAuthStatus !== AuthorizationStatus.Auth) {
+    if (authStatus !== AuthorizationStatus.Auth) {
       return navigate(AppRoute.Login);
     }
     changeFavorites({offerId, status: Number(!isFavorite)});

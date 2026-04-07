@@ -1,13 +1,15 @@
 import {useActionCreators} from '@store/hooks/use-action-creator';
-import {userAction} from '@slices/user';
+import {userAction, userSelector} from '@slices/user';
 import {Link} from 'react-router-dom';
 import {getRandomCity} from '@utils/getRandomCity';
 import React, {useMemo, useState} from 'react';
-import {AppRoute, ExtraClassButton, TextButton, textError} from '@constants';
+import {AppRoute, ExtraClassButton, TextButton, TextError} from '@constants';
 import {toast} from 'react-toastify';
 import ButtonSubmit from '@components/button-submit';
 import style from './login-page.module.scss';
 import clsx from 'clsx';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {reviewsSelector} from '@slices/reviews';
 
 type FormDataT = {
   email: string;
@@ -21,6 +23,7 @@ function LoginPage(): JSX.Element {
     useState<{ email: boolean; password: boolean }>({email: false, password: false});
   const {login} = useActionCreators(userAction);
   const cityForPage = useMemo(() => getRandomCity(), []);
+  const requestStatus = useAppSelector(userSelector.)
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -52,10 +55,10 @@ function LoginPage(): JSX.Element {
 
     if (!isValid) {
       if (!correctEmailValue) {
-        toast.error(textError.EMAIL_VALIDATION_ERROR);
+        toast.error(TextError.EMAIL_VALIDATION_ERROR);
       }
       if (!correctPasswordValue) {
-        toast.error(textError.PASSWORD_VALIDATION_ERROR);
+        toast.error(TextError.PASSWORD_VALIDATION_ERROR);
       }
       return;
     }
@@ -89,7 +92,7 @@ function LoginPage(): JSX.Element {
                 />
                 {touched.email && !correctEmailValue && formData.email.length > 0 && (
                   <span className={clsx(style['login__input-error'])}>
-                    {textError.EMAIL_VALIDATION_ERROR}
+                    {TextError.EMAIL_VALIDATION_ERROR}
                   </span>
                 )}
 

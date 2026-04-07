@@ -160,15 +160,20 @@ export enum RatingValue {
   Perfect = 5,
 }
 
-export const textError = {
+export const TextError = {
   EMAIL_VALIDATION_ERROR: 'Пожалуйста, введите корректный адрес электронной почты',
-  PASSWORD_VALIDATION_ERROR: 'Длина пароля не может быть менее двух символов',
-};
+  PASSWORD_VALIDATION_ERROR: 'Длина пароля должна быть не менее двух символов, пароль должен содержать латинские буквы, цифры, символ @ и точку (например: Pass123@mail.ru)',
+} as const;
 
-export const commentError = {
+export const CommentError = {
   COMMENT_VALIDATION_ERROR: 'Длина комментария должна быть не менее 50 символов',
   RATING_VALIDATION_ERROR: 'Добавьте пожалуйста оценку',
-};
+} as const;
+
+export const PostReviewMessages = {
+  POSTED: 'Комментарий успешно отправлен!',
+  REJECTED: 'Возникла ошибка при добавлении комментария!'
+} as const;
 
 export const MIN_COMMENT_LENGTH = 50;
 export const MAX_COMMENT_LENGTH = 300;

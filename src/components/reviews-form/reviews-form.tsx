@@ -1,22 +1,22 @@
 import RatingInput from 'src/components/rating-input';
 import {
-  commentError,
+  CommentError,
   ExtraClassButton,
   MAX_COMMENT_LENGTH,
-  MIN_COMMENT_LENGTH,
+  MIN_COMMENT_LENGTH, PostReviewMessages,
   RATING,
   RequestStatus,
   TextButton,
 } from '@constants';
 import {ChangeEvent, FormEvent, useState} from 'react';
 import ButtonSubmit from '@components/button-submit';
-import {useActionCreators} from '@store/hooks/use-action-creator.ts';
-import {reviewsAction, reviewsSelector} from '@slices/reviews';
+import {reviewsSelector} from '@slices/reviews';
 import {RatingStars} from '@slices/reviews/types.ts';
 import {PostReviewsProps} from '@slices/reviews/types.ts';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {toast} from 'react-toastify';
-
+import {useAppDispatch} from '@store/hooks/use-app-dispatch.ts';
+import {postReview} from '@slices/reviews/reviews-thunk.ts';
 
 type ReviewsFormProps = {
   offerId: string;
@@ -32,6 +32,7 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
     rating: 0,
     comment: '',
   });
+  const dispatch = useAppDispatch();
   const isValidForm = userAnswer.rating !== 0 &&
     userAnswer.comment.length >= MIN_COMMENT_LENGTH &&
     userAnswer.comment.length <= MAX_COMMENT_LENGTH;
@@ -48,14 +49,14 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
       [name]: name === 'rating' ? Number(value) : value
     })));
   };
-  const {postReview} = useActionCreators(reviewsAction);
+  // const {postReview} = useActionCreators(reviewsAction);
   const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isValidRating) {
-      toast.error(commentError.RATING_VALIDATION_ERROR);
+      toast.error(CommentError.RATING_VALIDATION_ERROR);
     }
     if (!isValidComment) {
-      toast.error(commentError.COMMENT_VALIDATION_ERROR);
+      toast.error(CommentError.COMMENT_VALIDATION_ERROR);
     }
 
     if (isValidForm && userAnswer.rating !== 0) {
@@ -66,8 +67,18 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
           rating: userAnswer.rating,
         }
       };
-      postReview(reviewData)
-    .unwrap()
+      dispatch(postReview(reviewData))
+        .unwrap()
+        .then(() => {
+          setUserAnswer({
+            rating: 0,
+            comment: '',
+          });
+          toast.success(PostReviewMessages.POSTED);
+        })
+        .catch(() => {
+          toast.error(PostReviewMessages.REJECTED);
+        });
     }
   };
   const requestStatusReviews = useAppSelector(reviewsSelector.requestStatus);
