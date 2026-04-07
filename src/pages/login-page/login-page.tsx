@@ -3,13 +3,12 @@ import {userAction, userSelector} from '@slices/user';
 import {Link} from 'react-router-dom';
 import {getRandomCity} from '@utils/getRandomCity';
 import React, {useMemo, useState} from 'react';
-import {AppRoute, ExtraClassButton, TextButton, TextError} from '@constants';
+import {AppRoute, ExtraClassButton, RequestStatus, TextButton, TextError} from '@constants';
 import {toast} from 'react-toastify';
 import ButtonSubmit from '@components/button-submit';
 import style from './login-page.module.scss';
 import clsx from 'clsx';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
-import {reviewsSelector} from '@slices/reviews';
 
 type FormDataT = {
   email: string;
@@ -23,7 +22,8 @@ function LoginPage(): JSX.Element {
     useState<{ email: boolean; password: boolean }>({email: false, password: false});
   const {login} = useActionCreators(userAction);
   const cityForPage = useMemo(() => getRandomCity(), []);
-  const requestStatus = useAppSelector(userSelector.)
+  const requestStatus = useAppSelector(userSelector.requestStatus);
+  const isDisabledButton = requestStatus === RequestStatus.Loading;
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -113,6 +113,7 @@ function LoginPage(): JSX.Element {
               <ButtonSubmit
                 extraClass={ExtraClassButton.login}
                 isValid={isValid}
+                disabled={isDisabledButton}
               >
                 {TextButton.signIn}
               </ButtonSubmit>

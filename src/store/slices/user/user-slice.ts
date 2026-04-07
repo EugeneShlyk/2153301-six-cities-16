@@ -49,6 +49,6 @@ export const userSlice = createSlice({
   selectors: {
     authStatus: (state: UserState) => state.statusAuthorization,
     user: (state: UserState) => state.info,
-    userResponseStatus: (state: UserState) => state.status,
+    requestStatus: (state: UserState) => state.status,
   }
 });
