@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {REVIEWS_SLICE_NAME} from '@slices/slice-name.ts';
 import {ReviewsState} from '@slices/reviews/types.ts';
-import {fetchReviews} from '@slices/reviews/reviews-thunk.ts';
+import {fetchReviews, postReview} from '@slices/reviews/reviews-thunk.ts';
 import {RequestStatus} from '@constants';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 
@@ -21,6 +21,9 @@ export const reviewsSlice = createSlice({
           state.reviews = action.payload;
           state.requestStatus = RequestStatus.Success;
         })
+      .addCase(postReview.fulfilled, (state, action) => {
+        state.reviews.push(action.payload);
+      })
       .addMatcher(isActionPending(REVIEWS_SLICE_NAME),
         (state) => {
           state.requestStatus = RequestStatus.Loading;

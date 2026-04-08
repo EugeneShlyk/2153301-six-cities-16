@@ -8,6 +8,7 @@ export const fetchReviews = createAppAsyncThunk<Review[], string>(
   `${REVIEWS_SLICE_NAME}/fetchReviews`,
   async (offerId, {extra: api}) => {
     const {data} = await api.get<Review[]>(`${ENDPOINTS.COMMENTS}/${offerId}`);
+    console.log(data);
     return data;
   }
 );
