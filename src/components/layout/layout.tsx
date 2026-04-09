@@ -4,8 +4,6 @@ import {Outlet, useLocation} from 'react-router-dom';
 import Footer from '@components/footer';
 import {useGetLayoutState} from '@components/layout/helpers.ts';
 import {AppRoute} from '@constants';
-import {useAppSelector} from '@store/hooks/use-app-selector.ts';
-import {offerSelector} from '@slices/offer';
 
 const Layout = () => {
 
@@ -18,13 +16,13 @@ const Layout = () => {
     shouldRenderFooter,
   } = useGetLayoutState(pathname as AppRoute);
   return (
-    <div className={clsx('page')}>
+    <div className={clsx('page', pageClassName)}>
       <Header
         isDisabledLogo={isDisabledLogo}
         shouldRenderUser={shouldRenderUser}
       >
       </Header>
-      <main className={clsx('page__main')}>
+      <main className={clsx('page__main', mainClassName)}>
         <Outlet></Outlet>
       </main>
       {shouldRenderFooter && <Footer></Footer>}
