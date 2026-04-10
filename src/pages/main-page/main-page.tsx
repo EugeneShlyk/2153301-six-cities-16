@@ -5,16 +5,22 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {offersSelector, offersAction} from '@slices/offers';
 import {useEffect} from 'react';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {useOutletContext} from 'react-router-dom';
 
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
   const {fetchOffersAction} = useActionCreators(offersAction);
+  const {searchQuery} = useOutletContext<{searchQuery: string}>();
 
   useEffect(() => {
     fetchOffersAction();
   }, [fetchOffersAction]);
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
+  const offerSearched = offersCurrentCity.filter((offer) => {
+    return offer.title.toLowerCase().includes(searchQuery);
+  });
+  console.log(offerSearched);
   return (
     <div className="page page--gray page--main">
       <main className="page__main page__main--index">

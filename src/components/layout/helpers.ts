@@ -10,6 +10,7 @@ export const useGetLayoutState = (pathName: AppRoute) => {
   let shouldRenderUser = true;
   let shouldRenderFooter = false;
   let isDisabledLogo = false;
+  let isRenderInputSearch = false;
   const offers = useAppSelector(offersSelector.offers);
   const favorites = useAppSelector(favoritesSelector.favorites);
   const isMatchOfferId = useMatch(AppRoute.OfferId);
@@ -18,11 +19,13 @@ export const useGetLayoutState = (pathName: AppRoute) => {
       pageClassName = 'page--gray page--main';
       mainClassName = offers.length ? 'page__main--index' : 'page__main--index page__main--index-empty';
       isDisabledLogo = true;
+      isRenderInputSearch = true;
       break;
     case AppRoute.Favorites:
       pageClassName = favorites.length ? '' : 'page--favorites-empty';
       mainClassName = favorites.length ? 'page__main--favorites' : 'page__main--favorites page__main--favorites-empty';
       shouldRenderFooter = true;
+      isRenderInputSearch = true;
       break;
     case AppRoute.Login:
       shouldRenderUser = false;
@@ -40,5 +43,6 @@ export const useGetLayoutState = (pathName: AppRoute) => {
     shouldRenderUser,
     isDisabledLogo,
     shouldRenderFooter,
+    isRenderInputSearch
   };
 };
