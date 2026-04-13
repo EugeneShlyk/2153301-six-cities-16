@@ -8,13 +8,10 @@ import {favoritesSelector} from '@slices/favorites';
 import {useEffect} from 'react';
 
 function getFavoritesByLocation(items: OfferPreview[]) {
-  return items.reduce<{ [key: string]: OfferPreview[] }>((acc, current) => {
+  return items.reduce<Record<string, OfferPreview[]>>((acc, current) => {
     const location = current.city.name;
-    if (!(location in acc)) {
-      acc[location] = [];
-    }
+    acc[location] = acc[location] || []; // Если пусто, создаем массив
     acc[location].push(current);
-
     return acc;
   }, {});
 }

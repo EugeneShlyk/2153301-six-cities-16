@@ -11,16 +11,13 @@ function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
   const {fetchOffersAction} = useActionCreators(offersAction);
-  const {searchQuery} = useOutletContext<{searchQuery: string}>();
+  const {searchQuery} = useOutletContext<{ searchQuery: string }>();
 
   useEffect(() => {
     fetchOffersAction();
   }, [fetchOffersAction]);
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
-  const offerSearched = offersCurrentCity.filter((offer) => {
-    return offer.title.toLowerCase().includes(searchQuery);
-  });
-  console.log(offerSearched);
+  const offerSearched = offersCurrentCity.filter((offer) => offer.title.toLowerCase().includes(searchQuery));
   return (
     <div className="page page--gray page--main">
       <main className="page__main page__main--index">
@@ -29,7 +26,7 @@ function MainPage(): JSX.Element {
         <div className="cities">
           <PlacesListSection
             cityName={currentCity}
-            offersCurrentCity={offersCurrentCity}
+            offersCurrentCity={offerSearched}
             extraClass="cities__places-list tabs__content"
           />
         </div>
