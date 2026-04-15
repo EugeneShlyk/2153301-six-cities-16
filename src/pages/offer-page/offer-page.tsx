@@ -51,71 +51,69 @@ function OfferPage(): JSX.Element {
   }
 
   return (
-    <div className="page">
-      <main className="page__main page__main--offer">
-        <section className="offer">
-          <Gallery images={galleryPhoto}/>
-          <div className="offer__container container">
-            <div className="offer__wrapper">
-              <PremiumBadge isPremium={offer.isPremium} extraClassName={'offer__mark'}/>
-              <div className="offer__name-wrapper">
-                <h1 className="offer__name">
-                  {offer && offer.title}
-                </h1>
-                <FavoriteButton
-                  offerId={offer.id}
-                  size="large"
-                  bemBlock="offer"
-                  isFavorite={offer?.isFavorite ?? false}
-                />
-              </div>
-              <RatingDisplay rating={rating ?? 0} extraClassName={ExtraClassRating.offer}/>
-              <ul className="offer__features">
-                <li className="offer__feature offer__feature--entire">
-                  {offer?.type}
-                </li>
-                <li className="offer__feature offer__feature--bedrooms">
-                  {getNumbersBedrooms(offer?.bedrooms)}
-                </li>
-                <li className="offer__feature offer__feature--adults">
-                  {getNumbersAdults(offer?.maxAdults)}
-                </li>
-              </ul>
-              <div className="offer__price">
-                <b className="offer__price-value">&euro;{offer?.price}</b>
-                <span className="offer__price-text">&nbsp;night</span>
-              </div>
-              <div className="offer__inside">
-                <h2 className="offer__inside-title">What&apos;s inside</h2>
-                <OfferOptions offer={offer}/>
-              </div>
-              <OfferHost offer={offer}/>
-              <Reviews reviews={reviews} offerId={offer.id}/>
+    <>
+      <section className="offer">
+        <Gallery images={galleryPhoto}/>
+        <div className="offer__container container">
+          <div className="offer__wrapper">
+            <PremiumBadge isPremium={offer.isPremium} extraClassName={'offer__mark'}/>
+            <div className="offer__name-wrapper">
+              <h1 className="offer__name">
+                {offer && offer.title}
+              </h1>
+              <FavoriteButton
+                offerId={offer.id}
+                size="large"
+                bemBlock="offer"
+                isFavorite={offer?.isFavorite ?? false}
+              />
             </div>
+            <RatingDisplay rating={rating ?? 0} extraClassName={ExtraClassRating.offer}/>
+            <ul className="offer__features">
+              <li className="offer__feature offer__feature--entire">
+                {offer?.type}
+              </li>
+              <li className="offer__feature offer__feature--bedrooms">
+                {getNumbersBedrooms(offer?.bedrooms)}
+              </li>
+              <li className="offer__feature offer__feature--adults">
+                {getNumbersAdults(offer?.maxAdults)}
+              </li>
+            </ul>
+            <div className="offer__price">
+              <b className="offer__price-value">&euro;{offer?.price}</b>
+              <span className="offer__price-text">&nbsp;night</span>
+            </div>
+            <div className="offer__inside">
+              <h2 className="offer__inside-title">What&apos;s inside</h2>
+              <OfferOptions offer={offer}/>
+            </div>
+            <OfferHost offer={offer}/>
+            <Reviews reviews={reviews} offerId={offer.id}/>
           </div>
-          <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={mapClasses.offerPage}></MapBox>
-        </section>
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <OfferList
-              dataOffers={nearbyOffers}
-              extraClass="near-places__list"
-            >
-              {(dataCard: OfferPreview) => (
-                <OfferCard
-                  offer={dataCard}
-                  variant="near-places"
-                  size="large"
-                  key={dataCard.id}
-                />
-              )}
-            </OfferList>
-          </section>
         </div>
-        ;
-      </main>
-    </div>
+        <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={mapClasses.offerPage}></MapBox>
+      </section>
+      <div className="container">
+        <section className="near-places places">
+          <h2 className="near-places__title">Other places in the neighbourhood</h2>
+          <OfferList
+            dataOffers={nearbyOffers}
+            extraClass="near-places__list"
+          >
+            {(dataCard: OfferPreview) => (
+              <OfferCard
+                offer={dataCard}
+                variant="near-places"
+                size="large"
+                key={dataCard.id}
+              />
+            )}
+          </OfferList>
+        </section>
+      </div>
+      ;
+    </>
   );
 }
 

@@ -7,6 +7,5 @@ export const useAuth = () => {
 
   return {
     isAuth: status === AuthorizationStatus.Auth,
-    // isLoading: status === AuthorizationStatus.Unknown,
   };
 };

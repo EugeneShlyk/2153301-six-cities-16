@@ -19,19 +19,17 @@ function MainPage(): JSX.Element {
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
   const offerSearched = offersCurrentCity.filter((offer) => offer.title.toLowerCase().includes(searchQuery));
   return (
-    <div className="page page--gray page--main">
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <LocationList/>
-        <div className="cities">
-          <PlacesListSection
-            cityName={currentCity}
-            offersCurrentCity={offerSearched}
-            extraClass="cities__places-list tabs__content"
-          />
-        </div>
-      </main>
-    </div>
+    <>
+      <h1 className="visually-hidden">Cities</h1>
+      <LocationList/>
+      <div className="cities">
+        <PlacesListSection
+          cityName={currentCity}
+          offersCurrentCity={offerSearched}
+          extraClass="cities__places-list tabs__content"
+        />
+      </div>
+    </>
   );
 }
 

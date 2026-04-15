@@ -72,9 +72,7 @@ function LoginPage(): JSX.Element {
         <h1 className="login__title">Sign in</h1>
         <form
           className="login__form form"
-          action="#"
           onSubmit={handleSubmit}
-          method="post"
           noValidate
         >
           <div className="login__input-wrapper form__input-wrapper">
@@ -90,8 +88,8 @@ function LoginPage(): JSX.Element {
             />
             {touched.email && !correctEmailValue && formData.email.length > 0 && (
               <span className={clsx(style['login__input-error'])}>
-                    {TextError.EMAIL_VALIDATION_ERROR}
-                  </span>
+                {TextError.EMAIL_VALIDATION_ERROR}
+              </span>
             )}
 
           </div>
