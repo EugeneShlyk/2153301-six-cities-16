@@ -36,7 +36,7 @@ export const userSlice = createSlice({
       })
       .addCase(checkAuth.rejected, (state) => {
         state.info = null;
-        state.statusAuthorization = AuthorizationStatus.NoAuth; // Теперь спиннер исчезнет
+        state.statusAuthorization = AuthorizationStatus.NoAuth;
         state.status = RequestStatus.Failed;
         console.log('CHECK_AUTH: REJECTED');
       })
