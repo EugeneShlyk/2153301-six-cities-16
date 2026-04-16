@@ -48,14 +48,14 @@ const router = createBrowserRouter([
 
 function App(): JSX.Element {
   const {checkAuth} = useActionCreators(userAction);
-  const authStatus = useAppSelector(userSelector.authStatus);
+  // const authStatus = useAppSelector(userSelector.authStatus);
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  if (authStatus === AuthorizationStatus.Unknown) {
-    return <Spinner></Spinner>;
-  }
+  // if (authStatus === AuthorizationStatus.Unknown) {
+  //   return <Spinner></Spinner>;
+  // }
 
   return <RouterProvider router={router}/>;
 }
