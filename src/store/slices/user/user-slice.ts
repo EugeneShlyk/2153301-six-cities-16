@@ -21,7 +21,6 @@ export const userSlice = createSlice({
         state.info = action.payload;
         state.statusAuthorization = AuthorizationStatus.Auth;
         state.status = RequestStatus.Success;
-        console.log('LOGIN: SUCCESS');
       })
       .addCase(logout.fulfilled, (state) => {
         state.info = null;
@@ -32,13 +31,11 @@ export const userSlice = createSlice({
         state.info = action.payload;
         state.statusAuthorization = AuthorizationStatus.Auth;
         state.status = RequestStatus.Success;
-        console.log('CHECK_AUTH: SUCCESS');
       })
       .addCase(checkAuth.rejected, (state) => {
         state.info = null;
         state.statusAuthorization = AuthorizationStatus.NoAuth;
         state.status = RequestStatus.Failed;
-        console.log('CHECK_AUTH: REJECTED');
       })
       .addMatcher(isActionPending(USER_SLICE_NAME),
         (state) => {
