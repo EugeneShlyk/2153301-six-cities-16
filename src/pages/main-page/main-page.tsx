@@ -14,9 +14,9 @@ function MainPage(): JSX.Element {
   const {fetchOffersAction} = useActionCreators(offersAction);
   const {searchQuery} = useOutletContext<{ searchQuery: string }>();
 
-  export const mainPageLoader = async () => {
-    return defer({})
-  };
+  // export const mainPageLoader = async () => {
+  //   return defer({})
+  // };
   useEffect(() => {
     fetchOffersAction();
   }, [fetchOffersAction]);
