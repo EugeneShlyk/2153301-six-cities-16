@@ -19,6 +19,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
 
   const isEmpty = offersCurrentCity.length === 0;
+  // const isEmpty = false;
   let sortedOffers = offersCurrentCity;
 
   switch (activeSort) {

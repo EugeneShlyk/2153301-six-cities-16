@@ -6,7 +6,6 @@ import {offersSelector, offersAction} from '@slices/offers';
 import {useEffect} from 'react';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {useOutletContext} from 'react-router-dom';
-import {defer} from 'react-router-dom';
 
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
@@ -14,9 +13,6 @@ function MainPage(): JSX.Element {
   const {fetchOffersAction} = useActionCreators(offersAction);
   const {searchQuery} = useOutletContext<{ searchQuery: string }>();
 
-  // export const mainPageLoader = async () => {
-  //   return defer({})
-  // };
   useEffect(() => {
     fetchOffersAction();
   }, [fetchOffersAction]);

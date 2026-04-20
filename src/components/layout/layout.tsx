@@ -6,8 +6,6 @@ import {useGetLayoutState} from '@components/layout/helpers.ts';
 import {AppRoute} from '@constants';
 import {ToastContainer} from 'react-toastify';
 import {useState} from 'react';
-import {Suspense} from 'react';
-import Spinner from '@components/spinner';
 
 const Layout = () => {
 
@@ -32,10 +30,7 @@ const Layout = () => {
       >
       </Header>
       <main className={clsx('page__main', mainClassName)}>
-        {/*<Outlet context={{ searchQuery }} ></Outlet>*/}
-        <Suspense fallback={<Spinner/>}>
-          <Outlet context={{searchQuery}}/>
-        </Suspense>
+        <Outlet context={{searchQuery}}/>
       </main>
       {shouldRenderFooter && <Footer></Footer>}
     </div>

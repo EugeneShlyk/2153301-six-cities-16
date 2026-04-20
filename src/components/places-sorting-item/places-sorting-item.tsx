@@ -17,7 +17,6 @@ export default function PlacesSortingItem({
 }: PlacesSortingItemProps): JSX.Element {
   return (
     <li
-      // className="places__option"
       className={clsx(
         'places__option',
         selectedOption === sortingItem && 'places__option--active'
