@@ -1,4 +1,3 @@
-import {useBoolean} from '../../hooks/use-boolean.ts';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -27,17 +26,14 @@ function getBookmarkSize(size: Size) {
 }
 
 export default function Bookmark({isActive, extraClass = 'place-card', size, actionClick}: BookmarkProps) {
-  // const {isOn: isBookmarked, toggle: toggleBookmark} = useBoolean(isActive);
   const classNameObject = {
     [`${extraClass}__bookmark-button`]: !!extraClass,
-    // [`${extraClass}__bookmark-button--active`]: isBookmarked,
     [`${extraClass}__bookmark-button--active`]: isActive,
   };
   const bookMarkClass = clsx('button', classNameObject);
   const buttonClickHandler = (evt: React.MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
     actionClick();
-    // toggleBookmark();
   };
   return (
     <button
@@ -52,7 +48,6 @@ export default function Bookmark({isActive, extraClass = 'place-card', size, act
       </svg>
       <span className="visually-hidden">
         {isActive ? 'In' : 'To'} bookmarks
-        {/*{isBookmarked ? 'In' : 'To'} bookmarks*/}
       </span>
     </button>
   );

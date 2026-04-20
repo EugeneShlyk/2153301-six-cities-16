@@ -3,7 +3,7 @@ import OfferList from '@components/offer-list';
 import {OfferPreview} from '@customType/offer.ts';
 import OfferCard from '@components/offer-card';
 import MapBox from '@components/map-box';
-import {mapClasses, SortOption, CitiesName} from '@constants';
+import {MAP_CLASSES, SortOption, CitiesName} from '@constants';
 import {useState} from 'react';
 import NoOffers from '@components/no-offers';
 import clsx from 'clsx';
@@ -65,7 +65,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
           cityName={cityName}
           offersOfCity={offersCurrentCity}
           hoveredOfferId={hoveredOfferId}
-          mapClass={mapClasses.mainPage}
+          mapClass={MAP_CLASSES.mainPage}
         />
       </div>
     </div>

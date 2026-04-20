@@ -13,7 +13,11 @@ const initialState: ReviewsState = {
 export const reviewsSlice = createSlice({
   name: REVIEWS_SLICE_NAME,
   initialState,
-  reducers: {},
+  reducers: {
+    clearReviews: (state: ReviewsState) => {
+      state.reviews = [];
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviews.fulfilled,

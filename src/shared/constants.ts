@@ -101,9 +101,13 @@ export const largeButtonFavoriteDimensions = {
 
 export const FORMAT_MONTH_YEAR: string = 'MMMM YYYY';
 
-export const mapClasses = {
+export const MAP_CLASSES = {
   mainPage: 'cities__map',
   offerPage: 'offer__map',
+};
+
+export const SPINNER_CLASSES = {
+  FULL_SCREEN: 'loading-screen',
 };
 
 export enum ExtraClassRating {

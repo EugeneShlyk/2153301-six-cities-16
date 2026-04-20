@@ -1,5 +1,5 @@
 import FavoriteButton from '../../components/favorite-button';
-import {mapClasses, galleryPhoto, RequestStatus, ExtraClassRating} from '@constants';
+import {MAP_CLASSES, galleryPhoto, RequestStatus, ExtraClassRating} from '@constants';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
@@ -23,7 +23,7 @@ import RatingDisplay from '@components/rating-display';
 
 function OfferPage(): JSX.Element {
   const {fetchOffer, fetchNearbyOffers, clearOffer} = useActionCreators(offerAction);
-  const {fetchReviews} = useActionCreators(reviewsAction);
+  const {fetchReviews, clearReviews} = useActionCreators(reviewsAction);
   const {offerId} = useParams();
   useEffect(() => {
     if (offerId) {
@@ -33,6 +33,7 @@ function OfferPage(): JSX.Element {
     }
     return () => {
       clearOffer();
+      clearReviews();
     };
   }, [fetchReviews, fetchOffer, fetchNearbyOffers, offerId]);
 
@@ -92,7 +93,7 @@ function OfferPage(): JSX.Element {
             <Reviews reviews={reviews} offerId={offer.id}/>
           </div>
         </div>
-        <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={mapClasses.offerPage}></MapBox>
+        <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={MAP_CLASSES.offerPage}></MapBox>
       </section>
       <div className="container">
         <section className="near-places places">
