@@ -93,7 +93,7 @@ function OfferPage(): JSX.Element {
             <Reviews reviews={reviews} offerId={offer.id}/>
           </div>
         </div>
-        <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={MAP_CLASSES.offerPage}></MapBox>
+        <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={MAP_CLASSES.OFFER_PAGE}></MapBox>
       </section>
       <div className="container">
         <section className="near-places places">

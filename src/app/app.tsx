@@ -1,4 +1,4 @@
-import {AppRoute, AuthorizationStatus} from '@constants';
+import {AppRoute, AuthorizationStatus, SPINNER_CLASSES} from '@constants';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
@@ -55,7 +55,7 @@ function App(): JSX.Element {
   }, [checkAuth]);
 
   if (authStatus === AuthorizationStatus.Unknown) {
-    return <Spinner></Spinner>;
+    return <Spinner extraClass={SPINNER_CLASSES.FULL_SCREEN}></Spinner>;
   }
 
   return <RouterProvider router={router}/>;

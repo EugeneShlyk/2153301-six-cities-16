@@ -63,5 +63,6 @@ export const offersSlice = createSlice({
   selectors: {
     offers: (state: OffersState) => state.offers,
     city: (state: OffersState) => state.currentCity,
+    getOffersLoadingStatus: (state: OffersState) => state.requestStatus,
   },
 });

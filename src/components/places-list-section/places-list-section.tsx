@@ -3,10 +3,13 @@ import OfferList from '@components/offer-list';
 import {OfferPreview} from '@customType/offer.ts';
 import OfferCard from '@components/offer-card';
 import MapBox from '@components/map-box';
-import {MAP_CLASSES, SortOption, CitiesName} from '@constants';
+import {CitiesName, MAP_CLASSES, RequestStatus, SortOption, SPINNER_CLASSES} from '@constants';
 import {useState} from 'react';
 import NoOffers from '@components/no-offers';
 import clsx from 'clsx';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {offersSelector} from '@slices/offers';
+import Spinner from '@components/spinner';
 
 type TPlacesListProps = {
   cityName: CitiesName;
@@ -17,9 +20,13 @@ type TPlacesListProps = {
 function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesListProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<string | null>(null);
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
+  const isOffersLoading = useAppSelector(offersSelector.getOffersLoadingStatus);
+
+  if (isOffersLoading === RequestStatus.Loading || isOffersLoading === RequestStatus.Idle) {
+    return <Spinner extraClass={SPINNER_CLASSES.CONTENT}/>
+  }
 
   const isEmpty = offersCurrentCity.length === 0;
-  // const isEmpty = false;
   let sortedOffers = offersCurrentCity;
 
   switch (activeSort) {
@@ -65,7 +72,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
           cityName={cityName}
           offersOfCity={offersCurrentCity}
           hoveredOfferId={hoveredOfferId}
-          mapClass={MAP_CLASSES.mainPage}
+          mapClass={MAP_CLASSES.MAIN_PAGE}
         />
       </div>
     </div>

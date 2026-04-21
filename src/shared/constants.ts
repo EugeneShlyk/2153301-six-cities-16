@@ -102,12 +102,13 @@ export const largeButtonFavoriteDimensions = {
 export const FORMAT_MONTH_YEAR: string = 'MMMM YYYY';
 
 export const MAP_CLASSES = {
-  mainPage: 'cities__map',
-  offerPage: 'offer__map',
+  MAIN_PAGE: 'cities__map',
+  OFFER_PAGE: 'offer__map',
 };
 
 export const SPINNER_CLASSES = {
   FULL_SCREEN: 'loading-screen',
+  CONTENT: 'content',
 };
 
 export enum ExtraClassRating {
