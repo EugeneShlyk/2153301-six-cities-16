@@ -2,7 +2,7 @@ import {useAuth} from '../../hooks/use-auth.ts';
 import {Navigate, useLocation} from 'react-router-dom';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {userSelector} from '@slices/user';
-import {AppRoute, AuthorizationStatus} from '@constants';
+import {AppRoute, AuthorizationStatus, SPINNER_CLASSES} from '@constants';
 import Spinner from '@components/spinner';
 
 type ProtectRouteProps = {
@@ -25,7 +25,7 @@ export default function ProtectRoute({onlyUnAuth, children}: ProtectRouteProps) 
   const isProtectPage = !onlyUnAuth;
 
   if (authStatus === AuthorizationStatus.Unknown) {
-    return <Spinner></Spinner>;
+    return <Spinner extraClass={SPINNER_CLASSES.FULL_SCREEN}></Spinner>;
   }
 
   if (isAuth && isGuestPage) {

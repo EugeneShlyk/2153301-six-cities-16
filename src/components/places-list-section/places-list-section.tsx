@@ -22,11 +22,14 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
   const isOffersLoading = useAppSelector(offersSelector.getOffersLoadingStatus);
 
-  if (isOffersLoading === RequestStatus.Loading || isOffersLoading === RequestStatus.Idle) {
-    return <Spinner extraClass={SPINNER_CLASSES.CONTENT}/>
-  }
+  // if (isOffersLoading === RequestStatus.Loading || isOffersLoading === RequestStatus.Idle) {
+  //   return <Spinner extraClass={SPINNER_CLASSES.CONTENT}/>;
+  // }
 
   const isEmpty = offersCurrentCity.length === 0;
+  const shouldShowNoOffers = isEmpty &&
+    (isOffersLoading !== RequestStatus.Loading && isOffersLoading !== RequestStatus.Idle);
+
   let sortedOffers = offersCurrentCity;
 
   switch (activeSort) {
@@ -41,7 +44,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
       break;
   }
 
-  return isEmpty ? (
+  return shouldShowNoOffers ? (
     <NoOffers currentLocation={cityName}/>
   ) : (
     <div className={clsx(
@@ -52,20 +55,21 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{offersCurrentCity.length} places to stay in {cityName}</b>
         <PlacesSorting current={activeSort} setter={setActiveSort}/>
-        <OfferList
-          dataOffers={sortedOffers}
-          extraClass={extraClass}
-        >
-          {(dataOffer: OfferPreview) => (
-            <OfferCard
-              offer={dataOffer}
-              size="large"
-              variant="cities"
-              key={dataOffer.id}
-              onOverCard={setHoveredOfferId}
-            />
-          )}
-        </OfferList>
+        {isEmpty ? <Spinner extraClass={SPINNER_CLASSES.CONTENT}/> :
+          <OfferList
+            dataOffers={sortedOffers}
+            extraClass={extraClass}
+          >
+            {(dataOffer: OfferPreview) => (
+              <OfferCard
+                offer={dataOffer}
+                size="large"
+                variant="cities"
+                key={dataOffer.id}
+                onOverCard={setHoveredOfferId}
+              />
+            )}
+          </OfferList>}
       </section>
       <div className="cities__right-section">
         <MapBox

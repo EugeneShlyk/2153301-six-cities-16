@@ -107,8 +107,8 @@ export const MAP_CLASSES = {
 };
 
 export const SPINNER_CLASSES = {
-  FULL_SCREEN: 'loading-screen',
-  CONTENT: 'content',
+  FULL_SCREEN: 'spinner-full-screen',
+  CONTENT: 'spinner-content',
 };
 
 export enum ExtraClassRating {
