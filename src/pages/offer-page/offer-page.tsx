@@ -1,5 +1,5 @@
 import FavoriteButton from '../../components/favorite-button';
-import {MAP_CLASSES, galleryPhoto, RequestStatus, ExtraClassRating} from '@constants';
+import {MAP_CLASSES, galleryPhoto, RequestStatus, ExtraClassRating, SPINNER_CLASSES} from '@constants';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
@@ -45,7 +45,7 @@ function OfferPage(): JSX.Element {
   const rating = offer?.rating;
 
   if (offerStatus === RequestStatus.Loading || offerStatus === RequestStatus.Idle || !offer) {
-    return <Spinner/>;
+    return <Spinner extraClass={SPINNER_CLASSES.FULL_SCREEN}/>;
   }
   if (offerStatus === RequestStatus.Failed) {
     return <Navigate to={AppRoute.NotFound} replace/>;

@@ -37,27 +37,25 @@ function LoginPage(): JSX.Element {
   };
 
   const re = /^[A-Z0-9._%+-]+@[A-Z0-9-]+(\.[A-Z0-9-]+)*\.[A-Z]{2,}$/i;
-  let correctEmailValue = false;
-  let correctPasswordValue = false;
+  let isCorrectEmailValue = false;
+  let isCorrectPasswordValue = false;
 
-  if (re.test(formData.email)) {
-    correctEmailValue = true;
-  }
+  isCorrectEmailValue = re.test(formData.email);
 
   if (formData.password.length > 1 && /[a-zA-Z]/.test(formData.password) && /[0-9]/.test(formData.password)) {
-    correctPasswordValue = true;
+    isCorrectPasswordValue = true;
   }
 
-  const isValid = correctEmailValue && correctPasswordValue;
+  const isValidFormData = isCorrectEmailValue && isCorrectPasswordValue;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!isValid) {
-      if (!correctEmailValue) {
+    if (!isValidFormData) {
+      if (!isCorrectEmailValue) {
         toast.error(TextError.EMAIL_VALIDATION_ERROR);
       }
-      if (!correctPasswordValue) {
+      if (!isCorrectPasswordValue) {
         toast.error(TextError.PASSWORD_VALIDATION_ERROR);
       }
       return;
@@ -76,7 +74,7 @@ function LoginPage(): JSX.Element {
           noValidate
         >
           <div className="login__input-wrapper form__input-wrapper">
-            <label className="visually-hidden">E-mail</label>
+            <label className="visually-hidden" htmlFor="email">E-mail</label>
             <input
               className="login__input form__input"
               type="email"
@@ -85,8 +83,10 @@ function LoginPage(): JSX.Element {
               placeholder="Email"
               value={formData.email}
               onBlur={handleTouched}
+              id="email"
+              autoComplete="email"
             />
-            {touched.email && !correctEmailValue && formData.email.length > 0 && (
+            {touched.email && !isCorrectEmailValue && (
               <span className={clsx(style['login__input-error'])}>
                 {TextError.EMAIL_VALIDATION_ERROR}
               </span>
@@ -104,11 +104,17 @@ function LoginPage(): JSX.Element {
               placeholder="Password"
               required
               onBlur={handleTouched}
+              autoComplete="current-password"
             />
+            {touched.password && !isCorrectPasswordValue && (
+              <span className={clsx(style['login__input-error'])}>
+                {TextError.PASSWORD_VALIDATION_ERROR}
+              </span>
+            )}
           </div>
           <ButtonSubmit
             extraClass={ExtraClassButton.login}
-            isValid={isValid}
+            isValid={isValidFormData}
             disabled={isDisabledButton}
           >
             {TextButton.signIn}

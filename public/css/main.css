@@ -1749,6 +1749,7 @@ img {
 }
 
 .login__input-wrapper {
+  display: block;
   margin-right: 2px;
 }
 

@@ -22,10 +22,6 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
   const isOffersLoading = useAppSelector(offersSelector.getOffersLoadingStatus);
 
-  // if (isOffersLoading === RequestStatus.Loading || isOffersLoading === RequestStatus.Idle) {
-  //   return <Spinner extraClass={SPINNER_CLASSES.CONTENT}/>;
-  // }
-
   const isEmpty = offersCurrentCity.length === 0;
   const shouldShowNoOffers = isEmpty &&
     (isOffersLoading !== RequestStatus.Loading && isOffersLoading !== RequestStatus.Idle);

@@ -6,6 +6,7 @@ import {useGetLayoutState} from '@components/layout/helpers.ts';
 import {AppRoute} from '@constants';
 import {ToastContainer} from 'react-toastify';
 import {useState} from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
 
