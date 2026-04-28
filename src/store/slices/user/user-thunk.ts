@@ -14,18 +14,18 @@ export const login = createAppAsyncThunk<User, LoginData>(
   }
 );
 
-export const logout = createAppAsyncThunk<unknown, undefined>(
-  `${USER_SLICE_NAME}/logout`,
-  async (_arg, {extra: api}) => {
-    await api.delete(ENDPOINTS.LOGOUT);
-    deleteToken();
-  }
-);
-
 export const checkAuth = createAppAsyncThunk<User, undefined>(
   `${USER_SLICE_NAME}/checkAuth`,
   async (_arg, {extra: api}) => {
     const response = await api.get<User>(ENDPOINTS.LOGIN);
     return response.data;
+  }
+);
+
+export const logout = createAppAsyncThunk<unknown, undefined>(
+  `${USER_SLICE_NAME}/logout`,
+  async (_arg, {extra: api}) => {
+    await api.delete(ENDPOINTS.LOGOUT);
+    deleteToken();
   }
 );

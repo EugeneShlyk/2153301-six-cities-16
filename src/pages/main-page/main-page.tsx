@@ -24,7 +24,6 @@ function MainPage(): JSX.Element {
       <LocationList/>
       <div className="cities">
         <PlacesListSection
-          key={currentCity}
           cityName={currentCity}
           offersCurrentCity={offerSearched}
           extraClass="cities__places-list tabs__content"
