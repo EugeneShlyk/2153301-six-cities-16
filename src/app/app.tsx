@@ -53,24 +53,11 @@ function App(): JSX.Element {
   const {fetchOffers} = useActionCreators(offersAction);
   const authStatus = useAppSelector(userSelector.authStatus);
   useEffect(() => {
-    performance.mark('auth-start'); //checking
     checkAuth();
     if (window.location.pathname === '/') {
       fetchOffers();
     }
   }, [checkAuth]);
-
-  useEffect(() => {
-    // 2. Когда статус изменился и перестал быть Unknown
-    if (authStatus !== AuthorizationStatus.Unknown) {
-      performance.mark('auth-end');
-      // 3. Считаем разницу
-      performance.measure('Auth Duration', 'auth-start', 'auth-end');
-
-      const measure = performance.getEntriesByName('Auth Duration')[0];
-      console.log(`Авторизация заняла: ${measure.duration.toFixed(2)} ms`);
-    }
-  }, [authStatus]);
 
   // if (authStatus === AuthorizationStatus.Unknown) {
   //   return <Spinner extraClass={SPINNER_CLASSES.FULL_SCREEN}></Spinner>;
