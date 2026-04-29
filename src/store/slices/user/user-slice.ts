@@ -7,7 +7,7 @@ import {UserState} from '@slices/user/types.ts';
 
 const initialState: UserState = {
   info: null,
-  statusAuthorization: AuthorizationStatus.Unknown,
+  authStatus: AuthorizationStatus.Unknown,
   status: RequestStatus.Idle,
 };
 
@@ -19,22 +19,22 @@ export const userSlice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.info = action.payload;
-        state.statusAuthorization = AuthorizationStatus.Auth;
+        state.authStatus = AuthorizationStatus.Auth;
         state.status = RequestStatus.Success;
       })
       .addCase(logout.fulfilled, (state) => {
         state.info = null;
-        state.statusAuthorization = AuthorizationStatus.NoAuth;
+        state.authStatus = AuthorizationStatus.NoAuth;
         state.status = RequestStatus.Idle;
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
         state.info = action.payload;
-        state.statusAuthorization = AuthorizationStatus.Auth;
+        state.authStatus = AuthorizationStatus.Auth;
         state.status = RequestStatus.Success;
       })
       .addCase(checkAuth.rejected, (state) => {
         state.info = null;
-        state.statusAuthorization = AuthorizationStatus.NoAuth;
+        state.authStatus = AuthorizationStatus.NoAuth;
         state.status = RequestStatus.Failed;
       })
       .addMatcher(isActionPending(USER_SLICE_NAME),
@@ -47,7 +47,7 @@ export const userSlice = createSlice({
         });
   },
   selectors: {
-    authStatus: (state: UserState) => state.statusAuthorization,
+    authStatus: (state: UserState) => state.authStatus,
     user: (state: UserState) => state.info,
     requestStatus: (state: UserState) => state.status,
   }

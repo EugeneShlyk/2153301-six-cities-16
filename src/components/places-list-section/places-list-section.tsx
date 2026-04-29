@@ -23,8 +23,6 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
   const isOffersLoading = useAppSelector(offersSelector.getOffersLoadingStatus);
 
   const isEmpty = offersCurrentCity.length === 0;
-  const shouldShowNoOffers = isEmpty &&
-    (isOffersLoading !== RequestStatus.Loading && isOffersLoading !== RequestStatus.Idle);
 
   let sortedOffers = offersCurrentCity;
 
@@ -40,9 +38,15 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
       break;
   }
 
-  return shouldShowNoOffers ? (
-    <NoOffers currentLocation={cityName}/>
-  ) : (
+  if (isOffersLoading === RequestStatus.Loading || isOffersLoading === RequestStatus.Idle) {
+    return <Spinner extraClass={SPINNER_CLASSES.CONTENT} />;
+  }
+
+  if (isEmpty) {
+    return <NoOffers currentLocation={cityName}/>;
+  }
+
+  return (
     <div className={clsx(
       'cities__places-container container',
       isEmpty && 'cities__places-container--empty',)}

@@ -10,12 +10,20 @@ import {useOutletContext} from 'react-router-dom';
 function MainPage(): JSX.Element {
   const currentCity = useAppSelector(offersSelector.city);
   const offers = useAppSelector(offersSelector.offers);
-  const {fetchOffersAction} = useActionCreators(offersAction);
+  const {fetchOffers} = useActionCreators(offersAction);
   const {searchQuery} = useOutletContext<{ searchQuery: string }>();
 
   useEffect(() => {
-    fetchOffersAction();
-  }, [fetchOffersAction]);
+    performance.mark('offers-start'); //checking
+    fetchOffers();
+  }, [fetchOffers]);
+
+  if (offers.length > 0) {
+    performance.mark('offers-end');
+    performance.measure('Offers Loading', 'offers-start', 'offers-end');
+    console.log(`Офферы грузились: ${performance.getEntriesByName('Offers Loading')[0].duration.toFixed(2)} ms`);
+  }
+
   const offersCurrentCity: OfferPreview[] = offers?.filter((offer: OfferPreview): boolean => offer.city.name === currentCity) ?? [];
   const offerSearched = offersCurrentCity.filter((offer) => offer.title.toLowerCase().includes(searchQuery));
   return (

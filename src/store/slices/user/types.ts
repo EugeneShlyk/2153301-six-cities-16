@@ -8,6 +8,6 @@ export type LoginData = {
 
 export type UserState = {
   info: User | null;
-  statusAuthorization: AuthorizationStatus;
+  authStatus: AuthorizationStatus;
   status: RequestStatus;
 }
