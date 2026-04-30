@@ -51,7 +51,7 @@ const router = createBrowserRouter([
 function App(): JSX.Element {
   const {checkAuth} = useActionCreators(userAction);
   const {fetchOffers} = useActionCreators(offersAction);
-  const authStatus = useAppSelector(userSelector.authStatus);
+  // const authStatus = useAppSelector(userSelector.authStatus);
   useEffect(() => {
     checkAuth();
     if (window.location.pathname === '/') {

@@ -1,4 +1,9 @@
 import {JSX} from 'react';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {userSelector} from '@slices/user';
+import {AuthorizationStatus} from '@constants';
+import Spinner from '@components/spinner';
+import {SPINNER_CLASSES} from '@constants';
 
 type AuthGateProps = {
   children: JSX.Element;
@@ -6,11 +11,10 @@ type AuthGateProps = {
 
 export default function AuthGate({children}: AuthGateProps): JSX.Element {
   const authStatus = useAppSelector(userSelector.authStatus);
-  // Если статус еще не проверен — показываем фулл-скрин спиннер
+
   if (authStatus === AuthorizationStatus.Unknown) {
     return <Spinner extraClass={SPINNER_CLASSES.FULL_SCREEN} />;
   }
 
-  // Как только статус стал Auth или NoAuth — показываем приложение
   return children;
 }
