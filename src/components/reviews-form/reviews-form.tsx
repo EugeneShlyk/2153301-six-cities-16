@@ -49,7 +49,6 @@ export default function ReviewsForm({offerId}: ReviewsFormProps) {
       [name]: name === 'rating' ? Number(value) : value
     })));
   };
-  // const {postReview} = useActionCreators(reviewsAction);
   const onFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isValidRating) {

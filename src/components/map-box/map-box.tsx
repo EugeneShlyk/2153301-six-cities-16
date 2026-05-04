@@ -1,4 +1,4 @@
-import useMap from '../../hooks/use-map';
+import useMap from './use-map';
 import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {CITIES, CitiesName} from '@constants';

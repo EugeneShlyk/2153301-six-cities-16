@@ -1,4 +1,4 @@
-import {AppRoute, AuthorizationStatus, SPINNER_CLASSES} from '@constants';
+import {AppRoute} from '@constants';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MainPage from '@pages/main-page';
 import FavoritePage from '@pages/favorites-page';
@@ -10,10 +10,7 @@ import Layout from '@components/layout';
 import ProtectRoute from '@components/protect-route';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
 import {userAction} from '@slices/user';
-import {useAppSelector} from '@store/hooks/use-app-selector.ts';
-import Spinner from '@components/spinner';
-import {userSelector} from '@slices/user';
-import {offersAction, offersSelector} from '@slices/offers';
+import {offersAction} from '@slices/offers';
 
 const router = createBrowserRouter([
   {
@@ -51,17 +48,12 @@ const router = createBrowserRouter([
 function App(): JSX.Element {
   const {checkAuth} = useActionCreators(userAction);
   const {fetchOffers} = useActionCreators(offersAction);
-  // const authStatus = useAppSelector(userSelector.authStatus);
   useEffect(() => {
     checkAuth();
     if (window.location.pathname === '/') {
       fetchOffers();
     }
-  }, [checkAuth]);
-
-  // if (authStatus === AuthorizationStatus.Unknown) {
-  //   return <Spinner extraClass={SPINNER_CLASSES.FULL_SCREEN}></Spinner>;
-  // }
+  }, [checkAuth, fetchOffers]);
 
   return <RouterProvider router={router}/>;
 }
