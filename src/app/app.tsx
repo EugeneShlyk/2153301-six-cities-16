@@ -9,8 +9,11 @@ import {JSX, useEffect} from 'react';
 import Layout from '@components/layout';
 import ProtectRoute from '@components/protect-route';
 import {useActionCreators} from '@store/hooks/use-action-creator.ts';
-import {userAction} from '@slices/user';
+import {userAction, userSelector} from '@slices/user';
 import {offersAction} from '@slices/offers';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {AuthorizationStatus} from '@constants';
+import Spinner from '@components/spinner';
 
 const router = createBrowserRouter([
   {
@@ -48,12 +51,17 @@ const router = createBrowserRouter([
 function App(): JSX.Element {
   const {checkAuth} = useActionCreators(userAction);
   const {fetchOffers} = useActionCreators(offersAction);
+  const authStatus = useAppSelector(userSelector.authStatus);
   useEffect(() => {
     checkAuth();
     if (window.location.pathname === '/') {
       fetchOffers();
     }
   }, [checkAuth, fetchOffers]);
+
+  if (authStatus === AuthorizationStatus.Unknown) {
+    return <Spinner />;
+  }
 
   return <RouterProvider router={router}/>;
 }

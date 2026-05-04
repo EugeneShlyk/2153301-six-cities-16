@@ -6,7 +6,7 @@ type SpinnerProps = {
   extraClass: string;
 }
 
-function Spinner({extraClass}: SpinnerProps): JSX.Element {
+function Spinner({extraClass = }: SpinnerProps): JSX.Element {
   return (
     <div className={clsx(style[extraClass])}>
       <div className={style['loading-spinner']}>

@@ -27,6 +27,7 @@ export const reviewsSlice = createSlice({
         })
       .addCase(postReview.fulfilled, (state, action) => {
         state.reviews.push(action.payload);
+        state.requestStatus = RequestStatus.Success;
       })
       .addMatcher(isActionPending(REVIEWS_SLICE_NAME),
         (state) => {
