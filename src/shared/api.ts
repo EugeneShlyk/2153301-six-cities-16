@@ -15,8 +15,11 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-
       config.headers['x-token'] = getToken();
+      if (!config.signal) {
+        config.signal = AbortSignal.timeout(REQUEST_TIMEOUT);
+      }
+      console.log('ВЕСЬ КОНФИГ:', config);
       return config;
     }
   );
