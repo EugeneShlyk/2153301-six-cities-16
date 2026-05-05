@@ -60,7 +60,7 @@ function App(): JSX.Element {
   }, [checkAuth, fetchOffers]);
 
   if (authStatus === AuthorizationStatus.Unknown) {
-    return <Spinner />;
+    return <Spinner/>;
   }
 
   return <RouterProvider router={router}/>;

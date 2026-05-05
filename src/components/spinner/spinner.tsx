@@ -1,12 +1,13 @@
 import {JSX} from 'react';
 import style from './style.module.scss';
 import clsx from 'clsx';
+import {SPINNER_CLASSES} from '@constants';
 
 type SpinnerProps = {
-  extraClass: string;
+  extraClass?: string;
 }
 
-function Spinner({extraClass = }: SpinnerProps): JSX.Element {
+function Spinner({extraClass = SPINNER_CLASSES.FULL_SCREEN}: SpinnerProps): JSX.Element {
   return (
     <div className={clsx(style[extraClass])}>
       <div className={style['loading-spinner']}>
