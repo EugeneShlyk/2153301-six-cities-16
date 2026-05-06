@@ -18,7 +18,9 @@ function getFavoritesByLocation(items: OfferPreview[]) {
 
 function FavoritePage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelector.favorites);
-  const favoritesByLocation = getFavoritesByLocation(favorites);
+  console.log(favorites);
+  const favoritesByLocation = Object.groupBy(favorites, (offer) => offer.city.name);
+  // const favoritesByLocation = getFavoritesByLocation(favorites);
   const hasFavorites = Boolean(favorites?.length);
 
   useEffect(() => {

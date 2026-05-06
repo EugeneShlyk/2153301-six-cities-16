@@ -19,7 +19,6 @@ export const createAPI = (): AxiosInstance => {
       if (!config.signal) {
         config.signal = AbortSignal.timeout(REQUEST_TIMEOUT);
       }
-      console.log('ВЕСЬ КОНФИГ:', config);
       return config;
     }
   );
