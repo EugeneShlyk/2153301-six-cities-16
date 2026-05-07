@@ -35,35 +35,37 @@ export enum ENDPOINTS {
   FAVORITE = 'favorite',
 }
 
+const zoomForCities = 13;
+
 export const CITIES = [
   {
     id: 'paris',
-    location: {latitude: 48.85661, longitude: 2.351499, zoom: 13},
+    location: {latitude: 48.85661, longitude: 2.351499, zoom: zoomForCities},
     name: CitiesName.Paris
   },
   {
     id: 'cologne',
-    location: {latitude: 50.938361, longitude: 6.959974, zoom: 13},
+    location: {latitude: 50.938361, longitude: 6.959974, zoom: zoomForCities},
     name: CitiesName.Cologne,
   },
   {
     id: 'brussels',
-    location: {latitude: 50.846557, longitude: 4.351697, zoom: 13},
+    location: {latitude: 50.846557, longitude: 4.351697, zoom: zoomForCities},
     name: CitiesName.Brussels
   },
   {
     id: 'amsterdam',
-    location: {latitude: 52.37454, longitude: 4.897976, zoom: 13},
+    location: {latitude: 52.37454, longitude: 4.897976, zoom: zoomForCities},
     name: CitiesName.Amsterdam
   },
   {
     id: 'hamburg',
-    location: {latitude: 53.550341, longitude: 10.000654, zoom: 13},
+    location: {latitude: 53.550341, longitude: 10.000654, zoom: zoomForCities},
     name: CitiesName.Hamburg
   },
   {
     id: 'dusseldorf',
-    location: {latitude: 51.225402, longitude: 6.776314, zoom: 13},
+    location: {latitude: 51.225402, longitude: 6.776314, zoom: zoomForCities},
     name: CitiesName.Dusseldorf
   },
 ] as const;

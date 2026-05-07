@@ -1,5 +1,4 @@
 import OfferCard from '@components/offer-card';
-import {OfferPreview} from '@customType/offer';
 import FavoritesEmptyPage from '@pages/favorites-empty-page';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@constants';
@@ -7,20 +6,9 @@ import {useAppSelector} from '@store/hooks/use-app-selector.ts';
 import {favoritesSelector} from '@slices/favorites';
 import {useEffect} from 'react';
 
-function getFavoritesByLocation(items: OfferPreview[]) {
-  return items.reduce<Record<string, OfferPreview[]>>((acc, current) => {
-    const location = current.city.name;
-    acc[location] = acc[location] || []; // Если пусто, создаем массив
-    acc[location].push(current);
-    return acc;
-  }, {});
-}
-
 function FavoritePage(): JSX.Element {
   const favorites = useAppSelector(favoritesSelector.favorites);
-  console.log(favorites);
   const favoritesByLocation = Object.groupBy(favorites, (offer) => offer.city.name);
-  // const favoritesByLocation = getFavoritesByLocation(favorites);
   const hasFavorites = Boolean(favorites?.length);
 
   useEffect(() => {

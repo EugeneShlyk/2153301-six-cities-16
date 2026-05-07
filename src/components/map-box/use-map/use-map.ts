@@ -1,25 +1,25 @@
 import {RefObject, useEffect, useRef} from 'react';
 import {useState} from 'react';
-import L, {Map, TileLayer} from 'leaflet';
+import {Map, TileLayer} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {CITIES} from '@constants';
 
 type CityItem = typeof CITIES[number];
 
-type TUseMapProps = {
+type UseMapProps = {
   currentCity: CityItem;
   mapRef: RefObject<HTMLDivElement>;
 };
 
-export default function useMap({mapRef, currentCity}: TUseMapProps
+export default function useMap({mapRef, currentCity}: UseMapProps
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
   // Создаем карту
   useEffect(() => {
-    if (mapRef.current !== null && !isRenderedRef.current) {
-      const instance = new Map(mapRef.current, {
+    if (mapRef.current && !isRenderedRef.current) {
+      const ourMap = new Map(mapRef.current, {
         center: {
           lat: currentCity.location.latitude,
           lng: currentCity.location.longitude,
@@ -34,8 +34,9 @@ export default function useMap({mapRef, currentCity}: TUseMapProps
         }
       );
 
-      instance.addLayer(layer);
-      setMap(instance);
+      ourMap.addLayer(layer);
+      console.log(ourMap)
+      setMap(ourMap);
       isRenderedRef.current = true;
     }
   }, [mapRef]);

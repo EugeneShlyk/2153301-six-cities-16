@@ -28,49 +28,6 @@ const currentCustomIcon = new Icon({
   iconAnchor: [13.5, 39]
 });
 
-// export default function MapBox({
-//   cityName,
-//   offersOfCity,
-//   hoveredOfferId,
-//   mapClass,
-// }: MapProps): JSX.Element {
-//   const currentCity = CITIES.find((city) => city.name === cityName) || CITIES[0];
-//   const mapRef = useRef(null);
-//   const map = useMap({mapRef, currentCity});
-//   useEffect(() => {
-//     if (map) {
-//       const mapLayerGroup = layerGroup().addTo(map);
-//
-//       // Проверка на пустой массив offersOfCity
-//       if (offersOfCity && offersOfCity.length === 0) {
-//         return () => {
-//           map.removeLayer(mapLayerGroup);
-//         };
-//       }
-//       if (offersOfCity) {
-//         offersOfCity.forEach((offer) => {
-//           const marker = new Marker({
-//             lat: offer.location.latitude,
-//             lng: offer.location.longitude,
-//           });
-//           marker.setIcon(
-//             hoveredOfferId !== undefined && hoveredOfferId === offer.id
-//               ? currentCustomIcon
-//               : defaultCustomIcon
-//           )
-//             .addTo(mapLayerGroup);
-//         });
-//       }
-//       return () => {
-//         map.removeLayer(mapLayerGroup);
-//       };
-//     }
-//   }, [map, offersOfCity, hoveredOfferId]);
-//   return (
-//     <section className={clsx('map', style['map-box'], mapClass)} ref={mapRef}></section>
-//   );
-// }
-
 export default function MapBox({
   cityName,
   offersOfCity,
