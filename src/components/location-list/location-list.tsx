@@ -17,13 +17,15 @@ export default function LocationList(): JSX.Element {
       const defaultCity = CITIES[0].name;
       setSearchParams({'city': defaultCity});
     }
-    changeCity(currentCity);
+    if (currentCity) {
+      changeCity(currentCity);
+    }
   }, [setSearchParams, currentCity, changeCity]);
 
   const onCityClickHandler = (
     evt: MouseEvent<HTMLElement>,
     cityName: CitiesName
-  ) : void => {
+  ): void => {
     evt.preventDefault();
     if (cityName !== currentCity) {
       changeCity(cityName);

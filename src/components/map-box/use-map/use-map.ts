@@ -35,7 +35,6 @@ export default function useMap({mapRef, currentCity}: UseMapProps
       );
 
       ourMap.addLayer(layer);
-      console.log(ourMap)
       setMap(ourMap);
       isRenderedRef.current = true;
     }

@@ -12,7 +12,7 @@ type TPlacesSortingProp = {
 function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
   const [isOpened, setOpen] = useState<boolean>(false);
 
-  const selectedOption = SORT_OPTIONS[current];
+  // const selectedOption = SORT_OPTIONS[current];
 
   const onSortOpenClick = (evt: React.MouseEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -49,7 +49,7 @@ function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
             setOpen={setOpen}
             setterOpenSort={setter}
             SortOptionIndex={index}
-            selectedOption={selectedOption}
+            // selectedOption={selectedOption}
           />
         ))}
       </ul>

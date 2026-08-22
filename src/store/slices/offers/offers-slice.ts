@@ -1,16 +1,16 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CITIES, CitiesName, RequestStatus} from '@constants';
+import {CITIES, CitiesName, RequestStatus, SortOption} from '@constants';
 import {OffersState} from '@slices/offers/types.ts';
 import {OFFERS_SLICE_NAME} from '@slices/slice-name.ts';
 import {fetchOffers} from '@slices/offers/offers-thunk.ts';
 import {isActionPending, isActionRejected} from '@utils/redux.ts';
 import {changeFavorites} from '@slices/favorites/favorites-thunk.ts';
-// import offer from '@slices/offer';
 
 const initialState: OffersState = {
   currentCity: CITIES[0].name,
   offers: [],
   requestStatus: RequestStatus.Idle,
+  activeSort: SortOption.Popular,
 };
 
 export const offersSlice = createSlice({
@@ -20,6 +20,9 @@ export const offersSlice = createSlice({
     changeCity: (state, action: PayloadAction<CitiesName>) => {
       state.currentCity = action.payload;
     },
+    changeSort: (state, action: PayloadAction<SortOption>) => {
+      state.activeSort = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -64,5 +67,6 @@ export const offersSlice = createSlice({
     offers: (state: OffersState) => state.offers,
     city: (state: OffersState) => state.currentCity,
     getOffersLoadingStatus: (state: OffersState) => state.requestStatus,
+    getActiveSort: (state: OffersState) => state.activeSort,
   },
 });

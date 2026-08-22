@@ -1,11 +1,14 @@
 import clsx from 'clsx';
+import {useActionCreators} from '@store/hooks/use-action-creator.ts';
+import {offersAction} from '@slices/offers';
+import {SORT_OPTIONS} from '@constants';
 
 interface PlacesSortingItemProps {
   sortingItem: string;
   setOpen: (open: boolean) => void;
   setterOpenSort: (sort: number) => void;
   SortOptionIndex: number;
-  selectedOption: string;
+  // selectedOption: string;
 }
 
 export default function PlacesSortingItem({
@@ -13,8 +16,10 @@ export default function PlacesSortingItem({
   setterOpenSort,
   SortOptionIndex,
   setOpen,
-  selectedOption,
+  // selectedOption,
 }: PlacesSortingItemProps): JSX.Element {
+  const {changeSort} = useActionCreators(offersAction);
+  const selectedOption = SORT_OPTIONS[SortOptionIndex];
   return (
     <li
       className={clsx(
@@ -25,6 +30,7 @@ export default function PlacesSortingItem({
       onClick={() => {
         setOpen(false);
         setterOpenSort(SortOptionIndex);
+        changeSort(SortOptionIndex);
       }}
     >
       {sortingItem}
