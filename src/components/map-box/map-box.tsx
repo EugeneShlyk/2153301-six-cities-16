@@ -3,16 +3,16 @@ import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {CITIES, CitiesName} from '@constants';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import {OfferPreview} from '@customType/offer.ts';
+import {OfferPreview, Offer} from '@customType/offer.ts';
 import clsx from 'clsx';
 import style from './map-box.module.scss';
 import Pin from './assets/pin.svg';
-import PinCurrent from './assets/pin-current.svg';
+import PinCurrent from './assets/pin-active.svg';
 
 interface MapProps {
   cityName: CitiesName;
-  offersOfCity?: OfferPreview[];
-  hoveredOfferId?: string | null;
+  offersOfCity?: (OfferPreview | Offer) [];
+  currentCityPin?: string | null;
   mapClass: string;
 }
 
@@ -31,7 +31,7 @@ const currentCustomIcon = new Icon({
 export default function MapBox({
   cityName,
   offersOfCity,
-  hoveredOfferId,
+  currentCityPin,
   mapClass,
 }: MapProps): JSX.Element {
   const currentCity = CITIES.find((city) => city.name === cityName) || CITIES[0];
@@ -61,7 +61,7 @@ export default function MapBox({
 
           marker
             .setIcon(
-              offer.id === hoveredOfferId
+              offer.id === currentCityPin
                 ? currentCustomIcon
                 : defaultCustomIcon
             )
@@ -75,9 +75,7 @@ export default function MapBox({
         }
       };
     }
-    // УБИРАЕМ hoveredOfferId из зависимостей этого эффекта!
-    // Теперь маркеры перерисовываются только если сменилась карта или массив офферов.
-  }, [map, offersOfCity]);
+  }, [map, offersOfCity, currentCityPin]);
 
   // ОТДЕЛЬНЫЙ эффект для обновления иконок без перерисовки всей карты
   useEffect(() => {
@@ -94,7 +92,7 @@ export default function MapBox({
 
           if (currentOffer) {
             marker.setIcon(
-              currentOffer.id === hoveredOfferId
+              currentOffer.id === currentCityPin
                 ? currentCustomIcon
                 : defaultCustomIcon
             );
@@ -102,7 +100,7 @@ export default function MapBox({
         }
       });
     }
-  }, [hoveredOfferId, offersOfCity]);
+  }, [currentCityPin, offersOfCity]);
 
   return (
     <section className={clsx('map', style['map-box'], mapClass)} ref={mapRef}></section>

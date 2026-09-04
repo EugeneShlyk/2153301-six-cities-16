@@ -1,18 +1,14 @@
-import {SORT_OPTIONS, SortOption} from '@constants';
+import {SORT_OPTIONS} from '@constants';
 import PlacesSortingItem from '@components/places-sorting-item';
 import clsx from 'clsx';
 import {useState} from 'react';
 import React from 'react';
+import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {offersSelector} from '@slices/offers';
 
-type TPlacesSortingProp = {
-  current: SortOption;
-  setter: (option: SortOption) => void;
-}
-
-function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
+function PlacesSorting(): JSX.Element {
   const [isOpened, setOpen] = useState<boolean>(false);
-
-  // const selectedOption = SORT_OPTIONS[current];
+  const activeSort = useAppSelector(offersSelector.getActiveSort);
 
   const onSortOpenClick = (evt: React.MouseEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -32,7 +28,7 @@ function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
     >
       <span className="places__sorting-caption">Sort by&nbsp;</span>
       <span className="places__sorting-type" tabIndex={0}>
-                  Popular
+        {SORT_OPTIONS[activeSort]}
         <svg className="places__sorting-arrow" width={7} height={4}>
           <use href="#icon-arrow-select"></use>
         </svg>
@@ -45,11 +41,9 @@ function PlacesSorting({current, setter}: TPlacesSortingProp): JSX.Element {
         {SORT_OPTIONS.map((nameSort: string, index: number) => (
           <PlacesSortingItem
             sortingItem={nameSort}
-            key={nameSort}
             setOpen={setOpen}
-            setterOpenSort={setter}
+            key={nameSort}
             SortOptionIndex={index}
-            // selectedOption={selectedOption}
           />
         ))}
       </ul>

@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom';
 import {getRandomCity} from '@utils/getRandomCity';
 import React, {useMemo, useState} from 'react';
 import {AppRoute, ExtraClassButton, RequestStatus, TextButton, TextError} from '@constants';
-import {toast} from 'react-toastify';
 import ButtonSubmit from '@components/button-submit';
 import style from './login-page.module.scss';
 import clsx from 'clsx';
 import {useAppSelector} from '@store/hooks/use-app-selector.ts';
+import {LOCATIONS} from '@constants';
 
 type FormDataT = {
   email: string;
@@ -21,7 +21,7 @@ function LoginPage(): JSX.Element {
   const [touched, setTouched] =
     useState<{ email: boolean; password: boolean }>({email: false, password: false});
   const {login} = useActionCreators(userAction);
-  const cityForPage = useMemo(() => getRandomCity(), []);
+  const randomCity = useMemo(() => getRandomCity(LOCATIONS), []);
   const requestStatus = useAppSelector(userSelector.requestStatus);
   const isDisabledButton = requestStatus === RequestStatus.Loading;
 
@@ -51,18 +51,17 @@ function LoginPage(): JSX.Element {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!isValidFormData) {
-      if (!isCorrectEmailValue) {
-        toast.error(TextError.EMAIL_VALIDATION_ERROR);
-      }
-      if (!isCorrectPasswordValue) {
-        toast.error(TextError.PASSWORD_VALIDATION_ERROR);
-      }
+    // Проверка по актуальному стейту в момент отправки
+    const isEmailValid = /^[A-Z0-9._%+-]+@[A-Z0-9-]+(\.[A-Z0-9-]+)*\.[A-Z]{2,}$/i.test(formData.email);
+    const isPasswordValid = formData.password.length > 1 && /[a-zA-Z]/.test(formData.password) && /[0-9]/.test(formData.password);
+
+    if (!isEmailValid || !isPasswordValid) {
       return;
     }
 
     login(formData);
   };
+
 
   return (
     <div className="page__login-container container">
@@ -125,9 +124,9 @@ function LoginPage(): JSX.Element {
         <div className="locations__item">
           <Link
             className="locations__item-link"
-            to={{pathname: `${AppRoute.Root}`, search: `?city=${cityForPage}`}}
+            to={{pathname: `${AppRoute.Root}`, search: `?city=${randomCity}`}}
           >
-            <span>{cityForPage}</span>
+            <span>{randomCity}</span>
           </Link>
         </div>
       </section>

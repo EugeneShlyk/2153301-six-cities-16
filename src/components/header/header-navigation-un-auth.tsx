@@ -1,8 +1,7 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '@constants';
 
-export const HeaderNavigationUnAuth = () => {
-
+export function HeaderNavigationUnAuth() {
   return (
     <li className="header__nav-item user">
       <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
@@ -12,4 +11,4 @@ export const HeaderNavigationUnAuth = () => {
       </Link>
     </li>
   );
-};
+}

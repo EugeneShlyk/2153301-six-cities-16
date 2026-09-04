@@ -33,12 +33,11 @@ export default function useMap({mapRef, currentCity}: UseMapProps
           attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors &copy; <a href="https://carto.com">CARTO</a>'
         }
       );
-
       ourMap.addLayer(layer);
       setMap(ourMap);
       isRenderedRef.current = true;
     }
-  }, [mapRef]);
+  }, [mapRef, currentCity.location.latitude, currentCity.location.longitude, currentCity.location.zoom]);
 
   // двигаем камеру, когда меняется город
   useEffect(() => {
@@ -48,7 +47,7 @@ export default function useMap({mapRef, currentCity}: UseMapProps
         currentCity.location.zoom
       );
     }
-  }, [map, currentCity]); // Срабатывает, когда карта уже готова или город сменился
+  }, [map, currentCity,]); // Срабатывает, когда карта уже готова или город сменился
 
   return map;
 }

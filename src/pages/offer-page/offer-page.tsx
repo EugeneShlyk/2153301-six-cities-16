@@ -1,5 +1,5 @@
 import FavoriteButton from '../../components/favorite-button';
-import {MAP_CLASSES, galleryPhoto, RequestStatus, ExtraClassRating, SPINNER_CLASSES} from '@constants';
+import {MAP_CLASSES, RequestStatus, ExtraClassRating, SPINNER_CLASSES} from '@constants';
 import MapBox from '@components/map-box';
 import OfferCard from '@components/offer-card';
 import {OfferPreview} from '@customType/offer.ts';
@@ -35,7 +35,7 @@ function OfferPage(): JSX.Element {
       clearOffer();
       clearReviews();
     };
-  }, [fetchReviews, fetchOffer, fetchNearbyOffers, offerId]);
+  }, [fetchReviews, fetchOffer, fetchNearbyOffers, offerId, clearOffer, clearReviews]);
 
   const offer = useAppSelector(offerSelector.offer);
   const nearbyOffers = useAppSelector(offerSelector.nearbyOffers).slice(0, 3);
@@ -54,7 +54,7 @@ function OfferPage(): JSX.Element {
   return (
     <>
       <section className="offer">
-        <Gallery images={galleryPhoto}/>
+        <Gallery images={offer.images}/>
         <div className="offer__container container">
           <div className="offer__wrapper">
             <PremiumBadge isPremium={offer.isPremium} extraClassName={'offer__mark'}/>
@@ -93,7 +93,13 @@ function OfferPage(): JSX.Element {
             <Reviews reviews={reviews} offerId={offer.id}/>
           </div>
         </div>
-        <MapBox cityName={cityName} offersOfCity={nearbyOffers} mapClass={MAP_CLASSES.OFFER_PAGE}></MapBox>
+        <MapBox
+          cityName={cityName}
+          offersOfCity={[...nearbyOffers, offer]}
+          mapClass={MAP_CLASSES.OFFER_PAGE}
+          currentCityPin={offerId}
+        >
+        </MapBox>
       </section>
       <div className="container">
         <section className="near-places places">

@@ -13,5 +13,5 @@ export default function OfferOptions({offer}: OfferOptionsT) {
         </li>
       ))}
     </ul>
-  )
+  );
 }

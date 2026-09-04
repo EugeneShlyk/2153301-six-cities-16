@@ -19,7 +19,7 @@ type TPlacesListProps = {
 
 function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesListProps) {
   const [hoveredOfferId, setHoveredOfferId] = useState<string | null>(null);
-  // const [activeSort, setActiveSort] = useState(SortOption.Popular);
+  // console.log(typeof hoveredOfferId);
   const isOffersLoading = useAppSelector(offersSelector.getOffersLoadingStatus);
   const activeSort = useAppSelector(offersSelector.getActiveSort);
 
@@ -54,8 +54,8 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
     >
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{offersCurrentCity.length} places to stay in {cityName}</b>
-        <PlacesSorting current={activeSort} setter={setActiveSort}/>
+        <b className="places__found">{offersCurrentCity.length} {offersCurrentCity.length === 1 ? 'place' : 'places'} to stay in {cityName}</b>
+        <PlacesSorting/>
         {isEmpty ? <Spinner extraClass={SPINNER_CLASSES.CONTENT}/> :
           <OfferList
             dataOffers={sortedOffers}
@@ -76,7 +76,7 @@ function PlacesListSection({cityName, offersCurrentCity, extraClass}: TPlacesLis
         <MapBox
           cityName={cityName}
           offersOfCity={offersCurrentCity}
-          hoveredOfferId={hoveredOfferId}
+          currentCityPin={hoveredOfferId}
           mapClass={MAP_CLASSES.MAIN_PAGE}
         />
       </div>

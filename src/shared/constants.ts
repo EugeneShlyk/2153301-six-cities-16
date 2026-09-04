@@ -7,6 +7,13 @@ export const enum SortOption {
   TopRatedFirst
 }
 
+export enum SortOptionName {
+  Popular = 'Popular',
+  PriceLowToHigh = 'Price: low to high', // Ключ чистый, а двоеточие ушло внутрь строки
+  PriceHighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first',
+}
+
 export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'] satisfies Record<SortOption, string>;
 
 export enum CitiesName {
@@ -142,15 +149,6 @@ export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
 }
-
-export const galleryPhoto: string[] = [
-  'img/room.jpg',
-  'img/apartment-01.jpg',
-  'img/apartment-02.jpg',
-  'img/apartment-03.jpg',
-  'img/apartment-04.jpg',
-  'img/studio-01.jpg',
-];
 
 export const enum RequestStatus {
   Idle = 'idle',

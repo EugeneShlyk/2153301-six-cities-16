@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit';
-import offersSlice from './slices/offers';
 import {rootReducer} from '@store/root-reducers.ts';
 import {createAPI} from '@shared/api.ts';
 
@@ -16,5 +15,3 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
-
-export {offersSlice};

@@ -6,17 +6,13 @@ import {SORT_OPTIONS} from '@constants';
 interface PlacesSortingItemProps {
   sortingItem: string;
   setOpen: (open: boolean) => void;
-  setterOpenSort: (sort: number) => void;
   SortOptionIndex: number;
-  // selectedOption: string;
 }
 
 export default function PlacesSortingItem({
   sortingItem,
-  setterOpenSort,
   SortOptionIndex,
   setOpen,
-  // selectedOption,
 }: PlacesSortingItemProps): JSX.Element {
   const {changeSort} = useActionCreators(offersAction);
   const selectedOption = SORT_OPTIONS[SortOptionIndex];
@@ -29,7 +25,6 @@ export default function PlacesSortingItem({
       tabIndex={0}
       onClick={() => {
         setOpen(false);
-        setterOpenSort(SortOptionIndex);
         changeSort(SortOptionIndex);
       }}
     >

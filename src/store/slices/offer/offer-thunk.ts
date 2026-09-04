@@ -14,6 +14,7 @@ export const fetchNearbyOffers = createAppAsyncThunk<OfferPreview[], string>(
   `${OFFER_SLICE_NAME}/fetchNearbyOffers`,
   async (offerId, {extra: api}) => {
     const {data} = await api.get<OfferPreview[]>(`${ENDPOINTS.OFFERS}/${offerId}/nearby`);
+    console.log(data);
     return data;
   }
 );

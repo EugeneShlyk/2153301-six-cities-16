@@ -32,7 +32,7 @@ export const createAPI = (): AxiosInstance => {
         if (status === 401 || config.url === '/login' && config.method === 'get') {
           return Promise.reject(error);
         }
-
+        // eslint-disable-next-line no-console
         console.warn('API error', error.response.data.message);
       }
 
